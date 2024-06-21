@@ -1,0 +1,6 @@
+body {
+  background-color: var(--blue-light);
+  color: var(--blue-dark);
+  font-family: var(--humanist-fonts);
+  margin: 0;
+}

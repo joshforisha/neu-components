@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+    <meta name="description" content="" />
+    <meta name="theme-color" content="" />
+    -->
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Neubrutalist Components</title>
+    <link rel="stylesheet" href="common.css" />
+    <!--
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    -->
+    <script src="neu-avatar.js" type="module"></script>
+    <script src="neu-button.js" type="module"></script>
+    <style>
+      :root {
+        --content-width: 40rem;
+      }
+
+      body {
+        background-color: var(--blue-light);
+        color: var(--black);
+        font-family: var(--humanist-fonts);
+        margin: 0;
+      }
+
+      h1 {
+        margin: var(--huge) auto;
+        max-width: var(--content-width);
+      }
+
+      h2 {
+        margin: 0 auto var(--small);
+        width: var(--content-width);
+      }
+
+      section {
+        border-top: var(--border-thin);
+        display: flex;
+        flex-direction: column;
+        gap: var(--large);
+        padding: var(--large) var(--medium);
+
+        &:last-of-type {
+          border-bottom: var(--border-thin);
+        }
+
+        &.red { background-color: var(--red-light) }
+        &.orange { background-color: var(--orange-light) }
+        &.yellow { background-color: var(--yellow-light) }
+        &.green { background-color: var(--green-light) }
+        &.teal { background-color: var(--teal-light) }
+        &.blue { background-color: var(--blue-light) }
+        &.purple { background-color: var(--purple-light) }
+        &.magenta { background-color: var(--magenta-light) }
+
+        div {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--medium);
+          margin: 0 auto;
+          width: var(--content-width);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Neubrutalist Components</h1>
+    <section class="red">
+      <h2>&lt;neu-avatar&gt;</h2>
+      <div>
+        <neu-avatar
+          alt="Placeholder"
+          color="yellow"
+          round
+          size="48"
+          src="https://placehold.co/48"
+        ></neu-avatar>
+        <neu-avatar
+          alt="Placeholder"
+          color="green"
+          size="48"
+          src="https://placehold.co/48"
+        ></neu-avatar>
+      </div>
+    </section>
+    <section class="green">
+      <h2>&lt;neu-button&gt;</h2>
+      <div>
+        <neu-button>Default button</neu-button>
+        <neu-button color="white">White button</neu-button>
+        <neu-button color="red">Red button</neu-button>
+        <neu-button color="orange">Orange button</neu-button>
+        <neu-button color="yellow">Yellow button</neu-button>
+        <neu-button color="green">Green button</neu-button>
+        <neu-button color="teal">Teal button</neu-button>
+        <neu-button color="blue">Blue button</neu-button>
+        <neu-button color="purple">Purple button</neu-button>
+        <neu-button color="magenta">Magenta button</neu-button>
+      </div>
+    </section>
+  </body>
+</html>
+

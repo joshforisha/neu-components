@@ -1,0 +1,70 @@
+:root {
+  /* Color Hues */
+  --hue-blue: 215deg;
+  --hue-green: 100deg;
+  --hue-magenta: 315deg;
+  --hue-orange: 35deg;
+  --hue-purple: 270deg;
+  --hue-red: 0deg;
+  --hue-teal: 190deg;
+  --hue-yellow: 55deg;
+
+  /* Color Parameters */
+  --level-light: 50% 88%;
+  --level-medium: 70% 72%;
+  --level-dark: 76% 25%;
+
+  /* Colors */
+  --black: #000000;
+  --blue-dark: hsl(var(--hue-blue) var(--level-dark));
+  --blue-light: hsl(var(--hue-blue) var(--level-light));
+  --blue-medium: hsl(var(--hue-blue) var(--level-medium));
+  --gray: #dddddd;
+  --green-dark: hsl(var(--hue-green) var(--level-dark));
+  --green-light: hsl(var(--hue-green) var(--level-light));
+  --green-medium: hsl(var(--hue-green) var(--level-medium));
+  --magenta-dark: hsl(var(--hue-magenta) var(--level-dark));
+  --magenta-light: hsl(var(--hue-magenta) var(--level-light));
+  --magenta-medium: hsl(var(--hue-magenta) var(--level-medium));
+  --orange-dark: hsl(var(--hue-orange) var(--level-dark));
+  --orange-light: hsl(var(--hue-orange) var(--level-light));
+  --orange-medium: hsl(var(--hue-orange) var(--level-medium));
+  --purple-dark: hsl(var(--hue-purple) var(--level-dark));
+  --purple-light: hsl(var(--hue-purple) var(--level-light));
+  --purple-medium: hsl(var(--hue-purple) var(--level-medium));
+  --red-dark: hsl(var(--hue-red) var(--level-dark));
+  --red-light: hsl(var(--hue-red) var(--level-light));
+  --red-medium: hsl(var(--hue-red) var(--level-medium));
+  --teal-dark: hsl(var(--hue-teal) var(--level-dark));
+  --teal-light: hsl(var(--hue-teal) var(--level-light));
+  --teal-medium: hsl(var(--hue-teal) var(--level-medium));
+  --white: #ffffff;
+  --yellow-dark: hsl(var(--hue-yellow) var(--level-dark));
+  --yellow-light: hsl(var(--hue-yellow) var(--level-light));
+  --yellow-medium: hsl(var(--hue-yellow) var(--level-medium));
+
+  /* Fonts */
+  --humanist-fonts: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+  --neo-grotesque-fonts: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans',
+  --slab-serif-fonts: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
+  --system-fonts: system-ui, sans-serif;
+
+  /* Sizes */
+  --control: 3rem;
+  --huge: 4rem;
+  --large: 2rem;
+  --medium: 1rem;
+  --small: 0.5rem;
+  --tiny: 0.25rem;
+  --thin: 2px;
+
+  /* Speeds */
+  --fast: 75ms ease-out;
+  --slow: 150ms ease-out;
+  --very-slow: 300ms ease-out;
+
+  /* UI */
+  --border-thin: 1px solid var(--black);
+  --border: 2px solid var(--black);
+  --shadow: var(--tiny) var(--tiny) 0 var(--black);
+}
