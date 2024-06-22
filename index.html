@@ -17,6 +17,7 @@
     -->
     <script src="neu-avatar.js" type="module"></script>
     <script src="neu-button.js" type="module"></script>
+    <script src="neu-number-input.js" type="module"></script>
     <script src="neu-text-input.js" type="module"></script>
     <style>
       :root {
@@ -24,7 +25,7 @@
       }
 
       body {
-        background-color: var(--blue-light);
+        background-color: var(--red-light);
         color: var(--black);
         font-family: var(--humanist-fonts);
         margin: 0;
@@ -72,7 +73,7 @@
   </head>
   <body>
     <h1>Neubrutalist Components</h1>
-    <section class="red">
+    <section class="orange">
       <h2 id="neu-avatar">&lt;neu-avatar&gt;</h2>
       <div>
         <neu-avatar
@@ -90,17 +91,23 @@
         ></neu-avatar>
       </div>
     </section>
-    <section class="green">
+    <section class="yellow">
       <h2 id="neu-button">&lt;neu-button&gt;</h2>
       <div>
         <neu-button>Default button</neu-button>
-        <neu-button color="green" round>Round green button</neu-button>
+        <neu-button color="yellow" round>Round yellow button</neu-button>
       </div>
     </section>
-    <section class="orange">
+    <section class="green">
+      <h2 id="neu-number-input">&lt;neu-number-input&gt;</h2>
+      <div>
+        <neu-number-input label="Number entry" placeholder="Enter number"></neu-number-input>
+      </div>
+    </section>
+    <section class="teal">
       <h2 id="neu-text-input">&lt;neu-text-input&gt;</h2>
       <div>
-        <neu-text-input label="Text Entry" placeholder="Enter some text" />
+        <neu-text-input label="Text entry" placeholder="Enter some text"></neu-text-input>
       </div>
     </section>
   </body>

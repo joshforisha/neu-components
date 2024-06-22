@@ -18,15 +18,15 @@ label {
 }
 `
 
-class NeuTextInput extends HTMLElement {
-  static observedAttributes = ['label', 'placeholder']
+class NeuNumberInput extends HTMLElement {
+  static observedAttributes = ['label', 'max', 'min', 'placeholder', 'step']
 
   constructor() {
     super()
 
     this.label = document.createElement('label')
     this.input = document.createElement('input')
-    this.input.setAttribute('type', 'text')
+    this.input.setAttribute('type', 'number')
   }
 
   connectedCallback() {
@@ -45,8 +45,11 @@ class NeuTextInput extends HTMLElement {
       case 'label':
         this.label.textContent = newValue
         break
+      case 'max':
+      case 'min':
+      case 'step':
       case 'placeholder':
-        this.input.setAttribute('placeholder', newValue)
+        this.input.setAttribute(name, newValue)
         break
       default:
         console.warn(
@@ -56,4 +59,4 @@ class NeuTextInput extends HTMLElement {
   }
 }
 
-customElements.define('neu-text-input', NeuTextInput)
+customElements.define('neu-number-input', NeuNumberInput)
