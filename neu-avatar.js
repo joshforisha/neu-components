@@ -1,6 +1,7 @@
 const styles = `
 :host {
   border: var(--border-thin);
+  border-radius: var(--thin);
   display: flex;
   overflow: hidden;
   padding: var(--thin);
@@ -18,15 +19,17 @@ class NeuAvatar extends HTMLElement {
 
   constructor() {
     super()
+    this.image = document.createElement('img')
+  }
 
-    const shadowRoot = this.attachShadow({ mode: 'open' })
+  connectedCallback() {
+    const root = this.attachShadow({ mode: 'open' })
 
     const style = document.createElement('style')
     style.textContent = styles
-    shadowRoot.appendChild(style)
+    root.appendChild(style)
 
-    this.image = document.createElement('img')
-    shadowRoot.appendChild(this.image)
+    root.appendChild(this.image)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -36,7 +39,7 @@ class NeuAvatar extends HTMLElement {
         this.image.setAttribute(name, newValue)
         break
       case 'color':
-        this.style.backgroundColor = `var(--${newValue}-medium`
+        this.style.backgroundColor = `var(--${newValue}-medium)`
         break
       case 'size':
         this.style.height = `${newValue}px`
@@ -52,7 +55,9 @@ class NeuAvatar extends HTMLElement {
         }
         break
       default:
-        console.warn(`Attribute ${name} has changed from "${oldValue}" to "${newValue}"`)
+        console.warn(
+          `Attribute ${name} has changed from "${oldValue}" to "${newValue}"`
+        )
     }
   }
 }

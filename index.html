@@ -17,6 +17,7 @@
     -->
     <script src="neu-avatar.js" type="module"></script>
     <script src="neu-button.js" type="module"></script>
+    <script src="neu-text-input.js" type="module"></script>
     <style>
       :root {
         --content-width: 40rem;
@@ -72,7 +73,7 @@
   <body>
     <h1>Neubrutalist Components</h1>
     <section class="red">
-      <h2>&lt;neu-avatar&gt;</h2>
+      <h2 id="neu-avatar">&lt;neu-avatar&gt;</h2>
       <div>
         <neu-avatar
           alt="Placeholder"
@@ -90,18 +91,16 @@
       </div>
     </section>
     <section class="green">
-      <h2>&lt;neu-button&gt;</h2>
+      <h2 id="neu-button">&lt;neu-button&gt;</h2>
       <div>
         <neu-button>Default button</neu-button>
-        <neu-button color="white">White button</neu-button>
-        <neu-button color="red">Red button</neu-button>
-        <neu-button color="orange">Orange button</neu-button>
-        <neu-button color="yellow">Yellow button</neu-button>
-        <neu-button color="green">Green button</neu-button>
-        <neu-button color="teal">Teal button</neu-button>
-        <neu-button color="blue">Blue button</neu-button>
-        <neu-button color="purple">Purple button</neu-button>
-        <neu-button color="magenta">Magenta button</neu-button>
+        <neu-button color="green" round>Round green button</neu-button>
+      </div>
+    </section>
+    <section class="orange">
+      <h2 id="neu-text-input">&lt;neu-text-input&gt;</h2>
+      <div>
+        <neu-text-input label="Text Entry" placeholder="Enter some text" />
       </div>
     </section>
   </body>

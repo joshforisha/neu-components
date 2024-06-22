@@ -4,12 +4,37 @@ const styles = `
   background-color: var(--gray);
   border-radius: var(--tiny);
   border: var(--border);
-  cursor: pointer;
   box-shadow: var(--shadow);
-  display: inline-flex;
+  cursor: pointer;
+  display: flex;
   font-weight: 700;
+  justify-content: center;
   min-height: var(--control);
   padding: 0 var(--medium);
+  position: relative;
+}
+
+@media screen and (hover: hover) {
+  :host::after {
+    border: var(--border-thin);
+    border-radius: inherit;
+    content: "";
+    display: block;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: all var(--slow);
+    transition-property: height, opacity, width;
+    width: 100%;
+    z-index: 1;
+  }
+
+  :host(:hover)::after {
+    height: calc(100% - var(--small));
+    opacity: 1;
+    width: calc(100% - var(--small));
+  }
 }
 `
 
@@ -19,17 +44,19 @@ function backgroundColor(colorName) {
 }
 
 class NeuButton extends HTMLElement {
-  static observedAttributes = ['color']
+  static observedAttributes = ['color', 'round']
 
   constructor() {
     super()
+  }
 
-    const shadowRoot = this.attachShadow({ mode: 'open' })
-    shadowRoot.innerHTML = this.innerHTML
+  connectedCallback() {
+    const root = this.attachShadow({ mode: 'open' })
+    root.innerHTML = this.innerHTML
 
     const style = document.createElement('style')
     style.textContent = styles
-    shadowRoot.appendChild(style)
+    root.appendChild(style)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -37,8 +64,14 @@ class NeuButton extends HTMLElement {
       case 'color':
         this.style.backgroundColor = backgroundColor(newValue)
         break
+      case 'round':
+        this.style.borderRadius =
+          newValue !== null ? 'var(--large)' : 'var(--tiny)'
+        break
       default:
-        console.warn(`Attribute ${name} has changed from "${oldValue}" to "${newValue}"`)
+        console.warn(
+          `Attribute ${name} has changed from "${oldValue}" to "${newValue}"`
+        )
     }
   }
 }
