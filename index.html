@@ -17,8 +17,7 @@
     -->
     <script src="neu-avatar.js" type="module"></script>
     <script src="neu-button.js" type="module"></script>
-    <script src="neu-number-input.js" type="module"></script>
-    <script src="neu-text-input.js" type="module"></script>
+    <script src="neu-input.js" type="module"></script>
     <style>
       :root {
         --content-width: 40rem;
@@ -99,15 +98,17 @@
       </div>
     </section>
     <section class="green">
-      <h2 id="neu-number-input">&lt;neu-number-input&gt;</h2>
+      <h2 id="neu-input">&lt;neu-input&gt;</h2>
       <div>
-        <neu-number-input label="Number entry" placeholder="Enter number"></neu-number-input>
-      </div>
-    </section>
-    <section class="teal">
-      <h2 id="neu-text-input">&lt;neu-text-input&gt;</h2>
-      <div>
-        <neu-text-input label="Text entry" placeholder="Enter some text"></neu-text-input>
+        <neu-input
+          label="Text input"
+          placeholder="Enter text value"
+        ></neu-input>
+        <neu-input
+          label="Number input"
+          placeholder="Enter number value"
+          type="number"
+        ></neu-input>
       </div>
     </section>
   </body>

@@ -1,8 +1,13 @@
 const styles = `
+:host {
+  padding-bottom: var(--tiny);
+}
+
 input {
   border: var(--border);
   border-radius: var(--medium);
   box-shadow: var(--shadow);
+  box-sizing: border-box;
   display: block;
   font: inherit;
   font-weight: 400;
@@ -10,7 +15,7 @@ input {
   min-height: var(--control);
   outline: none;
   padding: 0 var(--medium);
-  width: 100%;
+  width: calc(100% - var(--tiny));
 }
 
 label {
@@ -18,15 +23,15 @@ label {
 }
 `
 
-class NeuNumberInput extends HTMLElement {
-  static observedAttributes = ['label', 'max', 'min', 'placeholder', 'step']
+class NeuInput extends HTMLElement {
+  static observedAttributes = ['label', 'placeholder']
 
   constructor() {
     super()
 
     this.label = document.createElement('label')
     this.input = document.createElement('input')
-    this.input.setAttribute('type', 'number')
+    this.input.setAttribute('type', this.getAttribute('type') ?? 'text')
   }
 
   connectedCallback() {
@@ -45,10 +50,8 @@ class NeuNumberInput extends HTMLElement {
       case 'label':
         this.label.textContent = newValue
         break
-      case 'max':
-      case 'min':
-      case 'step':
       case 'placeholder':
+      case 'type':
         this.input.setAttribute(name, newValue)
         break
       default:
@@ -59,4 +62,4 @@ class NeuNumberInput extends HTMLElement {
   }
 }
 
-customElements.define('neu-number-input', NeuNumberInput)
+customElements.define('neu-input', NeuInput)

@@ -1,7 +1,8 @@
 const styles = `
 :host {
-  border: var(--border-thin);
   border-radius: var(--thin);
+  border: var(--border-thin);
+  box-sizing: border-box;
   display: flex;
   overflow: hidden;
   padding: var(--thin);
@@ -16,6 +17,11 @@ img {
 
 class NeuAvatar extends HTMLElement {
   static observedAttributes = ['alt', 'color', 'round', 'size', 'src']
+
+  static backgroundColor(colorName) {
+    if (colorName === 'white') return 'var(--white)'
+    return `var(--${colorName}-medium)`
+  }
 
   constructor() {
     super()
@@ -39,11 +45,11 @@ class NeuAvatar extends HTMLElement {
         this.image.setAttribute(name, newValue)
         break
       case 'color':
-        this.style.backgroundColor = `var(--${newValue}-medium)`
+        this.style.backgroundColor = NeuAvatar.backgroundColor(newValue)
         break
       case 'size':
-        this.style.height = `${newValue}px`
-        this.style.width = `${newValue}px`
+        this.style.height = `calc(${newValue}px + 2 * var(--thin) + var(--thin))`
+        this.style.width = `calc(${newValue}px + 2 * var(--thin) + var(--thin))`
         this.image.setAttribute('height', newValue)
         this.image.setAttribute('width', newValue)
         break

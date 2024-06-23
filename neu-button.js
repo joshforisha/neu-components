@@ -5,13 +5,18 @@ const styles = `
   border-radius: var(--tiny);
   border: var(--border);
   box-shadow: var(--shadow);
+  box-sizing: border-box;
   cursor: pointer;
   display: flex;
   font-weight: 700;
   justify-content: center;
+  left: 0;
   min-height: var(--control);
   padding: 0 var(--medium);
   position: relative;
+  top: 0;
+  transition: all var(--fast);
+  transition-property: box-shadow, left, top;
 }
 
 @media screen and (hover: hover) {
@@ -28,6 +33,12 @@ const styles = `
     transition-property: height, opacity, width;
     width: 100%;
     z-index: 1;
+  }
+
+  :host(:active) {
+    box-shadow: var(--shadow-collapsed);
+    left: var(--tiny);
+    top: var(--tiny);
   }
 
   :host(:hover)::after {
