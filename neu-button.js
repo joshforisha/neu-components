@@ -1,7 +1,7 @@
 const styles = `
 :host {
   align-items: center;
-  background-color: var(--gray);
+  background-color: var(--gray-medium);
   border-radius: var(--tiny);
   border: var(--border);
   box-shadow: var(--shadow);

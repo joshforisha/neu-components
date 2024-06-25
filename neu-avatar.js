@@ -1,30 +1,41 @@
 const styles = `
 :host {
+  align-items: center;
+  background-color: red;
   border-radius: var(--thin);
   border: var(--border-thin);
   box-sizing: border-box;
   display: flex;
+  justify-content: center;
   overflow: hidden;
-  padding: var(--thin);
   transition: all var(--slow);
   transition-property: background-color, border-radius;
 }
 
+:host(:state(rounded)) {
+  border-radius: 50%;
+}
+
+:host(:state(rounded)) img {
+  border-radius: 50%;
+}
+
+:host(:state(themed)) {
+  padding: var(--thin);
+}
+
 img {
-  border-radius: inherit;
+  height: 100%;
+  width: 100%;
 }
 `
 
 class NeuAvatar extends HTMLElement {
   static observedAttributes = ['alt', 'color', 'round', 'size', 'src']
 
-  static backgroundColor(colorName) {
-    if (colorName === 'white') return 'var(--white)'
-    return `var(--${colorName}-medium)`
-  }
-
   constructor() {
     super()
+    this._internals = this.attachInternals()
     this.image = document.createElement('img')
   }
 
@@ -45,20 +56,20 @@ class NeuAvatar extends HTMLElement {
         this.image.setAttribute(name, newValue)
         break
       case 'color':
-        this.style.backgroundColor = NeuAvatar.backgroundColor(newValue)
+        if (newValue === null) {
+          this._internals.states.delete('themed')
+        } else {
+          this.style.backgroundColor = `var(--${newValue}-medium)`
+          this._internals.states.add('themed')
+        }
         break
       case 'size':
-        this.style.height = `calc(${newValue}px + 2 * var(--thin) + var(--thin))`
-        this.style.width = `calc(${newValue}px + 2 * var(--thin) + var(--thin))`
-        this.image.setAttribute('height', newValue)
-        this.image.setAttribute('width', newValue)
+        this.style.height = `${newValue}px`
+        this.style.width = `${newValue}px`
         break
       case 'round':
-        if (newValue !== null) {
-          this.style.borderRadius = '50%'
-        } else {
-          this.style.borderRadius = 'var(--thin)'
-        }
+        if (newValue === null) this._internals.states.delete('rounded')
+        else this._internals.states.add('rounded')
         break
       default:
         console.warn(

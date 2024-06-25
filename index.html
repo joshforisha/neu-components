@@ -2,10 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!--
-    <meta name="description" content="" />
-    <meta name="theme-color" content="" />
-    -->
+    <meta name="description" content="Web components for styling Neubrutalist interfaces" />
+    <meta name="theme-color" content="#F0D1D1" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <title>Neubrutalist Components</title>
     <link rel="stylesheet" href="common.css" />
@@ -15,6 +13,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     -->
+    <script src="copy-link.js" type="module"></script>
     <script src="neu-avatar.js" type="module"></script>
     <script src="neu-button.js" type="module"></script>
     <script src="neu-checkbox.js" type="module"></script>
@@ -33,7 +32,7 @@
       }
 
       aside {
-        margin: 0 auto;
+        margin: var(--large) auto 0;
         width: var(--content-width);
 
         ul {
@@ -55,12 +54,22 @@
         padding: 0 var(--tiny);
       }
 
+      copy-link {
+        margin: 0 auto;
+        width: var(--content-width);
+      }
+
       h1 {
         margin: var(--large) auto;
         max-width: var(--content-width);
       }
 
       h2 {
+        margin: 0 auto;
+        width: var(--content-width);
+      }
+
+      h3 {
         margin: 0 auto;
         width: var(--content-width);
       }
@@ -84,14 +93,18 @@
           border-bottom: var(--border-thin);
         }
 
-        &:nth-child(8n + 2) { background-color: var(--orange-light) }
-        &:nth-child(8n + 3) { background-color: var(--yellow-light) }
-        &:nth-child(8n + 4) { background-color: var(--green-light) }
-        &:nth-child(8n + 5) { background-color: var(--teal-light) }
-        &:nth-child(8n + 6) { background-color: var(--blue-light) }
-        &:nth-child(8n + 7) { background-color: var(--purple-light) }
-        &:nth-child(8n + 8) { background-color: var(--magenta-light) }
-        &:nth-child(8n + 9) { background-color: var(--red-light) }
+        &:nth-of-type(8n + 1) { background-color: var(--orange-light) }
+        &:nth-of-type(8n + 2) { background-color: var(--yellow-light) }
+        &:nth-of-type(8n + 3) { background-color: var(--green-light) }
+        &:nth-of-type(8n + 4) { background-color: var(--teal-light) }
+        &:nth-of-type(8n + 5) { background-color: var(--blue-light) }
+        &:nth-of-type(8n + 6) { background-color: var(--purple-light) }
+        &:nth-of-type(8n + 7) { background-color: var(--magenta-light) }
+        &:nth-of-type(8n + 8) { background-color: var(--red-light) }
+
+        aside {
+          margin-top: 0;
+        }
 
         div {
           display: flex;
@@ -120,77 +133,78 @@
   </head>
   <body>
     <h1><a href="/">Neubrutalist Components</a></h1>
-    <h2>Colors</h2>
     <aside>
+      <h2>How to Use</h2>
+      <p>Include the base styles from <code>https://joshforisha.github.io/neu-components/common.css</code>. This file outlines all of the CSS custom variables used by the components, and enables you to override any values you'd like in your own CSS.</p>
+      <p>You can then include the listed JS file for a component, and use the custom element as outlined. Enjoy!</p>
+    </aside>
+    <aside>
+      <h2>Colors</h2>
       <p>Any component with a <code>color</code> attribute accepts any of the following values: <code>white</code> (usually default), <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>teal</code>, <code>blue</code>, <code>purple</code>, or <code>magenta</code>.</p>
-      <p>For each color, there are three related CSS variables (light, medium, dark) of varying saturations and lightness values.</p>
+      <p>For each color, there are three related CSS variables (light, medium, dark) of varying saturations and lightness values. Each component will use these slightly differently, but they're all customizable.</p>
     </aside>
     <section id="neu-avatar">
       <h2><a href="#neu-avatar">&lt;neu-avatar&gt;</a></h2>
-      <aside>
-        <ul>
-          <li><code>alt</code>: supplies the underlying image's <code>alt</code> value</li>
-          <li><code>color</code>: determines the color theme</li>
-          <li><code>round</code>: rounds the container and image to circles</li>
-          <li><code>size</code>: defines the height and width of the displayed image</li>
-          <li><code>src</code>: the URL for the contained image</li>
-        </ul>
-      </aside>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-avatar.js"></copy-link>
       <div>
         <neu-avatar
           alt="Placeholder"
-          color="yellow"
+          size="48"
+          src="https://placehold.co/48"
+        ></neu-avatar>
+        <neu-avatar
+          alt="Placeholder"
+          color="orange"
           round
           size="48"
           src="https://placehold.co/48"
         ></neu-avatar>
-        <neu-avatar
-          alt="Placeholder"
-          color="green"
-          size="48"
-          src="https://placehold.co/48"
-        ></neu-avatar>
       </div>
+      <aside>
+        <h3>Attributes</h3>
+        <ul>
+          <li><code>alt</code>: supplies the underlying image's <code>alt</code> value</li>
+          <li><code>color</code>: determines the color theme (thin color border)—none by default</li>
+          <li><code>round</code>: rounds the container and image to circles</li>
+          <li><code>size</code>: defines the height and width of the container</li>
+          <li><code>src</code>: the URL for the contained image</li>
+        </ul>
+      </aside>
     </section>
     <section id="neu-button">
       <h2><a href="#neu-button">&lt;neu-button&gt;</a></h2>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-button.js"></copy-link>
+      <div>
+        <neu-button>Default button</neu-button>
+        <neu-button color="yellow" round>Round yellow button</neu-button>
+      </div>
       <aside>
+        <h3>Attributes</h3>
         <ul>
           <li><code>color</code>: determines the color theme</li>
           <li><code>round</code>: rounds the button to an ellipse/"pill" shape</li>
         </ul>
       </aside>
-      <div>
-        <neu-button>Default button</neu-button>
-        <neu-button color="yellow" round>Round yellow button</neu-button>
-      </div>
     </section>
     <section id="neu-checkbox">
       <h2><a href="#neu-checkbox">&lt;neu-checkbox&gt;</a></h2>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-checkbox.js"></copy-link>
+      <div class="vertical">
+        <neu-checkbox label="Checkbox item"></neu-checkbox>
+        <neu-checkbox checked color="green" label="Green checked item"></neu-checkbox>
+      </div>
       <aside>
+        <h3>Attributes</h3>
         <ul>
           <li><code>checked</code>: sets the state to checked</li>
           <li><code>color</code>: determines the color theme (default "white")</li>
           <li><code>label</code>: labels the control</li>
         </ul>
       </aside>
-      <div class="vertical">
-        <neu-checkbox label="Checkbox item"></neu-checkbox>
-        <neu-checkbox checked color="green" label="Green checked item"></neu-checkbox>
-      </div>
     </section>
     <section id="neu-input">
       <h2><a href="#neu-input">&lt;neu-input&gt;</a></h2>
-      <aside>
-        <ul>
-          <li><code>label</code>: labels the control</li>
-          <li><code>max</code>: minimum value for a number control</li>
-          <li><code>min</code>: minimum value for a number control</li>
-          <li><code>placeholder</code>: rounds the button to an ellipse/"pill" shape</li>
-          <li><code>step</code>: incremental value for a number control</li>
-          <li><code>type</code>: sets the underlying field type (default "text")</li>
-        </ul>
-      </aside>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-input.js"></copy-link>
       <div>
         <neu-input
           label="Text input"
@@ -202,25 +216,47 @@
           type="number"
         ></neu-input>
       </div>
+      <aside>
+        <h3>Attributes</h3>
+        <ul>
+          <li><code>label</code>: labels the control</li>
+          <li><code>max</code>: minimum value for a number control</li>
+          <li><code>min</code>: minimum value for a number control</li>
+          <li><code>placeholder</code>: rounds the button to an ellipse/"pill" shape</li>
+          <li><code>step</code>: incremental value for a number control</li>
+          <li><code>type</code>: sets the underlying field type (default "text")</li>
+        </ul>
+      </aside>
     </section>
     <section id="neu-select">
       <h2><a href="#neu-select">&lt;neu-select&gt;</a></h2>
-      <aside>
-        <ul>
-          <li><code>options</code>: a comma-separated list of values</li>
-          <li><code>placeholder</code>: sets the empty placeholder text</li>
-        </ul>
-      </aside>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-select.js"></copy-link>
       <div>
         <neu-select
           options="Red, Orange, Yellow, Green, Teal, Blue, Purple, Magenta"
           placeholder="Select a color"
         ></neu-select>
       </div>
+      <aside>
+        <h3>Attributes</h3>
+        <ul>
+          <li><code>options</code>: a comma-separated list of values</li>
+          <li><code>placeholder</code>: sets the empty placeholder text</li>
+        </ul>
+      </aside>
     </section>
     <section id="neu-slider">
       <h2><a href="#neu-slider">&lt;neu-slider&gt;</a></h2>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-slider.js"></copy-link>
+      <div>
+        <neu-slider
+          label="Select a number"
+          max="100"
+          min="1"
+        ></neu-slider>
+      </div>
       <aside>
+        <h3>Attributes</h3>
         <ul>
           <li><code>color</code>: determines the color theme</li>
           <li><code>label</code>: labels the control</li>
@@ -229,40 +265,39 @@
           <li><code>step</code>: incremental value</li>
         </ul>
       </aside>
-      <div>
-        <neu-slider
-          label="Select a number"
-          max="100"
-          min="1"
-        ></neu-slider>
-      </div>
     </section>
     <section id="neu-textarea">
       <h2><a href="#neu-textarea">&lt;neu-textarea&gt;</a></h2>
-      <aside>
-        <ul>
-          <li><code>label</code>: labels the control</li>
-          <li><code>placeholder</code>: sets the underlying field's empty placeholder text</li>
-        </ul>
-      </aside>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-textarea.js"></copy-link>
       <div>
         <neu-textarea
           label="Textarea"
           placeholder="Enter text"
         ></neu-textarea>
       </div>
+      <aside>
+        <h3>Attributes</h3>
+        <ul>
+          <li><code>label</code>: labels the control</li>
+          <li><code>placeholder</code>: sets the underlying field's empty placeholder text</li>
+        </ul>
+      </aside>
     </section>
     <section id="neu-toggle">
       <h2><a href="#neu-toggle">&lt;neu-toggle&gt;</a></h2>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-toggle.js"></copy-link>
+      <div class="vertical">
+        <neu-toggle label="Default toggled thing" toggled></neu-toggle>
+        <neu-toggle color="orange" label="Orange thing"></neu-toggle>
+      </div>
       <aside>
+        <h3>Attributes</h3>
         <ul>
           <li><code>color</code>: determines the color theme</li>
           <li><code>label</code>: labels the control</li>
+          <li><code>toggled</code>: sets the toggled state</li>
         </ul>
       </aside>
-      <div>
-        <neu-toggle label="Toggle thing"><neu-toggle>
-      </div>
     </section>
     <script>
       const slider = document.querySelector('neu-slider')

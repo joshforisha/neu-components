@@ -1,6 +1,13 @@
 const styles = `
+:host {
+  --unfocused-color: var(--tint);
+  --focused-color: var(--white);
+
+  width: 100%;
+}
+
 textarea {
-  background-color: var(--light);
+  background-color: var(--unfocused-color);
   border: var(--border);
   border-radius: var(--medium);
   box-sizing: border-box;
@@ -14,12 +21,12 @@ textarea {
   width: 100%;
 
   &:focus {
-    background-color: var(--white);
+    background-color: var(--focused-color);
   }
 
   &::placeholder {
     font-style: italic;
-    color: var(--dark);
+    color: var(--shade);
   }
 }
 

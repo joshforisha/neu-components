@@ -19,13 +19,12 @@
   --blue-dark: hsl(var(--hue-blue) var(--level-dark));
   --blue-light: hsl(var(--hue-blue) var(--level-light));
   --blue-medium: hsl(var(--hue-blue) var(--level-medium));
-  --dark: #00000066;
-  --gray: #dddddd;
+  --gray-dark: #b8b8b8;
   --gray-light: #eeeeee;
+  --gray-medium: #dddddd;
   --green-dark: hsl(var(--hue-green) var(--level-dark));
   --green-light: hsl(var(--hue-green) var(--level-light));
   --green-medium: hsl(var(--hue-green) var(--level-medium));
-  --light: #ffffffaa;
   --magenta-dark: hsl(var(--hue-magenta) var(--level-dark));
   --magenta-light: hsl(var(--hue-magenta) var(--level-light));
   --magenta-medium: hsl(var(--hue-magenta) var(--level-medium));
@@ -38,9 +37,11 @@
   --red-dark: hsl(var(--hue-red) var(--level-dark));
   --red-light: hsl(var(--hue-red) var(--level-light));
   --red-medium: hsl(var(--hue-red) var(--level-medium));
+  --shade: #00000066;
   --teal-dark: hsl(var(--hue-teal) var(--level-dark));
   --teal-light: hsl(var(--hue-teal) var(--level-light));
   --teal-medium: hsl(var(--hue-teal) var(--level-medium));
+  --tint: #ffffffaa;
   --white: #ffffff;
   --yellow-dark: hsl(var(--hue-yellow) var(--level-dark));
   --yellow-light: hsl(var(--hue-yellow) var(--level-light));
@@ -53,6 +54,7 @@
   --system-fonts: system-ui, sans-serif;
 
   /* Sizes */
+  --control-small: 2rem;
   --control: 3rem;
   --huge: 4rem;
   --large: 2rem;
