@@ -1,5 +1,5 @@
 const styles = `
-input {
+textarea {
   background-color: var(--light);
   border: var(--border);
   border-radius: var(--medium);
@@ -9,7 +9,7 @@ input {
   margin-top: var(--tiny);
   min-height: var(--control);
   outline: none;
-  padding: 0 var(--small);
+  padding: var(--small);
   transition: background-color var(--fast);
   width: 100%;
 
@@ -24,23 +24,21 @@ input {
 }
 
 label {
-  diplay: flex;
+  display: flex;
   flex-direction: column;
   font-weight: 500;
 }
 `
 
-class NeuInput extends HTMLElement {
+class NeuTextarea extends HTMLElement {
   static observedAttributes = ['label', 'placeholder']
 
   constructor() {
     super()
 
-    this.input = document.createElement('input')
-    this.input.setAttribute('type', this.getAttribute('type') ?? 'text')
-
     this.label = document.createElement('label')
     this.labelText = document.createElement('span')
+    this.textarea = document.createElement('textarea')
   }
 
   connectedCallback() {
@@ -51,7 +49,7 @@ class NeuInput extends HTMLElement {
     root.appendChild(style)
 
     this.label.appendChild(this.labelText)
-    this.label.appendChild(this.input)
+    this.label.appendChild(this.textarea)
     root.appendChild(this.label)
   }
 
@@ -62,7 +60,7 @@ class NeuInput extends HTMLElement {
         break
       case 'placeholder':
       case 'type':
-        this.input.setAttribute(name, newValue)
+        this.textarea.setAttribute(name, newValue)
         break
       default:
         console.warn(
@@ -72,4 +70,4 @@ class NeuInput extends HTMLElement {
   }
 }
 
-customElements.define('neu-input', NeuInput)
+customElements.define('neu-textarea', NeuTextarea)

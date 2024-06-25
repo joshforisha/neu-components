@@ -19,10 +19,13 @@
   --blue-dark: hsl(var(--hue-blue) var(--level-dark));
   --blue-light: hsl(var(--hue-blue) var(--level-light));
   --blue-medium: hsl(var(--hue-blue) var(--level-medium));
+  --dark: #00000066;
   --gray: #dddddd;
+  --gray-light: #eeeeee;
   --green-dark: hsl(var(--hue-green) var(--level-dark));
   --green-light: hsl(var(--hue-green) var(--level-light));
   --green-medium: hsl(var(--hue-green) var(--level-medium));
+  --light: #ffffffaa;
   --magenta-dark: hsl(var(--hue-magenta) var(--level-dark));
   --magenta-light: hsl(var(--hue-magenta) var(--level-light));
   --magenta-medium: hsl(var(--hue-magenta) var(--level-medium));

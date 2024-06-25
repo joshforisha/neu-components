@@ -1,19 +1,19 @@
 const styles = `
-:host {
-}
 `
 
 class Neu extends HTMLElement {
-  static observedAttributes = ['color']
+  static observedAttributes = []
 
   constructor() {
     super()
+  }
 
-    const shadowRoot = this.attachShadow({ mode: 'open' })
+  connectedCallback() {
+    const root = this.attachShadow({ mode: 'open' })
 
     const style = document.createElement('style')
     style.textContent = styles
-    shadowRoot.appendChild(style)
+    root.appendChild(style)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

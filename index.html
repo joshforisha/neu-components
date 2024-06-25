@@ -17,10 +17,29 @@
     -->
     <script src="neu-avatar.js" type="module"></script>
     <script src="neu-button.js" type="module"></script>
+    <script src="neu-checkbox.js" type="module"></script>
     <script src="neu-input.js" type="module"></script>
+    <script src="neu-select.js" type="module"></script>
+    <script src="neu-slider.js" type="module"></script>
+    <script src="neu-textarea.js" type="module"></script>
+    <script src="neu-toggle.js" type="module"></script>
     <style>
       :root {
         --content-width: 40rem;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      aside {
+        margin: 0 auto;
+        width: var(--content-width);
+
+        ul {
+          margin: 0;
+          padding-left: var(--medium);
+        }
       }
 
       body {
@@ -30,14 +49,24 @@
         margin: 0;
       }
 
+      code {
+        background-color: #0001;
+        border-radius: var(--thin);
+        padding: 0 var(--tiny);
+      }
+
       h1 {
-        margin: var(--huge) auto;
+        margin: var(--large) auto;
         max-width: var(--content-width);
       }
 
       h2 {
-        margin: 0 auto var(--small);
+        margin: 0 auto;
         width: var(--content-width);
+      }
+
+      p {
+        margin: var(--medium) 0 0;
       }
 
       section {
@@ -47,18 +76,22 @@
         gap: var(--large);
         padding: var(--large) var(--medium);
 
+        &:first-of-type {
+          margin-top: var(--large);
+        }
+
         &:last-of-type {
           border-bottom: var(--border-thin);
         }
 
-        &.red { background-color: var(--red-light) }
-        &.orange { background-color: var(--orange-light) }
-        &.yellow { background-color: var(--yellow-light) }
-        &.green { background-color: var(--green-light) }
-        &.teal { background-color: var(--teal-light) }
-        &.blue { background-color: var(--blue-light) }
-        &.purple { background-color: var(--purple-light) }
-        &.magenta { background-color: var(--magenta-light) }
+        &:nth-child(8n + 2) { background-color: var(--orange-light) }
+        &:nth-child(8n + 3) { background-color: var(--yellow-light) }
+        &:nth-child(8n + 4) { background-color: var(--green-light) }
+        &:nth-child(8n + 5) { background-color: var(--teal-light) }
+        &:nth-child(8n + 6) { background-color: var(--blue-light) }
+        &:nth-child(8n + 7) { background-color: var(--purple-light) }
+        &:nth-child(8n + 8) { background-color: var(--magenta-light) }
+        &:nth-child(8n + 9) { background-color: var(--red-light) }
 
         div {
           display: flex;
@@ -66,14 +99,43 @@
           gap: var(--medium);
           margin: 0 auto;
           width: var(--content-width);
+
+          &.vertical {
+            flex-direction: column;
+          }
+        }
+      }
+
+      @media screen and (hover: hover) {
+        a {
+          cursor: pointer;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     </style>
   </head>
   <body>
-    <h1>Neubrutalist Components</h1>
-    <section class="orange">
-      <h2 id="neu-avatar">&lt;neu-avatar&gt;</h2>
+    <h1><a href="/">Neubrutalist Components</a></h1>
+    <h2>Colors</h2>
+    <aside>
+      <p>Any component with a <code>color</code> attribute accepts any of the following values: <code>white</code> (usually default), <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>teal</code>, <code>blue</code>, <code>purple</code>, or <code>magenta</code>.</p>
+      <p>For each color, there are three related CSS variables (light, medium, dark) of varying saturations and lightness values.</p>
+    </aside>
+    <section id="neu-avatar">
+      <h2><a href="#neu-avatar">&lt;neu-avatar&gt;</a></h2>
+      <aside>
+        <ul>
+          <li><code>alt</code>: supplies the underlying image's <code>alt</code> value</li>
+          <li><code>color</code>: determines the color theme</li>
+          <li><code>round</code>: rounds the container and image to circles</li>
+          <li><code>size</code>: defines the height and width of the displayed image</li>
+          <li><code>src</code>: the URL for the contained image</li>
+        </ul>
+      </aside>
       <div>
         <neu-avatar
           alt="Placeholder"
@@ -90,15 +152,45 @@
         ></neu-avatar>
       </div>
     </section>
-    <section class="yellow">
-      <h2 id="neu-button">&lt;neu-button&gt;</h2>
+    <section id="neu-button">
+      <h2><a href="#neu-button">&lt;neu-button&gt;</a></h2>
+      <aside>
+        <ul>
+          <li><code>color</code>: determines the color theme</li>
+          <li><code>round</code>: rounds the button to an ellipse/"pill" shape</li>
+        </ul>
+      </aside>
       <div>
         <neu-button>Default button</neu-button>
         <neu-button color="yellow" round>Round yellow button</neu-button>
       </div>
     </section>
-    <section class="green">
-      <h2 id="neu-input">&lt;neu-input&gt;</h2>
+    <section id="neu-checkbox">
+      <h2><a href="#neu-checkbox">&lt;neu-checkbox&gt;</a></h2>
+      <aside>
+        <ul>
+          <li><code>checked</code>: sets the state to checked</li>
+          <li><code>color</code>: determines the color theme (default "white")</li>
+          <li><code>label</code>: labels the control</li>
+        </ul>
+      </aside>
+      <div class="vertical">
+        <neu-checkbox label="Checkbox item"></neu-checkbox>
+        <neu-checkbox checked color="green" label="Green checked item"></neu-checkbox>
+      </div>
+    </section>
+    <section id="neu-input">
+      <h2><a href="#neu-input">&lt;neu-input&gt;</a></h2>
+      <aside>
+        <ul>
+          <li><code>label</code>: labels the control</li>
+          <li><code>max</code>: minimum value for a number control</li>
+          <li><code>min</code>: minimum value for a number control</li>
+          <li><code>placeholder</code>: rounds the button to an ellipse/"pill" shape</li>
+          <li><code>step</code>: incremental value for a number control</li>
+          <li><code>type</code>: sets the underlying field type (default "text")</li>
+        </ul>
+      </aside>
       <div>
         <neu-input
           label="Text input"
@@ -111,6 +203,73 @@
         ></neu-input>
       </div>
     </section>
+    <section id="neu-select">
+      <h2><a href="#neu-select">&lt;neu-select&gt;</a></h2>
+      <aside>
+        <ul>
+          <li><code>options</code>: a comma-separated list of values</li>
+          <li><code>placeholder</code>: sets the empty placeholder text</li>
+        </ul>
+      </aside>
+      <div>
+        <neu-select
+          options="Red, Orange, Yellow, Green, Teal, Blue, Purple, Magenta"
+          placeholder="Select a color"
+        ></neu-select>
+      </div>
+    </section>
+    <section id="neu-slider">
+      <h2><a href="#neu-slider">&lt;neu-slider&gt;</a></h2>
+      <aside>
+        <ul>
+          <li><code>color</code>: determines the color theme</li>
+          <li><code>label</code>: labels the control</li>
+          <li><code>max</code>: maximum value</li>
+          <li><code>min</code>: minimum value</li>
+          <li><code>step</code>: incremental value</li>
+        </ul>
+      </aside>
+      <div>
+        <neu-slider
+          label="Select a number"
+          max="100"
+          min="1"
+        ></neu-slider>
+      </div>
+    </section>
+    <section id="neu-textarea">
+      <h2><a href="#neu-textarea">&lt;neu-textarea&gt;</a></h2>
+      <aside>
+        <ul>
+          <li><code>label</code>: labels the control</li>
+          <li><code>placeholder</code>: sets the underlying field's empty placeholder text</li>
+        </ul>
+      </aside>
+      <div>
+        <neu-textarea
+          label="Textarea"
+          placeholder="Enter text"
+        ></neu-textarea>
+      </div>
+    </section>
+    <section id="neu-toggle">
+      <h2><a href="#neu-toggle">&lt;neu-toggle&gt;</a></h2>
+      <aside>
+        <ul>
+          <li><code>color</code>: determines the color theme</li>
+          <li><code>label</code>: labels the control</li>
+        </ul>
+      </aside>
+      <div>
+        <neu-toggle label="Toggle thing"><neu-toggle>
+      </div>
+    </section>
+    <script>
+      const slider = document.querySelector('neu-slider')
+      slider.addEventListener('input', (event) => {
+        event.target.setAttribute('label', `Select a number: ${event.target.value}`)
+      })
+    </script>
   </body>
 </html>
 
