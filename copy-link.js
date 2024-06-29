@@ -17,7 +17,14 @@ button {
   cursor: pointer;
   font: inherit;
   font-weight: 500;
+  min-width: 4.5rem;
   padding: var(--tiny) var(--small);
+  transition: background-color var(--slow);
+
+  &.copied {
+    background-color: var(--green-medium);
+    transition: background-color var(--fast);
+  }
 }
 
 code {
@@ -45,6 +52,12 @@ class CopyLink extends HTMLElement {
     button.textContent = 'Copy'
     button.addEventListener('click', () => {
       navigator.clipboard.writeText(this.getAttribute('url'))
+      button.classList.add('copied')
+      button.textContent = 'Copied!'
+      setTimeout(() => {
+        button.textContent = 'Copy'
+        button.classList.remove('copied')
+      }, 1000)
     })
     root.appendChild(button)
   }

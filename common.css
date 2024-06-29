@@ -19,7 +19,7 @@
   --blue-dark: hsl(var(--hue-blue) var(--level-dark));
   --blue-light: hsl(var(--hue-blue) var(--level-light));
   --blue-medium: hsl(var(--hue-blue) var(--level-medium));
-  --gray-dark: #b8b8b8;
+  --gray-dark: #888888;
   --gray-light: #eeeeee;
   --gray-medium: #dddddd;
   --green-dark: hsl(var(--hue-green) var(--level-dark));
