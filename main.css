@@ -1,0 +1,84 @@
+:root {
+  --content-width: 50rem;
+
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--blue-dark);
+}
+
+body {
+  background-color: var(--blue-medium);
+  color: var(--black);
+  font-family: var(--humanist-fonts);
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--medium);
+  padding: var(--medium);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  margin: 0;
+  padding: var(--large) var(--medium);
+
+  h2 {
+    margin: var(--medium) auto var(--medium);
+    max-width: var(--content-width);
+  }
+}
+
+#Photos {
+  background-color: var(--blue-light);
+  border-bottom: var(--border-thin);
+  border-top: var(--border-thin);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--medium);
+  justify-content: center;
+
+  img {
+    border-radius: var(--thin);
+    border: var(--border);
+    box-shadow: var(--shadow);
+  }
+}
+
+#Projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--medium);
+
+  neu-link {
+    flex-basis: calc(25% - 3/4 * var(--medium));
+  }
+}
+
+@media screen and (hover: hover) {
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
