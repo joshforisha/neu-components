@@ -5,7 +5,6 @@ const styles = `
   --untoggled-color: var(--tint);
 
   align-items: center;
-  background-color: pink;
   cursor: pointer;
   display: flex;
   gap: var(--small);
