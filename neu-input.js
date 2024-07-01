@@ -51,15 +51,15 @@ label {
 `
 
 class NeuInput extends HTMLElement {
-  static observedAttributes = ['leading', 'placeholder', 'trailing', 'value']
+  static observedAttributes = ['leading', 'max', 'min', 'placeholder', 'step', 'trailing', 'value']
 
   constructor() {
     super()
 
     this.input = document.createElement('input')
-    this.input.setAttribute('type', this.getAttribute('type') ?? 'text')
     this.input.addEventListener('input', (event) => {
       this.value = event.target.value
+      this.dispatchEvent(new Event('change'))
     })
 
     this.label = document.createElement('label')
@@ -74,6 +74,8 @@ class NeuInput extends HTMLElement {
     style.textContent = styles
     root.appendChild(style)
 
+    this.input.setAttribute('type', this.getAttribute('type') ?? 'text')
+
     this.label.appendChild(this.leadingText)
     this.label.appendChild(this.trailingText)
     this.label.appendChild(this.input)
@@ -85,7 +87,10 @@ class NeuInput extends HTMLElement {
       case 'leading':
         this.leadingText.textContent = newValue
         break
+      case 'max':
+      case 'min':
       case 'placeholder':
+      case 'step':
       case 'type':
         this.input.setAttribute(name, newValue)
         break
