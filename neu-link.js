@@ -36,43 +36,60 @@ p {
 `
 
 class NeuLink extends HTMLElement {
+  static observedAttributes = ['color', 'external', 'href', 'label']
+
   constructor() {
     super()
 
     this._internals = this.attachInternals()
+    this.onClick = () => {
+      window.open(this.getAttribute('href'), this.hasAttribute('external') ? '_blank' : '_self')
+    }
+    this.description = document.createElement('p')
+    this.label = document.createElement('label')
   }
 
   connectedCallback() {
     const root = this.attachShadow({ mode: 'open' })
 
-    if (this.hasAttribute('color')) {
-      const colorName = this.getAttribute('color')
-      this.style.setProperty('--background-color', `var(--${colorName}-light)`)
-      this.style.setProperty('--label-color', `var(--${colorName}-dark)`)
-    }
-
-    if (this.hasAttribute('external')) {
-      this._internals.states.add('external')
-    }
-
-    if (this.hasAttribute('href')) {
-      this._internals.states.add('link')
-      this.addEventListener('click', () => {
-        window.open(this.getAttribute('href'), this.hasAttribute('external') ? '_blank' : '_self')
-      })
-    }
-
     const style = document.createElement('style')
     style.textContent = styles
     root.appendChild(style)
 
-    const label = document.createElement('label')
-    label.textContent = this.getAttribute('label')
-    root.appendChild(label)
+    root.appendChild(this.label)
 
-    const description = document.createElement('p')
-    description.textContent = this.textContent
-    root.appendChild(description)
+    this.description.textContent = this.textContent
+    root.appendChild(this.description)
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'color':
+        this.style.setProperty('--background-color', `var(--${newValue}-light)`)
+        this.style.setProperty('--label-color', `var(--${newValue}-dark)`)
+        break
+      case 'external':
+        if (newValue !== null) {
+          this._internals.states.add('external')
+        } else {
+          this._internals.states.delete('external')
+        }
+        break
+      case 'href':
+        if (newValue !== null) {
+          this._internals.states.add('link')
+          this.addEventListener('click', this.onClick)
+        } else {
+          this._internals.states.delete('link')
+          this.removeEventListener('click', this.onClick)
+        }
+        break
+      case 'label':
+        this.label.textContent = newValue
+        break
+      default:
+        console.warn(`Attribute ${name} has changed from "${oldValue}" to "${newValue}"`)
+    }
   }
 }
 
