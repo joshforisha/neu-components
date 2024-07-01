@@ -70,9 +70,6 @@ class NeuSlider extends HTMLElement {
 
     this.input = document.createElement('input')
     this.input.setAttribute('type', 'range')
-    this.input.addEventListener('input', (event) => {
-      this.value = event.target.value
-    })
 
     this.label = document.createElement('label')
     this.leadingText = document.createElement('span')
@@ -111,13 +108,20 @@ class NeuSlider extends HTMLElement {
         break
       case 'value':
         this.input.value = newValue
-        this.value = newValue
         break
       default:
         console.warn(
           `Attribute ${name} has changed from "${oldValue}" to "${newValue}"`
         )
     }
+  }
+
+  get value() {
+    return this.input.value
+  }
+
+  set value(newValue) {
+    this.input.value = newValue
   }
 }
 
