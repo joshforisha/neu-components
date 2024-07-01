@@ -39,9 +39,20 @@ input {
 label {
   cursor: pointer;
   display: flex;
-  flex-direction: column;
-  font-weight: 500;
-  gap: var(--tiny);
+  flex-wrap: wrap;
+
+  & > span {
+    display: flex;
+    flex-basis: 50%;
+
+    &:first-of-type {
+      font-weight: 500;
+    }
+
+    &:last-of-type {
+      justify-content: flex-end;
+    }
+  }
 }
 
 @media screen and (hover: hover) {
@@ -52,7 +63,7 @@ label {
 `
 
 class NeuSlider extends HTMLElement {
-  static observedAttributes = ['color', 'label', 'max', 'min', 'step']
+  static observedAttributes = ['color', 'leading', 'max', 'min', 'step', 'trailing', 'value']
 
   constructor() {
     super()
@@ -64,7 +75,8 @@ class NeuSlider extends HTMLElement {
     })
 
     this.label = document.createElement('label')
-    this.labelText = document.createElement('span')
+    this.leadingText = document.createElement('span')
+    this.trailingText = document.createElement('span')
   }
 
   connectedCallback() {
@@ -74,7 +86,8 @@ class NeuSlider extends HTMLElement {
     style.textContent = styles
     root.appendChild(style)
 
-    this.label.appendChild(this.labelText)
+    this.label.appendChild(this.leadingText)
+    this.label.appendChild(this.trailingText)
     this.label.appendChild(this.input)
     root.appendChild(this.label)
   }
@@ -85,13 +98,20 @@ class NeuSlider extends HTMLElement {
         this.style.setProperty('--track-color', `var(--${newValue}-light)`)
         this.style.setProperty('--thumb-color', `var(--${newValue}-medium)`)
         break
-      case 'label':
-        this.labelText.textContent = newValue
+      case 'leading':
+        this.leadingText.textContent = newValue
         break
       case 'max':
       case 'min':
       case 'step':
         this.input.setAttribute(name, newValue)
+        break
+      case 'trailing':
+        this.trailingText.textContent = newValue
+        break
+      case 'value':
+        this.input.value = newValue
+        this.value = newValue
         break
       default:
         console.warn(

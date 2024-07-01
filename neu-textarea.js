@@ -32,19 +32,32 @@ textarea {
 
 label {
   display: flex;
-  flex-direction: column;
-  font-weight: 500;
+  flex-wrap: wrap;
+
+  & > span {
+    display: flex;
+    flex-basis: 50%;
+
+    &:first-of-type {
+      font-weight: 500;
+    }
+
+    &:last-of-type {
+      justify-content: flex-end;
+    }
+  }
 }
 `
 
 class NeuTextarea extends HTMLElement {
-  static observedAttributes = ['label', 'placeholder']
+  static observedAttributes = ['leading', 'placeholder', 'trailing']
 
   constructor() {
     super()
 
     this.label = document.createElement('label')
-    this.labelText = document.createElement('span')
+    this.leadingText = document.createElement('span')
+    this.trailingText = document.createElement('span')
     this.textarea = document.createElement('textarea')
   }
 
@@ -55,19 +68,23 @@ class NeuTextarea extends HTMLElement {
     style.textContent = styles
     root.appendChild(style)
 
-    this.label.appendChild(this.labelText)
+    this.label.appendChild(this.leadingText)
+    this.label.appendChild(this.trailingText)
     this.label.appendChild(this.textarea)
     root.appendChild(this.label)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
-      case 'label':
-        this.labelText.textContent = newValue
+      case 'leading':
+        this.leadingText.textContent = newValue
         break
       case 'placeholder':
       case 'type':
         this.textarea.setAttribute(name, newValue)
+        break
+      case 'trailing':
+        this.trailingText.textContent = newValue
         break
       default:
         console.warn(

@@ -208,11 +208,11 @@
       <copy-link url="https://joshforisha.github.io/neu-components/neu-input.js"></copy-link>
       <div>
         <neu-input
-          label="Text input"
+          leading="Text input"
           placeholder="Enter text value"
         ></neu-input>
         <neu-input
-          label="Number input"
+          leading="Number input"
           placeholder="Enter number value"
           type="number"
         ></neu-input>
@@ -220,11 +220,12 @@
       <aside>
         <h3>Attributes</h3>
         <ul>
-          <li><code>label</code>: labels the control</li>
+          <li><code>leading</code>: labels the control in the lead position (default left)</li>
           <li><code>max</code>: minimum value for a number control</li>
           <li><code>min</code>: minimum value for a number control</li>
           <li><code>placeholder</code>: rounds the button to an ellipse/"pill" shape</li>
           <li><code>step</code>: incremental value for a number control</li>
+          <li><code>trailing</code>: labels the control in the trail position (default right)</li>
           <li><code>type</code>: sets the underlying field type (default "text")</li>
         </ul>
       </aside>
@@ -267,19 +268,28 @@
       <copy-link url="https://joshforisha.github.io/neu-components/neu-slider.js"></copy-link>
       <div>
         <neu-slider
-          label="Select a number"
+          leading="Select a number"
           max="100"
           min="1"
+          trailing="10"
+          value="10"
+        ></neu-slider>
+        <neu-slider
+          leading="Select another number"
+          max="100"
+          min="1"
+          value="50"
         ></neu-slider>
       </div>
       <aside>
         <h3>Attributes</h3>
         <ul>
           <li><code>color</code>: determines the color theme</li>
-          <li><code>label</code>: labels the control</li>
+          <li><code>leading</code>: labels the control in the lead position (default left)</li>
           <li><code>max</code>: maximum value</li>
           <li><code>min</code>: minimum value</li>
           <li><code>step</code>: incremental value</li>
+          <li><code>trailing</code>: labels the control in the trail position (default right)</li>
         </ul>
       </aside>
     </section>
@@ -288,15 +298,16 @@
       <copy-link url="https://joshforisha.github.io/neu-components/neu-textarea.js"></copy-link>
       <div>
         <neu-textarea
-          label="Textarea"
+          leading="Textarea"
           placeholder="Enter text"
         ></neu-textarea>
       </div>
       <aside>
         <h3>Attributes</h3>
         <ul>
-          <li><code>label</code>: labels the control</li>
+          <li><code>leading</code>: labels the control in the lead position (default left)</li>
           <li><code>placeholder</code>: sets the underlying field's empty placeholder text</li>
+          <li><code>trailing</code>: labels the control in the trail position (default right)</li>
         </ul>
       </aside>
     </section>
@@ -319,7 +330,7 @@
     <script>
       const slider = document.querySelector('neu-slider')
       slider.addEventListener('input', (event) => {
-        event.target.setAttribute('label', `Select a number: ${event.target.value}`)
+        slider.setAttribute('trailing', event.target.value)
       })
     </script>
   </body>
