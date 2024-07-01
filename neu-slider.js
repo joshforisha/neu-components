@@ -69,6 +69,7 @@ class NeuSlider extends HTMLElement {
     super()
 
     this.input = document.createElement('input')
+    this.input.value = this.getAttribute('value')
     this.input.setAttribute('type', 'range')
 
     this.label = document.createElement('label')
