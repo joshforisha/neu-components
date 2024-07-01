@@ -15,10 +15,10 @@
     -->
     <script src="copy-link.js" type="module"></script>
     <script src="neu-avatar.js" type="module"></script>
+    <script src="neu-block.js" type="module"></script>
     <script src="neu-button.js" type="module"></script>
     <script src="neu-checkbox.js" type="module"></script>
     <script src="neu-input.js" type="module"></script>
-    <script src="neu-link.js" type="module"></script>
     <script src="neu-select.js" type="module"></script>
     <script src="neu-slider.js" type="module"></script>
     <script src="neu-textarea.js" type="module"></script>
@@ -71,7 +71,7 @@
       }
 
       h3 {
-        margin: 0 auto;
+        margin: var(--medium) auto 0;
         width: var(--content-width);
       }
 
@@ -172,6 +172,25 @@
         </ul>
       </aside>
     </section>
+    <section id="neu-block">
+      <h2><a href="#neu-block">&lt;neu-block&gt;</a></h2>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-block.js"></copy-link>
+      <div>
+        <neu-block heading="Default Block" href="/">
+          <p>This is the default styling for a link block.</p>
+        </neu-block>
+      </div>
+      <aside>
+        <p>The content of the block component is rendered below the <code>heading</code> element.</p>
+        <h3>Attributes</h3>
+        <ul>
+          <li><code>color</code>: determines the color theme (default: gray/white)</li>
+          <li><code>external</code>: (with a <code>href</code>) opens a new tab/window when clicked</li>
+          <li><code>heading</code>: text title for the heading</li>
+          <li><code>href</code>: URL that opens when clicked</li>
+        </ul>
+      </aside>
+    </section>
     <section id="neu-button">
       <h2><a href="#neu-button">&lt;neu-button&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-button.js"></copy-link>
@@ -230,22 +249,6 @@
           <li><code>step</code>: incremental value for a number control</li>
           <li><code>trailing</code>: labels the control in the trail position (default right)</li>
           <li><code>type</code>: sets the underlying field type (default "text")</li>
-        </ul>
-      </aside>
-    </section>
-    <section id="neu-link">
-      <h2><a href="#neu-link">&lt;neu-link&gt;</a></h2>
-      <copy-link url="https://joshforisha.github.io/neu-components/neu-link.js"></copy-link>
-      <div>
-        <neu-link href="/" label="Default Link">This is the default styling for a link block.</neu-link>
-      </div>
-      <aside>
-        <h3>Attributes</h3>
-        <ul>
-          <li><code>color</code>: determines the color theme (default: gray/white)</li>
-          <li><code>external</code>: (with a <code>href</code>) opens a new tab/window when clicked</li>
-          <li><code>href</code>: URL that opens when clicked</li>
-          <li><code>label</code>: text label for the top of the block</li>
         </ul>
       </aside>
     </section>
