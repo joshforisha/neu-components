@@ -25,6 +25,7 @@ const styles = `
 
 label {
   color: var(--label-color);
+  cursor: pointer;
   font-size: 1.25em;
   font-weight: 700;
 }
