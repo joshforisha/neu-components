@@ -1,7 +1,9 @@
 const styles = `
 :host {
+  --background-color: var(--gray-medium);
+
   align-items: center;
-  background-color: var(--gray-medium);
+  background-color: var(--background-color);
   border-radius: var(--tiny);
   border: var(--border);
   box-shadow: var(--shadow);
@@ -49,16 +51,20 @@ const styles = `
 }
 `
 
-function backgroundColor(colorName) {
-  if (colorName === 'white') return 'var(--white)'
-  return `var(--${colorName}-medium)`
-}
-
 class NeuButton extends HTMLElement {
-  static observedAttributes = ['color', 'round']
+  static observedAttributes = ['color', 'href', 'round']
 
   constructor() {
     super()
+
+    this._internals = this.attachInternals()
+
+    this.addEventListener('click', (event) => {
+      if (this.hasAttribute('href')) {
+        event.stopPropagation()
+        window.open(this.getAttribute('href'), this.hasAttribute('external') ? '_blank' : '_self')
+      }
+    }, true)
   }
 
   connectedCallback() {
@@ -73,7 +79,7 @@ class NeuButton extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.backgroundColor = backgroundColor(newValue)
+        this.style.setProperty('--background-color', `var(--${newValue}-medium)`)
         break
       case 'round':
         this.style.borderRadius =
