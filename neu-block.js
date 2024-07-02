@@ -92,7 +92,6 @@ class NeuBlock extends HTMLElement {
         }
         break
       case 'heading':
-        console.log('Heading', this.getAttribute('heading'))
         this.heading.textContent = this.getAttribute('heading')
         break
       case 'href':
