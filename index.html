@@ -34,11 +34,12 @@
 
       aside {
         margin: var(--large) auto 0;
-        width: var(--content-width);
+        max-width: var(--content-width);
+        width: 100%;
 
         ul {
           margin: 0;
-          padding-left: var(--medium);
+          padding-left: calc(var(--medium) + var(--small));
         }
       }
 
@@ -57,22 +58,30 @@
 
       copy-link {
         margin: 0 auto;
-        width: var(--content-width);
+        max-width: var(--content-width);
+        width: 100%;
       }
 
       h1 {
         margin: var(--large) auto;
         max-width: var(--content-width);
+        width: 100%;
       }
 
       h2 {
         margin: 0 auto;
-        width: var(--content-width);
+        max-width: var(--content-width);
+        width: 100%;
       }
 
       h3 {
         margin: var(--medium) auto 0;
-        width: var(--content-width);
+        max-width: var(--content-width);
+        width: 100%;
+
+        & + p {
+          margin: var(--small) 0;
+        }
       }
 
       p {
@@ -112,7 +121,8 @@
           flex-wrap: wrap;
           gap: var(--medium);
           margin: 0 auto;
-          width: var(--content-width);
+          max-width: var(--content-width);
+          width: 100%;
 
           &.vertical {
             flex-direction: column;
@@ -150,15 +160,15 @@
       <div>
         <neu-avatar
           alt="Placeholder"
-          size="48"
-          src="https://placehold.co/48"
+          size="64"
+          src="https://placehold.co/64"
         ></neu-avatar>
         <neu-avatar
           alt="Placeholder"
           color="orange"
           round
-          size="48"
-          src="https://placehold.co/48"
+          size="56"
+          src="https://placehold.co/56"
         ></neu-avatar>
       </div>
       <aside>
@@ -181,8 +191,8 @@
         </neu-block>
       </div>
       <aside>
-        <p>The content of the block component is rendered below the <code>heading</code> element.</p>
         <h3>Attributes</h3>
+        <p>The content of the block component is rendered below the <code>heading</code> element.</p>
         <ul>
           <li><code>color</code>: determines the color theme (default: gray/white)</li>
           <li><code>external</code>: (with a <code>href</code>) opens a new tab/window when clicked</li>

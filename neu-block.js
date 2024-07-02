@@ -10,7 +10,7 @@ const styles = `
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: var(--tiny) var(--small);
+  padding: var(--small);
   width: 100%;
 }
 
@@ -33,7 +33,7 @@ a, b, em, h1, h2, h3, h4, h5 {
   color: var(--accent-color);
   font-size: 1.25rem;
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 var(--tiny);
 }
 
 p {
