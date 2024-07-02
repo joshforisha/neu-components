@@ -13,7 +13,6 @@ textarea {
   box-sizing: border-box;
   font: inherit;
   font-weight: 400;
-  margin-top: var(--tiny);
   min-height: var(--control);
   outline: none;
   padding: var(--small);

@@ -13,7 +13,6 @@ input {
   box-sizing: border-box;
   font: inherit;
   font-weight: 400;
-  margin-top: var(--tiny);
   min-height: var(--control);
   outline: none;
   padding: 0 var(--small);
@@ -51,7 +50,15 @@ label {
 `
 
 class NeuInput extends HTMLElement {
-  static observedAttributes = ['leading', 'max', 'min', 'placeholder', 'step', 'trailing', 'value']
+  static observedAttributes = [
+    'leading',
+    'max',
+    'min',
+    'placeholder',
+    'step',
+    'trailing',
+    'value'
+  ]
 
   constructor() {
     super()
