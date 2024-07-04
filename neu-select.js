@@ -10,9 +10,11 @@ button {
   border: var(--border);
   border-radius: var(--medium);
   box-shadow: var(--shadow);
+  color: var(--shade);
   cursor: pointer;
   display: flex;
   font: inherit;
+  font-style: italic;
   font-weight: 500;
   gap: var(--small);
   justify-content: center;
@@ -24,6 +26,7 @@ button {
     content: "❯";
     display: block;
     font-size: 1.125em;
+    font-style: normal;
     line-height: 1;
     opacity: 0.5;
     transform: rotate(90deg);
@@ -74,46 +77,66 @@ menu {
   }
 }
 
-@media screen and (hover: hover) {
-  menu li::after {
-    border: var(--border-thin);
-    border-radius: inherit;
-    content: "";
-    display: block;
-    height: 100%;
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    transition: all var(--slow);
-    transition-property: height, opacity, width;
-    width: 100%;
-    z-index: 1;
-  }
+:host(:state(disabled)) button {
+  color: #0003;
+  cursor: not-allowed;
+}
 
-  menu li:hover::after {
-    height: calc(100% - var(--small));
-    opacity: 1;
-    width: calc(100% - var(--small));
-  }
+:host(:state(open)) menu li::after {
+  border: var(--border-thin);
+  border-radius: inherit;
+  content: "";
+  display: block;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: all var(--slow);
+  transition-property: height, opacity, width;
+  width: 100%;
+  z-index: 1;
+}
 
-  :host(:hover) button::after {
-    transform: rotate(270deg);
-  }
+:host(:state(selected)) button {
+  color: var(--black);
+  font-style: normal;
+}
 
-  :host(:hover) menu {
-    opacity: 1;
-    pointer-events: auto;
-  }
+:host(:state(open)) menu li:hover::after {
+  height: calc(100% - var(--small));
+  opacity: 1;
+  width: calc(100% - var(--small));
+}
+
+:host(:state(open)) button::after {
+  transform: rotate(270deg);
+}
+
+:host(:state(open)) menu {
+  opacity: 1;
+  pointer-events: auto;
 }
 `
 
 class NeuSelect extends HTMLElement {
-  static observedAttributes = ['options', 'placeholder']
+  static observedAttributes = ['disabled', 'options', 'placeholder']
 
   constructor() {
     super()
 
+    this._internals = this.attachInternals()
+
     this.anchor = document.createElement('button')
+    this.anchor.addEventListener('click', () => {
+      if (this._internals.states.has('disabled')) return
+
+      if (this._internals.states.has('open')) {
+        this._internals.states.delete('open')
+      } else {
+        this._internals.states.add('open')
+      }
+    })
+
     this.menu = document.createElement('menu')
   }
 
@@ -130,6 +153,13 @@ class NeuSelect extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
+      case 'disabled':
+        if (newValue !== null) {
+          this._internals.states.add('disabled')
+        } else {
+          this._internals.states.delete('disabled')
+        }
+        break
       case 'options':
         this.parseOptions(newValue)
         break
@@ -139,7 +169,9 @@ class NeuSelect extends HTMLElement {
         }
         break
       default:
-        console.warn(`Attribute ${name} has changed from "${oldValue}" to "${newValue}"`)
+        console.warn(
+          `Attribute ${name} has changed from "${oldValue}" to "${newValue}"`
+        )
     }
   }
 
@@ -149,9 +181,20 @@ class NeuSelect extends HTMLElement {
     for (const option of this.options) {
       const item = document.createElement('li')
       item.setAttribute('value', option)
+
       const text = document.createElement('span')
       text.textContent = option
       item.appendChild(text)
+
+      item.addEventListener('click', () => {
+        const value = item.getAttribute('value')
+        this._internals.states.add('selected')
+        this.value = value
+        this.anchor.textContent = value
+        this._internals.states.delete('open')
+        this.dispatchEvent(new Event('change'))
+      })
+
       this.menu.appendChild(item)
     }
   }
