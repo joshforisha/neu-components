@@ -15,7 +15,6 @@ button {
   display: flex;
   font: inherit;
   font-style: italic;
-  font-weight: 500;
   gap: var(--small);
   justify-content: space-between;
   min-height: var(--control);
@@ -35,14 +34,35 @@ button {
   }
 }
 
+label {
+  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+
+  & > span {
+    display: flex;
+    flex-basis: 50%;
+
+    &:first-of-type {
+      font-weight: 500;
+    }
+
+    &:last-of-type {
+      justify-content: flex-end;
+    }
+  }
+}
+
 menu {
+  background-color: #f004;
+  border-radius: var(--small);
   list-style-type: none;
+  margin-top: var(--thin);
   min-width: min-content;
   opacity: 0;
-  padding: calc(var(--small) + var(--tiny)) 0 0;
+  padding: 0;
   pointer-events: none;
   position: absolute;
-  top: calc(var(--medium) + var(--tiny));
   transition: opacity var(--slow);
   width: calc(100% + var(--tiny));
 
@@ -84,6 +104,11 @@ menu {
   cursor: not-allowed;
 }
 
+:host(:state(disabled)) label {
+  color: var(--shade);
+  cursor: not-allowed;
+}
+
 :host(:state(open)) menu li::after {
   border: var(--border-thin);
   border-radius: inherit;
@@ -121,15 +146,20 @@ menu {
 `
 
 class NeuSelect extends HTMLElement {
-  static observedAttributes = ['disabled', 'options', 'placeholder']
+  static observedAttributes = [
+    'disabled',
+    'leading',
+    'options',
+    'placeholder',
+    'trailing'
+  ]
 
   constructor() {
     super()
 
     this._internals = this.attachInternals()
-
-    this.anchor = document.createElement('button')
-    this.anchor.addEventListener('click', () => {
+    this.addEventListener('click', (event) => {
+      event.preventDefault()
       if (this._internals.states.has('disabled')) return
 
       if (this._internals.states.has('open')) {
@@ -138,6 +168,12 @@ class NeuSelect extends HTMLElement {
         this._internals.states.add('open')
       }
     })
+
+    this.anchor = document.createElement('button')
+
+    this.label = document.createElement('label')
+    this.leadingText = document.createElement('span')
+    this.trailingText = document.createElement('span')
 
     this.menu = document.createElement('menu')
   }
@@ -149,7 +185,10 @@ class NeuSelect extends HTMLElement {
     style.textContent = styles
     root.appendChild(style)
 
-    root.appendChild(this.anchor)
+    this.label.appendChild(this.leadingText)
+    this.label.appendChild(this.trailingText)
+    this.label.appendChild(this.anchor)
+    root.appendChild(this.label)
     root.appendChild(this.menu)
   }
 
@@ -162,6 +201,9 @@ class NeuSelect extends HTMLElement {
           this._internals.states.delete('disabled')
         }
         break
+      case 'leading':
+        this.leadingText.textContent = newValue
+        break
       case 'options':
         this.parseOptions(newValue)
         break
@@ -169,6 +211,9 @@ class NeuSelect extends HTMLElement {
         if (!this.selection) {
           this.anchor.textContent = newValue
         }
+        break
+      case 'trailing':
+        this.trailingText.textContent = newValue
         break
       default:
         console.warn(
@@ -188,7 +233,8 @@ class NeuSelect extends HTMLElement {
       text.textContent = option
       item.appendChild(text)
 
-      item.addEventListener('click', () => {
+      item.addEventListener('click', (event) => {
+        event.stopPropagation()
         const value = item.getAttribute('value')
         this._internals.states.add('selected')
         this.value = value
