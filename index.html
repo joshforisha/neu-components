@@ -163,13 +163,6 @@
           size="64"
           src="https://placehold.co/64"
         ></neu-avatar>
-        <neu-avatar
-          alt="Placeholder"
-          color="orange"
-          round
-          size="56"
-          src="https://placehold.co/56"
-        ></neu-avatar>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -205,13 +198,13 @@
       <h2><a href="#neu-button">&lt;neu-button&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-button.js"></copy-link>
       <div>
-        <neu-button href="/">Default button</neu-button>
-        <neu-button color="yellow" round>Round yellow button</neu-button>
+        <neu-button>Default button</neu-button>
       </div>
       <aside>
         <h3>Attributes</h3>
         <ul>
           <li><code>color</code>: determines the color theme</li>
+          <li><code>disabled</code>: disables the button</li>
           <li><code>external</code>: (with a <code>href</code>) opens a new tab/window when clicked</li>
           <li><code>href</code>: target URL to open (acts as a link)</li>
           <li><code>round</code>: rounds the button to an ellipse/"pill" shape</li>
@@ -222,14 +215,14 @@
       <h2><a href="#neu-checkbox">&lt;neu-checkbox&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-checkbox.js"></copy-link>
       <div class="vertical">
-        <neu-checkbox label="Checkbox item"></neu-checkbox>
-        <neu-checkbox checked color="green" label="Green checked item"></neu-checkbox>
+        <neu-checkbox disabled label="Checkbox item"></neu-checkbox>
       </div>
       <aside>
         <h3>Attributes</h3>
         <ul>
           <li><code>checked</code>: sets the state to checked</li>
           <li><code>color</code>: determines the color theme (default "white")</li>
+          <li><code>disabled</code>: disables the input</li>
           <li><code>label</code>: labels the control</li>
         </ul>
       </aside>
@@ -242,16 +235,11 @@
           leading="Text input"
           placeholder="Enter text value"
         ></neu-input>
-        <neu-input
-          leading="Number input"
-          min="0"
-          placeholder="Enter number value"
-          type="number"
-        ></neu-input>
       </div>
       <aside>
         <h3>Attributes</h3>
         <ul>
+          <li><code>disabled</code>: disables the input</li>
           <li><code>leading</code>: labels the control in the lead position (default left)</li>
           <li><code>max</code>: minimum value for a number control</li>
           <li><code>min</code>: minimum value for a number control</li>
@@ -295,6 +283,7 @@
         <h3>Attributes</h3>
         <ul>
           <li><code>color</code>: determines the color theme</li>
+          <li><code>disabled</code>: disables the input</li>
           <li><code>leading</code>: labels the control in the lead position (default left)</li>
           <li><code>max</code>: maximum value</li>
           <li><code>min</code>: minimum value</li>
@@ -315,6 +304,7 @@
       <aside>
         <h3>Attributes</h3>
         <ul>
+          <li><code>disabled</code>: disables the input</li>
           <li><code>leading</code>: labels the control in the lead position (default left)</li>
           <li><code>placeholder</code>: sets the underlying field's empty placeholder text</li>
           <li><code>trailing</code>: labels the control in the trail position (default right)</li>
@@ -325,13 +315,13 @@
       <h2><a href="#neu-toggle">&lt;neu-toggle&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-toggle.js"></copy-link>
       <div class="vertical">
-        <neu-toggle label="Default toggled thing" toggled></neu-toggle>
-        <neu-toggle color="orange" label="Orange thing"></neu-toggle>
+        <neu-toggle label="Default toggle"></neu-toggle>
       </div>
       <aside>
         <h3>Attributes</h3>
         <ul>
           <li><code>color</code>: determines the color theme</li>
+          <li><code>disabled</code>: disables the toggle</li>
           <li><code>label</code>: labels the control</li>
           <li><code>toggled</code>: sets the toggled state</li>
         </ul>

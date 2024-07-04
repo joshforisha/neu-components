@@ -46,13 +46,24 @@ label {
     }
   }
 }
+
+:host(:state(disabled)) label {
+  color: var(--shade);
+  cursor: not-allowed;
+}
+
+:host(:state(disabled)) textarea {
+  cursor: not-allowed;
+}
 `
 
 class NeuTextarea extends HTMLElement {
-  static observedAttributes = ['leading', 'placeholder', 'trailing']
+  static observedAttributes = ['disabled', 'leading', 'placeholder', 'trailing']
 
   constructor() {
     super()
+
+    this._internals = this.attachInternals()
 
     this.label = document.createElement('label')
     this.leadingText = document.createElement('span')
@@ -75,6 +86,15 @@ class NeuTextarea extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
+      case 'disabled':
+        if (newValue !== null) {
+          this.textarea.setAttribute('disabled', '')
+          this._internals.states.add('disabled')
+        } else {
+          this.textarea.removeAttribute('disabled')
+          this._internals.states.delete('disabled')
+        }
+        break
       case 'leading':
         this.leadingText.textContent = newValue
         break

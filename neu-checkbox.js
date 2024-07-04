@@ -43,15 +43,26 @@ label {
   font-weight: 500;
   gap: var(--small);
 }
+
+:host(:state(disabled)) input {
+  cursor: not-allowed;
+}
+
+:host(:state(disabled)) label {
+  color: var(--shade);
+  cursor: not-allowed;
+}
 `
 
 class NeuCheckbox extends HTMLElement {
-  static observedAttributes = ['checked', 'color', 'label', 'name']
+  static observedAttributes = ['checked', 'color', 'disabled', 'label', 'name']
 
   static checkedColor(colorName) {}
 
   constructor() {
     super()
+
+    this._internals = this.attachInternals()
 
     this.input = document.createElement('input')
     this.input.setAttribute('type', 'checkbox')
@@ -77,6 +88,15 @@ class NeuCheckbox extends HTMLElement {
       case 'color':
         this.style.setProperty('--checked-color', `var(--${newValue}-medium)`)
         this.style.setProperty('--unchecked-color', `var(--${newValue}-light)`)
+        break
+      case 'disabled':
+        if (newValue !== null) {
+          this.input.setAttribute('disabled', '')
+          this._internals.states.add('disabled')
+        } else {
+          this.input.removeAttribute('disabled')
+          this._internals.states.delete('disabled')
+        }
         break
       case 'label':
         this.labelText.textContent = newValue

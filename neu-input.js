@@ -47,10 +47,20 @@ label {
     }
   }
 }
+
+:host(:state(disabled)) input {
+  cursor: not-allowed;
+}
+
+:host(:state(disabled)) label {
+  color: var(--shade);
+  cursor: not-allowed;
+}
 `
 
 class NeuInput extends HTMLElement {
   static observedAttributes = [
+    'disabled',
     'leading',
     'max',
     'min',
@@ -62,6 +72,8 @@ class NeuInput extends HTMLElement {
 
   constructor() {
     super()
+
+    this._internals = this.attachInternals()
 
     this.input = document.createElement('input')
     this.input.addEventListener('input', (event) => {
@@ -91,6 +103,15 @@ class NeuInput extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
+      case 'disabled':
+        if (newValue !== null) {
+          this.input.setAttribute('disabled', '')
+          this._internals.states.add('disabled')
+        } else {
+          this.input.removeAttribute('disabled')
+          this._internals.states.delete('disabled')
+        }
+        break
       case 'leading':
         this.leadingText.textContent = newValue
         break

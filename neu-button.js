@@ -21,6 +21,11 @@ const styles = `
   transition-property: box-shadow, left, top;
 }
 
+:host(:state(disabled)) {
+  color: #0004;
+  cursor: not-allowed;
+}
+
 @media screen and (hover: hover) {
   :host::after {
     border: var(--border-thin);
@@ -37,13 +42,13 @@ const styles = `
     z-index: 1;
   }
 
-  :host(:active) {
+  :host(:not(:state(disabled)):active) {
     box-shadow: var(--shadow-collapsed);
     left: var(--tiny);
     top: var(--tiny);
   }
 
-  :host(:hover)::after {
+  :host(:not(:state(disabled)):hover)::after {
     height: calc(100% - var(--small));
     opacity: 1;
     width: calc(100% - var(--small));
@@ -52,19 +57,28 @@ const styles = `
 `
 
 class NeuButton extends HTMLElement {
-  static observedAttributes = ['color', 'href', 'round']
+  static observedAttributes = ['color', 'disabled', 'round']
 
   constructor() {
     super()
 
     this._internals = this.attachInternals()
 
-    this.addEventListener('click', (event) => {
-      if (this.hasAttribute('href')) {
-        event.stopPropagation()
-        window.open(this.getAttribute('href'), this.hasAttribute('external') ? '_blank' : '_self')
-      }
-    }, true)
+    this.addEventListener(
+      'click',
+      (event) => {
+        if (this._internals.states.has('disabled')) return
+
+        if (this.hasAttribute('href')) {
+          event.stopPropagation()
+          window.open(
+            this.getAttribute('href'),
+            this.hasAttribute('external') ? '_blank' : '_self'
+          )
+        }
+      },
+      true
+    )
   }
 
   connectedCallback() {
@@ -79,7 +93,17 @@ class NeuButton extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.setProperty('--background-color', `var(--${newValue}-medium)`)
+        this.style.setProperty(
+          '--background-color',
+          `var(--${newValue}-medium)`
+        )
+        break
+      case 'disabled':
+        if (newValue !== null) {
+          this._internals.states.add('disabled')
+        } else {
+          this._internals.states.delete('disabled')
+        }
         break
       case 'round':
         this.style.borderRadius =

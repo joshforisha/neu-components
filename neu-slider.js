@@ -55,6 +55,19 @@ label {
   }
 }
 
+:host(:state(disabled)) input {
+  cursor: not-allowed;
+
+  &::-webkit-slider-thumb {
+    cursor: not-allowed;
+  }
+}
+
+:host(:state(disabled)) label {
+  color: var(--shade);
+  cursor: not-allowed;
+}
+
 @media screen and (hover: hover) {
   input::-webkit-slider-thumb {
     transition: background-color var(--fast);
@@ -63,10 +76,21 @@ label {
 `
 
 class NeuSlider extends HTMLElement {
-  static observedAttributes = ['color', 'leading', 'max', 'min', 'step', 'trailing', 'value']
+  static observedAttributes = [
+    'color',
+    'disabled',
+    'leading',
+    'max',
+    'min',
+    'step',
+    'trailing',
+    'value'
+  ]
 
   constructor() {
     super()
+
+    this._internals = this.attachInternals()
 
     this.input = document.createElement('input')
     this.input.value = this.getAttribute('value')
@@ -95,6 +119,15 @@ class NeuSlider extends HTMLElement {
       case 'color':
         this.style.setProperty('--track-color', `var(--${newValue}-light)`)
         this.style.setProperty('--thumb-color', `var(--${newValue}-medium)`)
+        break
+      case 'disabled':
+        if (newValue !== null) {
+          this.input.setAttribute('disabled', '')
+          this._internals.states.add('disabled')
+        } else {
+          this.input.removeAttribute('disabled')
+          this._internals.states.delete('disabled')
+        }
         break
       case 'leading':
         this.leadingText.textContent = newValue

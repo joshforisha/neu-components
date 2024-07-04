@@ -39,6 +39,15 @@ label {
   font-weight: 500;
 }
 
+:host(:state(disabled)) .indicator {
+  cursor: not-allowed;
+}
+
+:host(:state(disabled)) label {
+  color: var(--shade);
+  cursor: not-allowed;
+}
+
 :host(:state(toggled)) .indicator {
   background-color: var(--toggled-color);
 }
@@ -50,7 +59,7 @@ label {
 `
 
 class NeuToggle extends HTMLElement {
-  static observedAttributes = ['color', 'label', 'toggled']
+  static observedAttributes = ['color', 'disabled', 'label', 'toggled']
 
   constructor() {
     super()
@@ -58,7 +67,9 @@ class NeuToggle extends HTMLElement {
     this._internals = this.attachInternals()
 
     this.addEventListener('click', () => {
-      this.toggleAttribute('toggled')
+      if (!this._internals.states.has('disabled')) {
+        this.toggleAttribute('toggled')
+      }
     })
 
     this.handle = document.createElement('div')
@@ -87,6 +98,10 @@ class NeuToggle extends HTMLElement {
       case 'color':
         this.style.setProperty('--handle-color', `var(--${newValue}-medium)`)
         this.style.setProperty('--toggled-color', `var(--${newValue}-medium)`)
+        break
+      case 'disabled':
+        if (newValue === null) this._internals.states.delete('disabled')
+        else this._internals.states.add('disabled')
         break
       case 'label':
         this.label.textContent = newValue
