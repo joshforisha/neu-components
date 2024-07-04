@@ -2,6 +2,7 @@ const styles = `
 :host {
   margin: 0;
   position: relative;
+  width: 100%;
 }
 
 button {
@@ -9,7 +10,6 @@ button {
   background-color: var(--white);
   border: var(--border);
   border-radius: var(--medium);
-  box-shadow: var(--shadow);
   color: var(--shade);
   cursor: pointer;
   display: flex;
@@ -17,10 +17,11 @@ button {
   font-style: italic;
   font-weight: 500;
   gap: var(--small);
-  justify-content: center;
+  justify-content: space-between;
   min-height: var(--control);
   padding: 0 var(--small);
   transition: border-radius var(--slow);
+  width: 100%;
 
   &::after {
     content: "❯";
@@ -36,11 +37,12 @@ button {
 
 menu {
   list-style-type: none;
+  min-width: min-content;
   opacity: 0;
   padding: calc(var(--small) + var(--tiny)) 0 0;
   pointer-events: none;
   position: absolute;
-  top: calc(0px + var(--medium) + var(--small));
+  top: calc(var(--medium) + var(--tiny));
   transition: opacity var(--slow);
   width: calc(100% + var(--tiny));
 
