@@ -2,6 +2,7 @@
   /* Color Hues */
   --hue-blue: 215deg;
   --hue-green: 100deg;
+  --hue-indigo: 240deg;
   --hue-magenta: 315deg;
   --hue-orange: 35deg;
   --hue-purple: 270deg;
@@ -25,6 +26,9 @@
   --green-dark: hsl(var(--hue-green) var(--level-dark));
   --green-light: hsl(var(--hue-green) var(--level-light));
   --green-medium: hsl(var(--hue-green) var(--level-medium));
+  --indigo-dark: hsl(var(--hue-indigo) var(--level-dark));
+  --indigo-light: hsl(var(--hue-indigo) var(--level-light));
+  --indigo-medium: hsl(var(--hue-indigo) var(--level-medium));
   --magenta-dark: hsl(var(--hue-magenta) var(--level-dark));
   --magenta-light: hsl(var(--hue-magenta) var(--level-light));
   --magenta-medium: hsl(var(--hue-magenta) var(--level-medium));
