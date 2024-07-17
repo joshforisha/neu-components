@@ -77,7 +77,6 @@ class NeuInput extends HTMLElement {
 
     this.input = document.createElement('input')
     this.input.addEventListener('input', (event) => {
-      this.value = event.target.value
       this.dispatchEvent(new Event('change'))
     })
 
@@ -133,6 +132,14 @@ class NeuInput extends HTMLElement {
           `Attribute ${name} has changed from "${oldValue}" to "${newValue}"`
         )
     }
+  }
+
+  get value() {
+    return this.input.value
+  }
+
+  set value(newValue) {
+    this.input.value = newValue
   }
 }
 
