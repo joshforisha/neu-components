@@ -60,6 +60,7 @@ label {
 
 class NeuInput extends HTMLElement {
   static observedAttributes = [
+    'autofocus',
     'disabled',
     'leading',
     'max',
@@ -102,6 +103,13 @@ class NeuInput extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
+      case 'autofocus':
+        if (newValue !== null) {
+          this.input.setAttribute('autofocus', '')
+        } else {
+          this.input.removeAttribute('autofocus')
+        }
+        break
       case 'disabled':
         if (newValue !== null) {
           this.input.setAttribute('disabled', '')
