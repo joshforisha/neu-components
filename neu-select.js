@@ -54,7 +54,6 @@ label {
 }
 
 menu {
-  background-color: #f004;
   border-radius: var(--small);
   list-style-type: none;
   margin-top: var(--thin);
