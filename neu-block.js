@@ -18,6 +18,10 @@ const styles = `
   cursor: pointer;
 }
 
+:host(:state(link)) heading {
+  color: var(--accent-color);
+}
+
 :host(:state(external)) .heading::after {
   content: "➭";
   margin-left: var(--tiny);
@@ -30,7 +34,6 @@ a, b, em, h1, h2, h3, h4, h5 {
 }
 
 .heading {
-  color: var(--accent-color);
   font-size: 1.25rem;
   font-weight: 700;
   margin: 0 0 var(--tiny);
