@@ -18,7 +18,7 @@ const styles = `
   cursor: pointer;
 }
 
-:host(:state(link)) heading {
+:host(:state(link)) .heading {
   color: var(--accent-color);
 }
 
