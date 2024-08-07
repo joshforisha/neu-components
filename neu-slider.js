@@ -157,7 +157,6 @@ class NeuSlider extends HTMLElement {
   }
 
   set value(newValue) {
-    console.log('set value called')
     this.input.value = newValue
     this.dispatchEvent(new Event('input'))
   }
