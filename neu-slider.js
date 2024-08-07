@@ -95,7 +95,6 @@ class NeuSlider extends HTMLElement {
 
     const style = document.createElement('style')
     style.textContent = styles
-    root.appendChild(style)
 
     this.input = document.createElement('input')
     this.input.setAttribute('type', 'range')
@@ -109,6 +108,7 @@ class NeuSlider extends HTMLElement {
     this.label.appendChild(this.trailingText)
     this.label.appendChild(this.input)
 
+    root.appendChild(style)
     root.appendChild(this.label)
   }
 
@@ -148,11 +148,16 @@ class NeuSlider extends HTMLElement {
     }
   }
 
+  connectedCallback() {
+    this.dispatchEvent(new Event('connected'))
+  }
+
   get value() {
-    return this.input.value
+    return Number(this.input.value)
   }
 
   set value(newValue) {
+    console.log('set value called')
     this.input.value = newValue
     this.dispatchEvent(new Event('input'))
   }
