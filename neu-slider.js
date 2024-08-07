@@ -89,28 +89,26 @@ class NeuSlider extends HTMLElement {
 
   constructor() {
     super()
+    const root = this.attachShadow({ mode: 'open' })
 
     this._internals = this.attachInternals()
-
-    this.input = document.createElement('input')
-    this.input.value = this.getAttribute('value')
-    this.input.setAttribute('type', 'range')
-
-    this.label = document.createElement('label')
-    this.leadingText = document.createElement('span')
-    this.trailingText = document.createElement('span')
-  }
-
-  connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
 
     const style = document.createElement('style')
     style.textContent = styles
     root.appendChild(style)
 
+    this.input = document.createElement('input')
+    this.input.setAttribute('type', 'range')
+
+    this.label = document.createElement('label')
+
+    this.leadingText = document.createElement('span')
     this.label.appendChild(this.leadingText)
+
+    this.trailingText = document.createElement('span')
     this.label.appendChild(this.trailingText)
     this.label.appendChild(this.input)
+
     root.appendChild(this.label)
   }
 
@@ -141,7 +139,7 @@ class NeuSlider extends HTMLElement {
         this.trailingText.textContent = newValue
         break
       case 'value':
-        this.input.value = newValue
+        this.value = newValue
         break
       default:
         console.warn(
