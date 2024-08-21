@@ -28,6 +28,10 @@
         --content-width: 40rem;
       }
 
+      * {
+        box-sizing: border-box;
+      }
+
       a {
         color: inherit;
       }
@@ -48,6 +52,49 @@
         color: var(--black);
         font-family: var(--humanist-fonts);
         margin: 0;
+
+        > section {
+          border-top: var(--border-thin);
+          display: flex;
+          flex-direction: column;
+          gap: var(--large);
+          padding: var(--large) var(--medium);
+
+          &:first-of-type {
+            margin-top: var(--large);
+          }
+
+          &:last-of-type {
+            border-bottom: var(--border-thin);
+          }
+
+          &:nth-of-type(8n + 1) { background-color: var(--orange-light) }
+          &:nth-of-type(8n + 2) { background-color: var(--yellow-light) }
+          &:nth-of-type(8n + 3) { background-color: var(--green-light) }
+          &:nth-of-type(8n + 4) { background-color: var(--teal-light) }
+          &:nth-of-type(8n + 5) { background-color: var(--blue-light) }
+          &:nth-of-type(8n + 6) { background-color: var(--indigo-light) }
+          &:nth-of-type(8n + 7) { background-color: var(--purple-light) }
+          &:nth-of-type(8n + 8) { background-color: var(--magenta-light) }
+          &:nth-of-type(8n + 9) { background-color: var(--red-light) }
+
+          aside {
+            margin-top: 0;
+          }
+
+          div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--medium);
+            margin: 0 auto;
+            max-width: var(--content-width);
+            width: 100%;
+
+            &.vertical {
+              flex-direction: column;
+            }
+          }
+        }
       }
 
       code {
@@ -88,45 +135,95 @@
         margin: var(--medium) 0 0;
       }
 
-      section {
-        border-top: var(--border-thin);
-        display: flex;
-        flex-direction: column;
-        gap: var(--large);
-        padding: var(--large) var(--medium);
+      #color-tiles {
+        background-color: var(--gray-light);
+        display: block;
 
-        &:first-of-type {
-          margin-top: var(--large);
-        }
-
-        &:last-of-type {
-          border-bottom: var(--border-thin);
-        }
-
-        &:nth-of-type(8n + 1) { background-color: var(--orange-light) }
-        &:nth-of-type(8n + 2) { background-color: var(--yellow-light) }
-        &:nth-of-type(8n + 3) { background-color: var(--green-light) }
-        &:nth-of-type(8n + 4) { background-color: var(--teal-light) }
-        &:nth-of-type(8n + 5) { background-color: var(--blue-light) }
-        &:nth-of-type(8n + 6) { background-color: var(--indigo-light) }
-        &:nth-of-type(8n + 7) { background-color: var(--purple-light) }
-        &:nth-of-type(8n + 8) { background-color: var(--magenta-light) }
-        &:nth-of-type(8n + 9) { background-color: var(--red-light) }
-
-        aside {
-          margin-top: 0;
-        }
-
-        div {
+        #colors {
+          border-left: var(--border-thin);
+          border-top: var(--border-thin);
           display: flex;
           flex-wrap: wrap;
-          gap: var(--medium);
-          margin: 0 auto;
-          max-width: var(--content-width);
-          width: 100%;
+          gap: 0;
+          margin-top: var(--medium);
+          padding: 0;
 
-          &.vertical {
+          section {
+            border-bottom: var(--border-thin);
+            border-right: var(--border-thin);
+            display: flex;
+            flex-basis: calc(100% / 3);
             flex-direction: column;
+            padding: var(--small);
+            row-gap: var(--tiny);
+
+            p {
+              margin: 0;
+            }
+
+            .tile {
+              display: flex;
+              justify-content: space-around;
+
+              &.-blackwhite {
+                span:first-child { color: var(--black) }
+                span:last-child { color: var(--white) }
+              }
+
+              &.-red {
+                span:nth-child(1) { color: var(--red-dark) }
+                span:nth-child(2) { color: var(--red-medium) }
+                span:nth-child(3) { color: var(--red-light) }
+              }
+
+              &.-orange {
+                span:nth-child(1) { color: var(--orange-dark) }
+                span:nth-child(2) { color: var(--orange-medium) }
+                span:nth-child(3) { color: var(--orange-light) }
+              }
+
+              &.-yellow {
+                span:nth-child(1) { color: var(--yellow-dark) }
+                span:nth-child(2) { color: var(--yellow-medium) }
+                span:nth-child(3) { color: var(--yellow-light) }
+              }
+
+              &.-green {
+                span:nth-child(1) { color: var(--green-dark) }
+                span:nth-child(2) { color: var(--green-medium) }
+                span:nth-child(3) { color: var(--green-light) }
+              }
+
+              &.-teal {
+                span:nth-child(1) { color: var(--teal-dark) }
+                span:nth-child(2) { color: var(--teal-medium) }
+                span:nth-child(3) { color: var(--teal-light) }
+              }
+
+              &.-blue {
+                span:nth-child(1) { color: var(--blue-dark) }
+                span:nth-child(2) { color: var(--blue-medium) }
+                span:nth-child(3) { color: var(--blue-light) }
+              }
+
+              &.-indigo {
+                span:nth-child(1) { color: var(--indigo-dark) }
+                span:nth-child(2) { color: var(--indigo-medium) }
+                span:nth-child(3) { color: var(--indigo-light) }
+              }
+
+              &.-purple {
+                span:nth-child(1) { color: var(--purple-dark) }
+                span:nth-child(2) { color: var(--purple-medium) }
+                span:nth-child(3) { color: var(--purple-light) }
+              }
+
+              &.-magenta {
+                span:nth-child(1) { color: var(--magenta-dark) }
+                span:nth-child(2) { color: var(--magenta-medium) }
+                span:nth-child(3) { color: var(--magenta-light) }
+              }
+            }
           }
         }
       }
@@ -154,6 +251,7 @@
       <h2>Colors</h2>
       <p>Any component with a <code>color</code> attribute accepts any of the following values: <code>white</code> (usually default), <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>teal</code>, <code>blue</code>, <code>indigo</code>, <code>purple</code>, or <code>magenta</code>.</p>
       <p>For each color, there are three related CSS variables (light, medium, dark) of varying saturations and lightness values. Each component will use these slightly differently, but they're all customizable.</p>
+      <p>See <a href="#color-tiles">Color Tiles</a> at the bottom of this page for examples.</p>
     </aside>
     <section id="neu-avatar">
       <h2><a href="#neu-avatar">&lt;neu-avatar&gt;</a></h2>
@@ -216,7 +314,7 @@
       <h2><a href="#neu-checkbox">&lt;neu-checkbox&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-checkbox.js"></copy-link>
       <div class="vertical">
-        <neu-checkbox disabled label="Checkbox item"></neu-checkbox>
+        <neu-checkbox color="indigo" label="Checkbox item"></neu-checkbox>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -333,6 +431,335 @@
           <li><code>toggled</code>: sets the toggled state</li>
         </ul>
       </aside>
+    </section>
+    <section id="color-tiles">
+      <h2><a href="#color-tiles">Color Tiles</a></h2>
+      <div id="colors">
+        <section style="background-color: var(--red-dark)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--red-medium)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--red-light)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--orange-dark)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--orange-medium)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--orange-light)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--yellow-dark)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--yellow-medium)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--yellow-light)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--green-dark)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--green-medium)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--green-light)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--teal-dark)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--teal-medium)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--teal-light)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--blue-dark)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--blue-medium)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--blue-light)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--indigo-dark)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--indigo-medium)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--indigo-light)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--purple-dark)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--purple-medium)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--purple-light)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--magenta-dark)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--magenta-medium)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+        <section style="background-color: var(--magenta-light)">
+          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
+          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
+          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
+        </section>
+      </div>
     </section>
     <script>
       const slider = document.querySelector('neu-slider')
