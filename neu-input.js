@@ -11,6 +11,7 @@ input {
   border: var(--border);
   border-radius: var(--medium);
   box-sizing: border-box;
+  cursor: pointer;
   font: inherit;
   font-weight: 400;
   min-height: var(--control);
@@ -99,6 +100,8 @@ class NeuInput extends HTMLElement {
     this.label.appendChild(this.trailingText)
     this.label.appendChild(this.input)
     root.appendChild(this.label)
+
+    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

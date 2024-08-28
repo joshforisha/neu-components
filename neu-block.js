@@ -75,6 +75,8 @@ class NeuBlock extends HTMLElement {
     const style = document.createElement('style')
     style.textContent = styles
     root.prepend(style)
+
+    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

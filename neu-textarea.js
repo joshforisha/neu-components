@@ -82,6 +82,8 @@ class NeuTextarea extends HTMLElement {
     this.label.appendChild(this.trailingText)
     this.label.appendChild(this.textarea)
     root.appendChild(this.label)
+
+    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

@@ -189,6 +189,8 @@ class NeuSelect extends HTMLElement {
     this.label.appendChild(this.anchor)
     root.appendChild(this.label)
     root.appendChild(this.menu)
+
+    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

@@ -47,6 +47,8 @@ class NeuAvatar extends HTMLElement {
     root.appendChild(style)
 
     root.appendChild(this.image)
+
+    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

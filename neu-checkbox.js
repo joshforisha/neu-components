@@ -82,6 +82,8 @@ class NeuCheckbox extends HTMLElement {
     this.label.appendChild(this.input)
     this.label.appendChild(this.labelText)
     root.appendChild(this.label)
+
+    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

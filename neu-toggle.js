@@ -91,6 +91,8 @@ class NeuToggle extends HTMLElement {
     this.indicator.appendChild(this.handle)
     root.appendChild(this.indicator)
     root.appendChild(this.label)
+
+    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
