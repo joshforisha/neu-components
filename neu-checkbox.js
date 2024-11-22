@@ -69,7 +69,6 @@ class NeuCheckbox extends HTMLElement {
     this.input.setAttribute('type', 'checkbox')
     this.input.addEventListener('change', (event) => {
       this.dispatchEvent(new Event('change'))
-      // this.setAttribute('checked', this.input)
     })
 
     this.label = document.createElement('label')
