@@ -67,6 +67,10 @@ class NeuCheckbox extends HTMLElement {
 
     this.input = document.createElement('input')
     this.input.setAttribute('type', 'checkbox')
+    this.input.addEventListener('change', (event) => {
+      this.dispatchEvent(new Event('change'))
+      // this.setAttribute('checked', this.input)
+    })
 
     this.label = document.createElement('label')
     this.labelText = document.createElement('span')
@@ -113,6 +117,10 @@ class NeuCheckbox extends HTMLElement {
           `Attribute ${name} has changed from "${oldValue}" to "${newValue}"`
         )
     }
+  }
+
+  get checked() {
+    return this.input.checked
   }
 }
 
