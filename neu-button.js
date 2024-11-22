@@ -63,11 +63,24 @@ class NeuButton extends HTMLElement {
     super()
 
     this._internals = this.attachInternals()
+  }
+
+  connectedCallback() {
+    const root = this.attachShadow({ mode: 'open' })
+    root.innerHTML = this.innerHTML
+
+    const style = document.createElement('style')
+    style.textContent = styles
+    root.appendChild(style)
 
     this.addEventListener(
       'click',
       (event) => {
-        if (this._internals.states.has('disabled')) return
+        if (this._internals.states.has('disabled')) {
+          event.preventDefault()
+          event.stopPropagation()
+          return
+        }
 
         if (this.hasAttribute('href')) {
           event.stopPropagation()
@@ -79,15 +92,6 @@ class NeuButton extends HTMLElement {
       },
       true
     )
-  }
-
-  connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
-    root.innerHTML = this.innerHTML
-
-    const style = document.createElement('style')
-    style.textContent = styles
-    root.appendChild(style)
 
     this.dispatchEvent(new Event('connected'))
   }
@@ -101,6 +105,7 @@ class NeuButton extends HTMLElement {
         )
         break
       case 'disabled':
+        console.log('Disabled:', newValue)
         if (newValue !== null) {
           this._internals.states.add('disabled')
         } else {
