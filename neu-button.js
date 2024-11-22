@@ -105,7 +105,6 @@ class NeuButton extends HTMLElement {
         )
         break
       case 'disabled':
-        console.log('Disabled:', newValue)
         if (newValue !== null) {
           this._internals.states.add('disabled')
         } else {
