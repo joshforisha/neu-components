@@ -10,7 +10,7 @@ input {
   background-color: var(--unchecked-color);
   border: var(--border);
   border-radius: var(--small);
-  color: var(--white);
+  color: var(--black);
   cursor: pointer;
   display: flex;
   font: inherit;
