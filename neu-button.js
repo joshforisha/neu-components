@@ -62,20 +62,14 @@ class NeuButton extends HTMLElement {
   constructor() {
     super()
 
-    this._internals = this.attachInternals()
-  }
-
-  connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
-
     const style = document.createElement('style')
     style.textContent = styles
-    root.appendChild(style)
 
     this.content = document.createElement('slot')
     this.content.innerHTML = this.innerHTML
     this.innerHTML = ''
-    root.append(this.content)
+
+    this._internals = this.attachInternals()
 
     this.addEventListener(
       'click',
@@ -96,8 +90,12 @@ class NeuButton extends HTMLElement {
       },
       true
     )
+  }
 
-    this.dispatchEvent(new Event('connected'))
+  connectedCallback() {
+    const root = this.attachShadow({ mode: 'open' })
+    root.appendChild(style)
+    root.append(this.content)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
