@@ -62,8 +62,8 @@ class NeuButton extends HTMLElement {
   constructor() {
     super()
 
-    const style = document.createElement('style')
-    style.textContent = styles
+    this.stylesheet = document.createElement('style')
+    this.stylesheet.textContent = styles
 
     this.content = document.createElement('slot')
     this.content.innerHTML = this.innerHTML
@@ -94,7 +94,7 @@ class NeuButton extends HTMLElement {
 
   connectedCallback() {
     const root = this.attachShadow({ mode: 'open' })
-    root.appendChild(style)
+    root.appendChild(this.stylesheet)
     root.append(this.content)
   }
 
