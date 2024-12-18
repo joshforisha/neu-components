@@ -66,12 +66,16 @@ class NeuButton extends HTMLElement {
   }
 
   connectedCallback() {
-    this.root = this.attachShadow({ mode: 'open' })
-    this.root.innerHTML = this.innerHTML
+    const root = this.attachShadow({ mode: 'open' })
 
     const style = document.createElement('style')
     style.textContent = styles
-    this.root.appendChild(style)
+    root.appendChild(style)
+
+    this.content = document.createElement('slot')
+    this.content.innerHTML = this.innerHTML
+    this.innerHTML = ''
+    root.append(this.content)
 
     this.addEventListener(
       'click',
@@ -123,11 +127,11 @@ class NeuButton extends HTMLElement {
   }
 
   get textContent() {
-    return this.root.textContent
+    return this.content.textContent
   }
 
   set textContent(newValue) {
-    this.root.textContent = newValue
+    this.content.textContent = newValue
   }
 }
 
