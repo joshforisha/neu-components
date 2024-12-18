@@ -66,12 +66,12 @@ class NeuButton extends HTMLElement {
   }
 
   connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
-    root.innerHTML = this.innerHTML
+    this.root = this.attachShadow({ mode: 'open' })
+    this.root.innerHTML = this.innerHTML
 
     const style = document.createElement('style')
     style.textContent = styles
-    root.appendChild(style)
+    this.root.appendChild(style)
 
     this.addEventListener(
       'click',
@@ -120,6 +120,14 @@ class NeuButton extends HTMLElement {
           `Attribute ${name} has changed from "${oldValue}" to "${newValue}"`
         )
     }
+  }
+
+  get textContent() {
+    return this.root.textContent
+  }
+
+  set textContent(newValue) {
+    this.root.textContent = newValue
   }
 }
 
