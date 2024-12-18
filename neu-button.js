@@ -121,14 +121,6 @@ class NeuButton extends HTMLElement {
         )
     }
   }
-
-  get textContent() {
-    return this.button.textContent
-  }
-
-  set textContent(newValue) {
-    this.button.textContent = newValue
-  }
 }
 
 customElements.define('neu-button', NeuButton)
