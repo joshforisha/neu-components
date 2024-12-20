@@ -45,6 +45,11 @@ label {
   gap: var(--small);
 }
 
+:host(:state(disabled)) {
+  border-color: var(--gray-dark);
+  color: var(--gray-dark);
+}
+
 :host(:state(disabled)) input {
   cursor: not-allowed;
 }
