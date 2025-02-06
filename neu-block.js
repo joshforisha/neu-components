@@ -3,32 +3,40 @@ const styles = `
   --accent-color: var(--gray-dark);
   --background-color: var(--white);
 
-  background-color: var(--background-color);
-  border-radius: var(--thin);
-  border: var(--border);
-  box-shadow: var(--shadow);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  padding: var(--small);
   width: 100%;
 }
 
-:host(:state(link)) {
-  cursor: pointer;
-}
-
-:host(:state(link)) .heading {
-  color: var(--accent-color);
-}
-
-:host(:state(external)) .heading::after {
+.block[target="_blank"] .heading::after {
   content: "➭";
   margin-left: var(--tiny);
   opacity: 0.5;
 }
 
-a, b, em, h1, h2, h3, h4, h5 {
+.block {
+  background-color: var(--background-color);
+  border-radius: var(--thin);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--small);
+  position: relative;
+  width: 100%;
+  text-decoration: none;
+}
+
+.block[href] {
+  cursor: pointer;
+
+  .heading {
+    color: var(--accent-color);
+  }
+}
+
+.block > a, b, em, h1, h2, h3, h4, h5 {
   color: var(--accent-color);
   font-weight: 700;
 }
@@ -46,6 +54,31 @@ p {
     margin-top: var(--small);
   }
 }
+
+@media screen and (hover: hover) {
+  .block::after {
+    align-self: center;
+    border: var(--border-thin);
+    border-radius: inherit;
+    content: "";
+    display: block;
+    height: 100%;
+    margin: auto;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: all var(--slow);
+    transition-property: height, opacity, width;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .block:hover::after {
+    height: calc(100% - var(--small));
+    opacity: 1;
+    width: calc(100% - var(--small));
+  }
+}
 `
 
 class NeuBlock extends HTMLElement {
@@ -54,29 +87,24 @@ class NeuBlock extends HTMLElement {
   constructor() {
     super()
 
+    const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
-    this.onClick = () => {
-      window.open(
-        this.getAttribute('href'),
-        this.hasAttribute('external') ? '_blank' : '_self'
-      )
-    }
+
+    this.block = document.createElement('a')
+    this.block.classList.add('block')
+    // if (this.hasAttribute('href')) block.setAttribute
+    // if (this.hasAttribute('external')) block.setAttribute
+    root.appendChild(this.block)
 
     this.heading = document.createElement('span')
     this.heading.classList.add('heading')
-  }
 
-  connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
-    root.innerHTML = this.innerHTML
-
-    root.prepend(this.heading)
+    this.block.innerHTML = this.innerHTML
+    this.block.prepend(this.heading)
 
     const style = document.createElement('style')
     style.textContent = styles
     root.prepend(style)
-
-    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -94,10 +122,11 @@ class NeuBlock extends HTMLElement {
         }
         break
       case 'external':
+        console.log(newValue)
         if (newValue !== null) {
-          this._internals.states.add('external')
+          this.block.setAttribute('target', '_blank')
         } else {
-          this._internals.states.delete('external')
+          this.block.removeAttribute('target')
         }
         break
       case 'heading':
@@ -105,11 +134,13 @@ class NeuBlock extends HTMLElement {
         break
       case 'href':
         if (newValue !== null) {
-          this._internals.states.add('link')
-          this.addEventListener('click', this.onClick)
+          this.block.setAttribute('href', newValue)
+          // this._internals.states.add('link')
+          // this.addEventListener('click', this.onClick)
         } else {
-          this._internals.states.delete('link')
-          this.removeEventListener('click', this.onClick)
+          this.block.removeAttribute('href')
+          // this._internals.states.delete('link')
+          // this.removeEventListener('click', this.onClick)
         }
         break
       default:

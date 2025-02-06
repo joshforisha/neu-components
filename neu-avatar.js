@@ -35,20 +35,15 @@ class NeuAvatar extends HTMLElement {
 
   constructor() {
     super()
-    this._internals = this.attachInternals()
-    this.image = document.createElement('img')
-  }
-
-  connectedCallback() {
     const root = this.attachShadow({ mode: 'open' })
+    this._internals = this.attachInternals()
 
     const style = document.createElement('style')
     style.textContent = styles
     root.appendChild(style)
 
+    this.image = document.createElement('img')
     root.appendChild(this.image)
-
-    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

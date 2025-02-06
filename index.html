@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#F0D1D1" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <title>Neubrutalist Components</title>
-    <link rel="stylesheet" href="common.css" />
+    <link rel="stylesheet" href="styles.css" />
     <!--
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -19,6 +19,7 @@
     <script src="neu-button.js" type="module"></script>
     <script src="neu-checkbox.js" type="module"></script>
     <script src="neu-input.js" type="module"></script>
+    <script src="neu-number.js" type="module"></script>
     <script src="neu-select.js" type="module"></script>
     <script src="neu-slider.js" type="module"></script>
     <script src="neu-textarea.js" type="module"></script>
@@ -244,7 +245,7 @@
     <h1><a href="/">Neubrutalist Components</a></h1>
     <aside>
       <h2>How to Use</h2>
-      <p>Include the base styles from <code>https://joshforisha.github.io/neu-components/common.css</code>. This file outlines all of the CSS custom variables used by the components, and enables you to override any values you'd like in your own CSS.</p>
+      <p>Include the base styles from <code>https://joshforisha.github.io/neu-components/styles.css</code>. This file outlines all of the CSS custom variables used by the components, and enables you to override any values you'd like in your own CSS.</p>
       <p>You can then include the listed JS file for a component, and use the custom element as outlined. Enjoy!</p>
     </aside>
     <aside>
@@ -341,12 +342,33 @@
           <li><code>autofocus</code>: automatically focus the input field</li>
           <li><code>disabled</code>: disables the input</li>
           <li><code>leading</code>: labels the control in the lead position (default left)</li>
+          <li><code>placeholder</code>: rounds the button to an ellipse/"pill" shape</li>
+          <li><code>trailing</code>: labels the control in the trail position (default right)</li>
+        </ul>
+      </aside>
+    </section>
+    <section id="neu-number">
+      <h2><a href="#neu-number">&lt;neu-number&gt;</a></h2>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-number.js"></copy-link>
+      <div>
+        <neu-number
+          leading="Number input"
+          max="10"
+          min="0"
+          value="5"
+        ></neu-input>
+      </div>
+      <aside>
+        <h3>Attributes</h3>
+        <ul>
+          <li><code>autofocus</code>: automatically focus the input field</li>
+          <li><code>disabled</code>: disables the input</li>
+          <li><code>leading</code>: labels the control in the lead position (default left)</li>
           <li><code>max</code>: minimum value for a number control</li>
           <li><code>min</code>: minimum value for a number control</li>
           <li><code>placeholder</code>: rounds the button to an ellipse/"pill" shape</li>
           <li><code>step</code>: incremental value for a number control</li>
           <li><code>trailing</code>: labels the control in the trail position (default right)</li>
-          <li><code>type</code>: sets the underlying field type (default "text")</li>
         </ul>
       </aside>
     </section>
@@ -762,6 +784,11 @@
       </div>
     </section>
     <script>
+      const checkbox = document.querySelector('neu-checkbox')
+      checkbox.addEventListener('change', (event) => {
+        console.log('!change', event.target.checked)
+      })
+
       const slider = document.querySelector('neu-slider')
       slider.addEventListener('input', (event) => {
         slider.setAttribute('trailing', event.target.value)
@@ -769,4 +796,3 @@
     </script>
   </body>
 </html>
-

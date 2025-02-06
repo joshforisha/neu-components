@@ -64,6 +64,7 @@ class NeuToggle extends HTMLElement {
   constructor() {
     super()
 
+    const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
     this.addEventListener('click', () => {
@@ -79,10 +80,6 @@ class NeuToggle extends HTMLElement {
     this.indicator.classList.add('indicator')
 
     this.label = document.createElement('label')
-  }
-
-  connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
 
     const style = document.createElement('style')
     style.textContent = styles
@@ -91,8 +88,6 @@ class NeuToggle extends HTMLElement {
     this.indicator.appendChild(this.handle)
     root.appendChild(this.indicator)
     root.appendChild(this.label)
-
-    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

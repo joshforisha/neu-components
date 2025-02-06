@@ -63,16 +63,13 @@ class NeuTextarea extends HTMLElement {
   constructor() {
     super()
 
+    const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
     this.label = document.createElement('label')
     this.leadingText = document.createElement('span')
     this.trailingText = document.createElement('span')
     this.textarea = document.createElement('textarea')
-  }
-
-  connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
 
     const style = document.createElement('style')
     style.textContent = styles
@@ -82,8 +79,6 @@ class NeuTextarea extends HTMLElement {
     this.label.appendChild(this.trailingText)
     this.label.appendChild(this.textarea)
     root.appendChild(this.label)
-
-    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

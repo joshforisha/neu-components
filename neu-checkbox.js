@@ -68,6 +68,7 @@ class NeuCheckbox extends HTMLElement {
   constructor() {
     super()
 
+    const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
     this.input = document.createElement('input')
@@ -78,10 +79,6 @@ class NeuCheckbox extends HTMLElement {
 
     this.label = document.createElement('label')
     this.labelText = document.createElement('span')
-  }
-
-  connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
 
     const style = document.createElement('style')
     style.textContent = styles
@@ -90,8 +87,6 @@ class NeuCheckbox extends HTMLElement {
     this.label.appendChild(this.input)
     this.label.appendChild(this.labelText)
     root.appendChild(this.label)
-
-    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

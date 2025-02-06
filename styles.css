@@ -78,3 +78,16 @@
   --shadow-collapsed: 0 0 0 var(--black);
   --shadow: var(--tiny) var(--tiny) 0 var(--black);
 }
+
+neu-avatar:not(:defined),
+neu-block:not(:defined),
+neu-button:not(:defined),
+neu-checkbox:not(:defined),
+neu-input:not(:defined),
+neu-number:not(:defined),
+neu-select:not(:defined),
+neu-slider:not(:defined),
+neu-textarea:not(:defined),
+neu-toggle:not(:defined) {
+  display: none;
+}

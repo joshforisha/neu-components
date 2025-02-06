@@ -25,6 +25,10 @@ button {
     background-color: var(--green-medium);
     transition: background-color var(--fast);
   }
+
+  &:not(.copied):hover {
+    background-color: var(--white);
+  }
 }
 
 code {

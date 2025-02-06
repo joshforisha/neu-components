@@ -11,7 +11,7 @@ input {
   border: var(--border);
   border-radius: var(--medium);
   box-sizing: border-box;
-  cursor: pointer;
+  cursor: text;
   font: inherit;
   font-weight: 400;
   min-height: var(--control);
@@ -31,7 +31,6 @@ input {
 }
 
 label {
-  cursor: pointer;
   display: flex;
   flex-wrap: wrap;
 
@@ -64,10 +63,7 @@ class NeuInput extends HTMLElement {
     'autofocus',
     'disabled',
     'leading',
-    'max',
-    'min',
     'placeholder',
-    'step',
     'trailing',
     'value'
   ]
@@ -75,6 +71,7 @@ class NeuInput extends HTMLElement {
   constructor() {
     super()
 
+    const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
     this.input = document.createElement('input')
@@ -85,23 +82,17 @@ class NeuInput extends HTMLElement {
     this.label = document.createElement('label')
     this.leadingText = document.createElement('span')
     this.trailingText = document.createElement('span')
-  }
-
-  connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
 
     const style = document.createElement('style')
     style.textContent = styles
     root.appendChild(style)
 
-    this.input.setAttribute('type', this.getAttribute('type') ?? 'text')
+    this.input.setAttribute('type', 'text')
 
     this.label.appendChild(this.leadingText)
     this.label.appendChild(this.trailingText)
     this.label.appendChild(this.input)
     root.appendChild(this.label)
-
-    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -125,11 +116,7 @@ class NeuInput extends HTMLElement {
       case 'leading':
         this.leadingText.textContent = newValue
         break
-      case 'max':
-      case 'min':
       case 'placeholder':
-      case 'step':
-      case 'type':
         this.input.setAttribute(name, newValue)
         break
       case 'trailing':

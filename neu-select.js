@@ -156,7 +156,9 @@ class NeuSelect extends HTMLElement {
   constructor() {
     super()
 
+    const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
+
     this.addEventListener('click', (event) => {
       event.preventDefault()
       if (this._internals.states.has('disabled')) return
@@ -175,10 +177,6 @@ class NeuSelect extends HTMLElement {
     this.trailingText = document.createElement('span')
 
     this.menu = document.createElement('menu')
-  }
-
-  connectedCallback() {
-    const root = this.attachShadow({ mode: 'open' })
 
     const style = document.createElement('style')
     style.textContent = styles
@@ -189,8 +187,6 @@ class NeuSelect extends HTMLElement {
     this.label.appendChild(this.anchor)
     root.appendChild(this.label)
     root.appendChild(this.menu)
-
-    this.dispatchEvent(new Event('connected'))
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

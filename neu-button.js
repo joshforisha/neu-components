@@ -90,9 +90,7 @@ class NeuButton extends HTMLElement {
       },
       true
     )
-  }
 
-  connectedCallback() {
     const root = this.attachShadow({ mode: 'open' })
     root.appendChild(this.stylesheet)
     root.append(this.content)

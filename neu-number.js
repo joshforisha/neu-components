@@ -1,43 +1,36 @@
 const styles = `
 :host {
-  --thumb-color: var(--white);
-  --track-color: var(--tint);
+  --unfocused-color: var(--tint);
+  --focused-color: var(--white);
 
   width: 100%;
 }
 
 input {
-  appearance: none;
-  background-color: inherit;
-  cursor: pointer;
-  margin: 0;
+  background-color: var(--unfocused-color);
+  border: var(--border);
+  border-radius: var(--medium);
+  box-sizing: border-box;
+  cursor: text;
+  font: inherit;
+  font-weight: 400;
+  min-height: var(--control);
+  outline: none;
+  padding: 0 var(--small);
+  transition: background-color var(--fast);
   width: 100%;
 
-  &::-webkit-slider-container {
-    height: var(--large);
+  &:focus {
+    background-color: var(--focused-color);
   }
 
-  &::-webkit-slider-runnable-track {
-    background-color: var(--track-color);
-    border: var(--border-thin);
-    border-radius: var(--small);
-    height: var(--small);
-  }
-
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    background-color: var(--thumb-color);
-    border: var(--border);
-    border-radius: 50%;
-    cursor: pointer;
-    height: var(--control-small);
-    margin-top: calc(0px - 0.75rem);
-    width: var(--control-small);
+  &::placeholder {
+    font-style: italic;
+    color: var(--shade);
   }
 }
 
 label {
-  cursor: pointer;
   display: flex;
   flex-wrap: wrap;
 
@@ -57,31 +50,22 @@ label {
 
 :host(:state(disabled)) input {
   cursor: not-allowed;
-
-  &::-webkit-slider-thumb {
-    cursor: not-allowed;
-  }
 }
 
 :host(:state(disabled)) label {
   color: var(--shade);
   cursor: not-allowed;
 }
-
-@media screen and (hover: hover) {
-  input::-webkit-slider-thumb {
-    transition: background-color var(--fast);
-  }
-}
 `
 
-class NeuSlider extends HTMLElement {
+class NeuNumber extends HTMLElement {
   static observedAttributes = [
-    'color',
+    'autofocus',
     'disabled',
     'leading',
     'max',
     'min',
+    'placeholder',
     'step',
     'trailing',
     'value'
@@ -93,30 +77,35 @@ class NeuSlider extends HTMLElement {
     const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
-    const style = document.createElement('style')
-    style.textContent = styles
-
     this.input = document.createElement('input')
-    this.input.setAttribute('type', 'range')
+    this.input.addEventListener('input', (event) => {
+      this.dispatchEvent(new Event('change'))
+    })
 
     this.label = document.createElement('label')
-
     this.leadingText = document.createElement('span')
-    this.label.appendChild(this.leadingText)
-
     this.trailingText = document.createElement('span')
+
+    const style = document.createElement('style')
+    style.textContent = styles
+    root.appendChild(style)
+
+    this.input.setAttribute('type', 'number')
+
+    this.label.appendChild(this.leadingText)
     this.label.appendChild(this.trailingText)
     this.label.appendChild(this.input)
-
-    root.appendChild(style)
     root.appendChild(this.label)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
-      case 'color':
-        this.style.setProperty('--track-color', `var(--${newValue}-light)`)
-        this.style.setProperty('--thumb-color', `var(--${newValue}-medium)`)
+      case 'autofocus':
+        if (newValue !== null) {
+          this.input.setAttribute('autofocus', '')
+        } else {
+          this.input.removeAttribute('autofocus')
+        }
         break
       case 'disabled':
         if (newValue !== null) {
@@ -132,6 +121,7 @@ class NeuSlider extends HTMLElement {
         break
       case 'max':
       case 'min':
+      case 'placeholder':
       case 'step':
         this.input.setAttribute(name, newValue)
         break
@@ -139,7 +129,7 @@ class NeuSlider extends HTMLElement {
         this.trailingText.textContent = newValue
         break
       case 'value':
-        this.value = newValue
+        this.input.setAttribute('value', newValue)
         break
       default:
         console.warn(
@@ -148,18 +138,13 @@ class NeuSlider extends HTMLElement {
     }
   }
 
-  connectedCallback() {
-    this.dispatchEvent(new Event('connected'))
-  }
-
   get value() {
     return Number(this.input.value)
   }
 
   set value(newValue) {
     this.input.value = newValue
-    this.dispatchEvent(new Event('input'))
   }
 }
 
-customElements.define('neu-slider', NeuSlider)
+customElements.define('neu-number', NeuNumber)
