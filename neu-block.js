@@ -3,6 +3,7 @@ const styles = `
   --accent-color: var(--gray-dark);
   --background-color: var(--white);
 
+  display: block;
   width: 100%;
 }
 
