@@ -57,7 +57,7 @@ p {
 }
 
 @media screen and (hover: hover) {
-  .block::after {
+  .block[href]::after {
     align-self: center;
     border: var(--border-thin);
     border-radius: inherit;
@@ -74,7 +74,7 @@ p {
     z-index: 1;
   }
 
-  .block:hover::after {
+  .block[href]:hover::after {
     height: calc(100% - var(--small));
     opacity: 1;
     width: calc(100% - var(--small));
@@ -93,8 +93,6 @@ class NeuBlock extends HTMLElement {
 
     this.block = document.createElement('a')
     this.block.classList.add('block')
-    // if (this.hasAttribute('href')) block.setAttribute
-    // if (this.hasAttribute('external')) block.setAttribute
     root.appendChild(this.block)
 
     this.heading = document.createElement('span')
@@ -136,12 +134,8 @@ class NeuBlock extends HTMLElement {
       case 'href':
         if (newValue !== null) {
           this.block.setAttribute('href', newValue)
-          // this._internals.states.add('link')
-          // this.addEventListener('click', this.onClick)
         } else {
           this.block.removeAttribute('href')
-          // this._internals.states.delete('link')
-          // this.removeEventListener('click', this.onClick)
         }
         break
       default:
