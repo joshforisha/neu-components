@@ -139,7 +139,7 @@ class NeuNumber extends HTMLElement {
   }
 
   get value() {
-    return Number(this.input.value)
+    if (this.input.value) return Number(this.input.value)
   }
 
   set value(newValue) {
