@@ -48,11 +48,12 @@ const styles = `
   margin: 0 0 var(--tiny);
 }
 
-p {
-  margin: 0;
+[slot="content"] p {
+  margin-bottom: 0;
+  margin-top: var(--tiny);
 
-  &:not(:first-of-type) {
-    margin-top: var(--small);
+  &:first-child {
+    margin-top: 0;
   }
 }
 
@@ -94,12 +95,13 @@ class NeuBlock extends HTMLElement {
     this.block = document.createElement('a')
     this.block.classList.add('block')
 
-    this.contentSlot = document.createElement('slot')
-    this.contentSlot.innerHTML = this.innerHTML
-    this.block.appendChild(this.contentSlot)
+    this.content = document.createElement('div')
+    this.content.setAttribute('slot', 'content')
+    this.content.innerHTML = this.innerHTML
+    this.block.appendChild(this.content)
 
     const observer = new MutationObserver(() => {
-      this.contentSlot.innerHTML = this.innerHTML
+      this.content.innerHTML = this.innerHTML
     })
     observer.observe(this, {
       childList: true,
@@ -131,7 +133,6 @@ class NeuBlock extends HTMLElement {
         }
         break
       case 'external':
-        console.log(newValue)
         if (newValue !== null) {
           this.block.setAttribute('target', '_blank')
         } else {

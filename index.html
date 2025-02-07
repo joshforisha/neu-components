@@ -298,7 +298,7 @@
       <h2><a href="#neu-button">&lt;neu-button&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-button.js"></copy-link>
       <div>
-        <neu-button>Default button</neu-button>
+        <neu-button color="green">Default button</neu-button>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -788,6 +788,24 @@
       slider.addEventListener('input', (event) => {
         slider.setAttribute('trailing', event.target.value)
       })
+
+      /*
+      const blockSection = document.getElementById('neu-block')
+      const aside = document.createElement('aside')
+      const block = document.createElement('neu-block')
+      block.setAttribute('heading', 'Test Block')
+      const testP = document.createElement('p')
+      testP.textContent = 'Initial text.'
+      block.appendChild(testP)
+      aside.appendChild(block)
+      blockSection.appendChild(aside)
+
+      setTimeout(() => {
+        const newText = document.createElement('p')
+        newText.textContent = 'New text!'
+        block.appendChild(newText)
+      }, 3000)
+      */
     </script>
   </body>
 </html>
