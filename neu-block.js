@@ -93,17 +93,27 @@ class NeuBlock extends HTMLElement {
 
     this.block = document.createElement('a')
     this.block.classList.add('block')
-    root.appendChild(this.block)
+
+    this.contentSlot = document.createElement('slot')
+    this.contentSlot.innerHTML = this.innerHTML
+    this.block.appendChild(this.contentSlot)
+
+    const observer = new MutationObserver(() => {
+      this.contentSlot.innerHTML = this.innerHTML
+    })
+    observer.observe(this, {
+      childList: true,
+      subtree: true
+    })
 
     this.heading = document.createElement('span')
     this.heading.classList.add('heading')
-
-    this.block.innerHTML = this.innerHTML
     this.block.prepend(this.heading)
 
     const style = document.createElement('style')
     style.textContent = styles
-    root.prepend(style)
+    root.appendChild(style)
+    root.appendChild(this.block)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
