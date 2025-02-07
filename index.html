@@ -784,11 +784,6 @@
       </div>
     </section>
     <script>
-      const checkbox = document.querySelector('neu-checkbox')
-      checkbox.addEventListener('change', (event) => {
-        console.log('!change', event.target.checked)
-      })
-
       const slider = document.querySelector('neu-slider')
       slider.addEventListener('input', (event) => {
         slider.setAttribute('trailing', event.target.value)
