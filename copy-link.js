@@ -13,7 +13,7 @@ button {
   border-bottom-right-radius: var(--tiny);
   border-left: var(--border);
   border-top-right-radius: var(--tiny);
-  border-width: 0 0 0 var(--thin);
+  border-width: 0 0 0 1px;
   cursor: pointer;
   font: inherit;
   font-weight: 500;

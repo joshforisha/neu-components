@@ -1,37 +1,7 @@
 const styles = `
 :host {
-  margin: 0;
   position: relative;
   width: 100%;
-}
-
-button {
-  align-items: center;
-  background-color: var(--white);
-  border: var(--border);
-  border-radius: var(--medium);
-  color: var(--shade);
-  cursor: pointer;
-  display: flex;
-  font: inherit;
-  font-style: italic;
-  gap: var(--small);
-  justify-content: space-between;
-  min-height: var(--control);
-  padding: 0 var(--small);
-  transition: border-radius var(--slow);
-  width: 100%;
-
-  &::after {
-    content: "❯";
-    display: block;
-    font-size: 1.125em;
-    font-style: normal;
-    line-height: 1;
-    opacity: 0.5;
-    transform: rotate(90deg);
-    transition: transform var(--slow);
-  }
 }
 
 label {
@@ -43,115 +13,45 @@ label {
     display: flex;
     flex-basis: 50%;
 
-    &:first-of-type {
+    &.leading {
       font-weight: 500;
     }
 
-    &:last-of-type {
+    &.trailing {
       justify-content: flex-end;
     }
   }
 }
 
-menu {
-  border-radius: var(--small);
-  list-style-type: none;
-  margin-top: var(--thin);
-  min-width: min-content;
-  opacity: 0;
-  padding: 0;
-  pointer-events: none;
-  position: absolute;
-  transition: opacity var(--slow);
-  width: calc(100% + var(--tiny));
+select {
+  appearance: none;
+  background-color: var(--tint);
+  cursor: pointer;
+  font: inherit;
+  min-height: var(--control);
+  outline: none;
+  padding: 0 var(--small);
+  position: relative;
+  transition: background-color var(--slow);
+  width: 100%;
 
-  li {
-    align-items: center;
+  &:active {
     background-color: var(--white);
-    border-top: var(--border);
-    border-left: var(--border);
-    border-right: var(--border);
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    min-height: var(--control);
-    padding: 0 var(--small);
-    position: relative;
-    width: calc(100% - var(--medium) - var(--small));
-    z-index: 10;
-
-    &:first-child {
-      border-top-left-radius: var(--small);
-      border-top-right-radius: var(--small);
-    }
-
-    &:last-child {
-      border-bottom-left-radius: var(--small);
-      border-bottom-right-radius: var(--small);
-      border-bottom: var(--border);
-    }
-
-    span {
-      width: 100%;
-    }
   }
 }
 
-:host(:state(disabled)) button {
-  color: #0003;
-  cursor: not-allowed;
-}
-
-:host(:state(disabled)) label {
-  color: var(--shade);
-  cursor: not-allowed;
-}
-
-:host(:state(open)) menu li::after {
-  border: var(--border-thin);
-  border-radius: inherit;
-  content: "";
-  display: block;
-  height: 100%;
-  opacity: 0;
+.indicator {
+  bottom: 0.8rem;
+  opacity: 0.75;
   pointer-events: none;
   position: absolute;
-  transition: all var(--slow);
-  transition-property: height, opacity, width;
-  width: 100%;
-  z-index: 1;
-}
-
-:host(:state(selected)) button {
-  color: var(--black);
-  font-style: normal;
-}
-
-:host(:state(open)) menu li:hover::after {
-  height: calc(100% - var(--small));
-  opacity: 1;
-  width: calc(100% - var(--small));
-}
-
-:host(:state(open)) button::after {
-  transform: rotate(270deg);
-}
-
-:host(:state(open)) menu {
-  opacity: 1;
-  pointer-events: auto;
+  right: var(--medium);
+  transform: rotate(90deg);
 }
 `
 
 class NeuSelect extends HTMLElement {
-  static observedAttributes = [
-    'disabled',
-    'leading',
-    'options',
-    'placeholder',
-    'trailing'
-  ]
+  static observedAttributes = ['disabled', 'leading', 'trailing']
 
   constructor() {
     super()
@@ -159,55 +59,48 @@ class NeuSelect extends HTMLElement {
     const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
-    this.addEventListener('click', (event) => {
-      event.preventDefault()
-      if (this._internals.states.has('disabled')) return
-
-      if (this._internals.states.has('open')) {
-        this._internals.states.delete('open')
-      } else {
-        this._internals.states.add('open')
-      }
-    })
-
-    this.anchor = document.createElement('button')
-
     this.label = document.createElement('label')
     this.leadingText = document.createElement('span')
+    this.leadingText.classList.add('leading')
     this.trailingText = document.createElement('span')
+    this.trailingText.classList.add('trailing')
+    this.label.appendChild(this.leadingText)
+    this.label.appendChild(this.trailingText)
+    root.appendChild(this.label)
 
-    this.menu = document.createElement('menu')
+    this.select = document.createElement('select')
+    this.select.innerHTML = this.innerHTML
+    root.appendChild(this.select)
+
+    const indicator = document.createElement('span')
+    indicator.classList.add('indicator')
+    indicator.textContent = '❯'
+    root.appendChild(indicator)
+
+    const observer = new MutationObserver(() => {
+      this.select.innerHTML = this.innerHTML
+    })
+    observer.observe(this, {
+      childList: true,
+      subtree: true
+    })
 
     const style = document.createElement('style')
     style.textContent = styles
     root.appendChild(style)
-
-    this.label.appendChild(this.leadingText)
-    this.label.appendChild(this.trailingText)
-    this.label.appendChild(this.anchor)
-    root.appendChild(this.label)
-    root.appendChild(this.menu)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'disabled':
         if (newValue !== null) {
-          this._internals.states.add('disabled')
+          this.select.setAttribute('disabled', '')
         } else {
-          this._internals.states.delete('disabled')
+          this.select.removeAttribute('disabled')
         }
         break
       case 'leading':
         this.leadingText.textContent = newValue
-        break
-      case 'options':
-        this.parseOptions(newValue)
-        break
-      case 'placeholder':
-        if (!this.selection) {
-          this.anchor.textContent = newValue
-        }
         break
       case 'trailing':
         this.trailingText.textContent = newValue
@@ -216,31 +109,6 @@ class NeuSelect extends HTMLElement {
         console.warn(
           `Attribute ${name} has changed from "${oldValue}" to "${newValue}"`
         )
-    }
-  }
-
-  parseOptions(options) {
-    this.options = options.split(',').map((o) => o.trim())
-    this.menu.innerHTML = ''
-    for (const option of this.options) {
-      const item = document.createElement('li')
-      item.setAttribute('value', option)
-
-      const text = document.createElement('span')
-      text.textContent = option
-      item.appendChild(text)
-
-      item.addEventListener('click', (event) => {
-        event.stopPropagation()
-        const value = item.getAttribute('value')
-        this._internals.states.add('selected')
-        this.value = value
-        this.anchor.textContent = value
-        this._internals.states.delete('open')
-        this.dispatchEvent(new Event('change'))
-      })
-
-      this.menu.appendChild(item)
     }
   }
 }

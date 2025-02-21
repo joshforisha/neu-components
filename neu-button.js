@@ -28,7 +28,7 @@ const styles = `
 
 @media screen and (hover: hover) {
   :host::after {
-    border: var(--border-thin);
+    border: var(--border);
     border-radius: inherit;
     content: "";
     display: block;

@@ -3,7 +3,7 @@ const styles = `
   align-items: center;
   background-color: red;
   border-radius: var(--thin);
-  border: var(--border-thin);
+  border: var(--border);
   box-sizing: border-box;
   display: flex;
   justify-content: center;

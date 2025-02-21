@@ -1,8 +1,5 @@
 const styles = `
 :host {
-  --thumb-color: var(--white);
-  --track-color: var(--tint);
-
   width: 100%;
 }
 
@@ -10,7 +7,7 @@ input {
   appearance: none;
   background-color: inherit;
   cursor: pointer;
-  margin: 0;
+  margin: var(--tiny) 0 0;
   width: 100%;
 
   &::-webkit-slider-container {
@@ -18,20 +15,20 @@ input {
   }
 
   &::-webkit-slider-runnable-track {
-    background-color: var(--track-color);
-    border: var(--border-thin);
+    background-color: var(--tint);
+    border: var(--border);
     border-radius: var(--small);
-    height: var(--small);
+    height: var(--medium);
   }
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background-color: var(--thumb-color);
+    background-color: var(--white);
     border: var(--border);
     border-radius: 50%;
     cursor: pointer;
     height: var(--control-small);
-    margin-top: calc(0px - 0.75rem);
+    margin-top: calc(0px - 0.5rem);
     width: var(--control-small);
   }
 }
@@ -77,7 +74,6 @@ label {
 
 class NeuSlider extends HTMLElement {
   static observedAttributes = [
-    'color',
     'disabled',
     'leading',
     'max',
@@ -114,10 +110,6 @@ class NeuSlider extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
-      case 'color':
-        this.style.setProperty('--track-color', `var(--${newValue}-light)`)
-        this.style.setProperty('--thumb-color', `var(--${newValue}-medium)`)
-        break
       case 'disabled':
         if (newValue !== null) {
           this.input.setAttribute('disabled', '')

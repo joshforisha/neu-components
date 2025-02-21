@@ -73,8 +73,7 @@
   --very-slow: 300ms ease-out;
 
   /* UI */
-  --border-thin: 1px solid var(--black);
-  --border: 2px solid var(--black);
+  --border: 1px solid var(--black);
   --shadow-collapsed: 0 0 0 var(--black);
   --shadow: var(--tiny) var(--tiny) 0 var(--black);
 }
@@ -82,9 +81,11 @@
 neu-avatar:not(:defined),
 neu-block:not(:defined),
 neu-button:not(:defined),
+neu-card:not(:defined),
 neu-checkbox:not(:defined),
 neu-input:not(:defined),
 neu-number:not(:defined),
+neu-radio:not(:defined),
 neu-select:not(:defined),
 neu-slider:not(:defined),
 neu-textarea:not(:defined),

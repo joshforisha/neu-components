@@ -1,18 +1,15 @@
 const styles = `
 :host {
-  --handle-color: var(--white);
-  --toggled-color: var(--gray-light);
-  --untoggled-color: var(--tint);
+  --indicator-color: var(--gray-light);
 
   align-items: center;
-  cursor: pointer;
   display: flex;
   gap: var(--small);
 }
 
 .handle {
-  background-color: var(--handle-color);
-  border: var(--border-thin);
+  background-color: var(--white);
+  border: var(--border);
   border-radius: 50%;
   height: calc(1.5 * var(--medium));
   transform: translateX(1px);
@@ -23,20 +20,23 @@ const styles = `
 
 .indicator {
   align-items: center;
-  background-color: var(--untoggled-color);
+  background-color: var(--tint);
   border: var(--border);
   border-radius: var(--large);
   box-sizing: border-box;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   height: var(--control-small);
   transition: background-color var(--slow);
   width: var(--control);
 }
 
 label {
+  align-items: center;
   cursor: pointer;
+  display: inline-flex;
   font-weight: 500;
+  gap: var(--small);
 }
 
 :host(:state(disabled)) .indicator {
@@ -49,12 +49,11 @@ label {
 }
 
 :host(:state(toggled)) .indicator {
-  background-color: var(--toggled-color);
+  background-color: var(--indicator-color);
 }
 
 :host(:state(toggled)) .handle {
-  background-color: var(--untoggled-color);
-  transform: translateX(calc(var(--medium) + 1px));
+  transform: translateX(calc(var(--medium) + 3px));
 }
 `
 
@@ -73,28 +72,26 @@ class NeuToggle extends HTMLElement {
       }
     })
 
-    this.handle = document.createElement('div')
-    this.handle.classList.add('handle')
-
     this.indicator = document.createElement('div')
     this.indicator.classList.add('indicator')
+    root.appendChild(this.indicator)
+
+    this.handle = document.createElement('div')
+    this.handle.classList.add('handle')
+    this.indicator.appendChild(this.handle)
 
     this.label = document.createElement('label')
+    root.appendChild(this.label)
 
     const style = document.createElement('style')
     style.textContent = styles
     root.appendChild(style)
-
-    this.indicator.appendChild(this.handle)
-    root.appendChild(this.indicator)
-    root.appendChild(this.label)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.setProperty('--handle-color', `var(--${newValue}-medium)`)
-        this.style.setProperty('--toggled-color', `var(--${newValue}-medium)`)
+        this.style.setProperty('--indicator-color', `var(--${newValue}-medium)`)
         break
       case 'disabled':
         if (newValue === null) this._internals.states.delete('disabled')

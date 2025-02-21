@@ -17,9 +17,11 @@
     <script src="neu-avatar.js" type="module"></script>
     <script src="neu-block.js" type="module"></script>
     <script src="neu-button.js" type="module"></script>
+    <script src="neu-card.js" type="module"></script>
     <script src="neu-checkbox.js" type="module"></script>
     <script src="neu-input.js" type="module"></script>
     <script src="neu-number.js" type="module"></script>
+    <script src="neu-radio.js" type="module"></script>
     <script src="neu-select.js" type="module"></script>
     <script src="neu-slider.js" type="module"></script>
     <script src="neu-textarea.js" type="module"></script>
@@ -54,8 +56,8 @@
         font-family: var(--humanist-fonts);
         margin: 0;
 
-        > section {
-          border-top: var(--border-thin);
+        & > section {
+          border-top: var(--border);
           display: flex;
           flex-direction: column;
           gap: var(--large);
@@ -66,7 +68,7 @@
           }
 
           &:last-of-type {
-            border-bottom: var(--border-thin);
+            border-bottom: var(--border);
           }
 
           &:nth-of-type(8n + 1) { background-color: var(--orange-light) }
@@ -86,7 +88,7 @@
           div {
             display: flex;
             flex-wrap: wrap;
-            gap: var(--medium);
+            gap: var(--small);
             margin: 0 auto;
             max-width: var(--content-width);
             width: 100%;
@@ -94,6 +96,11 @@
             &.vertical {
               flex-direction: column;
             }
+          }
+
+          p {
+            margin: 0 auto;
+            max-width: var(--content-width);
           }
         }
       }
@@ -123,7 +130,8 @@
       }
 
       h3 {
-        margin: var(--medium) auto 0;
+        line-height: 1;
+        margin: 0 auto var(--small);
         max-width: var(--content-width);
         width: 100%;
 
@@ -136,95 +144,50 @@
         margin: var(--medium) 0 0;
       }
 
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        margin-top: var(--medium);
+
+        span {
+          border-left: var(--border);
+          border-top: var(--border);
+          display: block;
+          height: 1.5rem;
+
+          &:nth-child(9n) {
+            border-right: var(--border);
+          }
+
+          &:nth-child(n+19) {
+            border-bottom: var(--border);
+          }
+        }
+      }
+
       #color-tiles {
-        background-color: var(--gray-light);
-        display: block;
+        background-color: var(--white);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--medium) 0;
+        padding: var(--large) 0;
+        width: 100%;
 
-        #colors {
-          border-left: var(--border-thin);
-          border-top: var(--border-thin);
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0;
-          margin-top: var(--medium);
-          padding: 0;
+        h2 {
+          flex: 0 0 100%;
+        }
 
-          section {
-            border-bottom: var(--border-thin);
-            border-right: var(--border-thin);
-            display: flex;
-            flex-basis: calc(100% / 3);
-            flex-direction: column;
-            padding: var(--small);
-            row-gap: var(--tiny);
+        & > div {
+          flex: 50%;
+          min-height: 10rem;
 
-            p {
-              margin: 0;
-            }
+          &.dark {
+            background-color: var(--gray-dark);
+          }
 
-            .tile {
-              display: flex;
-              justify-content: space-around;
-
-              &.-blackwhite {
-                span:first-child { color: var(--black) }
-                span:last-child { color: var(--white) }
-              }
-
-              &.-red {
-                span:nth-child(1) { color: var(--red-dark) }
-                span:nth-child(2) { color: var(--red-medium) }
-                span:nth-child(3) { color: var(--red-light) }
-              }
-
-              &.-orange {
-                span:nth-child(1) { color: var(--orange-dark) }
-                span:nth-child(2) { color: var(--orange-medium) }
-                span:nth-child(3) { color: var(--orange-light) }
-              }
-
-              &.-yellow {
-                span:nth-child(1) { color: var(--yellow-dark) }
-                span:nth-child(2) { color: var(--yellow-medium) }
-                span:nth-child(3) { color: var(--yellow-light) }
-              }
-
-              &.-green {
-                span:nth-child(1) { color: var(--green-dark) }
-                span:nth-child(2) { color: var(--green-medium) }
-                span:nth-child(3) { color: var(--green-light) }
-              }
-
-              &.-teal {
-                span:nth-child(1) { color: var(--teal-dark) }
-                span:nth-child(2) { color: var(--teal-medium) }
-                span:nth-child(3) { color: var(--teal-light) }
-              }
-
-              &.-blue {
-                span:nth-child(1) { color: var(--blue-dark) }
-                span:nth-child(2) { color: var(--blue-medium) }
-                span:nth-child(3) { color: var(--blue-light) }
-              }
-
-              &.-indigo {
-                span:nth-child(1) { color: var(--indigo-dark) }
-                span:nth-child(2) { color: var(--indigo-medium) }
-                span:nth-child(3) { color: var(--indigo-light) }
-              }
-
-              &.-purple {
-                span:nth-child(1) { color: var(--purple-dark) }
-                span:nth-child(2) { color: var(--purple-medium) }
-                span:nth-child(3) { color: var(--purple-light) }
-              }
-
-              &.-magenta {
-                span:nth-child(1) { color: var(--magenta-dark) }
-                span:nth-child(2) { color: var(--magenta-medium) }
-                span:nth-child(3) { color: var(--magenta-light) }
-              }
-            }
+          &.light {
+            background-color: var(--gray-light);
           }
         }
       }
@@ -251,8 +214,39 @@
     <aside>
       <h2>Colors</h2>
       <p>Any component with a <code>color</code> attribute accepts any of the following values: <code>white</code> (usually default), <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>teal</code>, <code>blue</code>, <code>indigo</code>, <code>purple</code>, or <code>magenta</code>.</p>
+      <div class="color-grid">
+        <!-- Light colors -->
+        <span class="tile" style="background-color: var(--red-light)"></span>
+        <span class="tile" style="background-color: var(--orange-light)"></span>
+        <span class="tile" style="background-color: var(--yellow-light)"></span>
+        <span class="tile" style="background-color: var(--green-light)"></span>
+        <span class="tile" style="background-color: var(--teal-light)"></span>
+        <span class="tile" style="background-color: var(--blue-light)"></span>
+        <span class="tile" style="background-color: var(--indigo-light)"></span>
+        <span class="tile" style="background-color: var(--purple-light)"></span>
+        <span class="tile" style="background-color: var(--magenta-light)"></span>
+        <!-- Medium colors -->
+        <span class="tile" style="background-color: var(--red-medium)"></span>
+        <span class="tile" style="background-color: var(--orange-medium)"></span>
+        <span class="tile" style="background-color: var(--yellow-medium)"></span>
+        <span class="tile" style="background-color: var(--green-medium)"></span>
+        <span class="tile" style="background-color: var(--teal-medium)"></span>
+        <span class="tile" style="background-color: var(--blue-medium)"></span>
+        <span class="tile" style="background-color: var(--indigo-medium)"></span>
+        <span class="tile" style="background-color: var(--purple-medium)"></span>
+        <span class="tile" style="background-color: var(--magenta-medium)"></span>
+        <!-- Dark colors -->
+        <span class="tile" style="background-color: var(--red-dark)"></span>
+        <span class="tile" style="background-color: var(--orange-dark)"></span>
+        <span class="tile" style="background-color: var(--yellow-dark)"></span>
+        <span class="tile" style="background-color: var(--green-dark)"></span>
+        <span class="tile" style="background-color: var(--teal-dark)"></span>
+        <span class="tile" style="background-color: var(--blue-dark)"></span>
+        <span class="tile" style="background-color: var(--indigo-dark)"></span>
+        <span class="tile" style="background-color: var(--purple-dark)"></span>
+        <span class="tile" style="background-color: var(--magenta-dark)"></span>
+      </div>
       <p>For each color, there are three related CSS variables (light, medium, dark) of varying saturations and lightness values. Each component will use these slightly differently, but they're all customizable.</p>
-      <p>See <a href="#color-tiles">Color Tiles</a> at the bottom of this page for examples.</p>
     </aside>
     <section id="neu-avatar">
       <h2><a href="#neu-avatar">&lt;neu-avatar&gt;</a></h2>
@@ -260,6 +254,7 @@
       <div>
         <neu-avatar
           alt="Placeholder"
+          color="magenta"
           size="64"
           src="https://placehold.co/64"
         ></neu-avatar>
@@ -279,8 +274,8 @@
       <h2><a href="#neu-block">&lt;neu-block&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-block.js"></copy-link>
       <div>
-        <neu-block heading="Default Block" href="/">
-          <p>This is the default styling for a link block.</p>
+        <neu-block color="red" heading="Red Block" href="/">
+          <p>A block has a "floating" style and can act as a link when given an <code>href</code> value.</p>
         </neu-block>
       </div>
       <aside>
@@ -298,7 +293,7 @@
       <h2><a href="#neu-button">&lt;neu-button&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-button.js"></copy-link>
       <div>
-        <neu-button color="green">Default button</neu-button>
+        <neu-button color="orange">Orange button</neu-button>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -311,17 +306,33 @@
         </ul>
       </aside>
     </section>
+    <section id="neu-card">
+      <h2><a href="#neu-card">&lt;neu-card&gt;</a></h2>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-card.js"></copy-link>
+      <div>
+        <neu-card color="yellow" heading="Yellow Card">
+          <p>A card is flat, and typically used for grouping information.</p>
+        </neu-card>
+      </div>
+      <aside>
+        <h3>Attributes</h3>
+        <ul>
+          <li><code>color</code>: determines the color theme (default "white")</li>
+          <li><code>heading</code>: text title for the heading</li>
+        </ul>
+      </aside>
+    </section>
     <section id="neu-checkbox">
       <h2><a href="#neu-checkbox">&lt;neu-checkbox&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-checkbox.js"></copy-link>
       <div class="vertical">
-        <neu-checkbox color="indigo" label="Checkbox item"></neu-checkbox>
+        <neu-checkbox color="green" label="Green checkbox"></neu-checkbox>
       </div>
       <aside>
         <h3>Attributes</h3>
         <ul>
           <li><code>checked</code>: sets the state to checked</li>
-          <li><code>color</code>: determines the color theme (default "white")</li>
+          <li><code>color</code>: themes the check indicator</li>
           <li><code>disabled</code>: disables the input</li>
           <li><code>label</code>: labels the control</li>
         </ul>
@@ -341,9 +352,9 @@
         <ul>
           <li><code>autofocus</code>: automatically focus the input field</li>
           <li><code>disabled</code>: disables the input</li>
-          <li><code>leading</code>: labels the control in the lead position (default left)</li>
+          <li><code>leading</code>: labels the control in the lead position</li>
           <li><code>placeholder</code>: rounds the button to an ellipse/"pill" shape</li>
-          <li><code>trailing</code>: labels the control in the trail position (default right)</li>
+          <li><code>trailing</code>: labels the control in the trail position</li>
         </ul>
       </aside>
     </section>
@@ -363,12 +374,29 @@
         <ul>
           <li><code>autofocus</code>: automatically focus the input field</li>
           <li><code>disabled</code>: disables the input</li>
-          <li><code>leading</code>: labels the control in the lead position (default left)</li>
+          <li><code>leading</code>: labels the control in the lead position</li>
           <li><code>max</code>: minimum value for a number control</li>
           <li><code>min</code>: minimum value for a number control</li>
           <li><code>placeholder</code>: rounds the button to an ellipse/"pill" shape</li>
           <li><code>step</code>: incremental value for a number control</li>
-          <li><code>trailing</code>: labels the control in the trail position (default right)</li>
+          <li><code>trailing</code>: labels the control in the trail position</li>
+        </ul>
+      </aside>
+    </section>
+    <section id="neu-radio">
+      <h2><a href="#neu-radio">&lt;neu-radio&gt;</a></h2>
+      <copy-link url="https://joshforisha.github.io/neu-components/neu-radio.js"></copy-link>
+      <div class="vertical">
+        <neu-radio color="indigo" label="One" name="test" value="one"></neu-radio>
+        <neu-radio color="indigo" label="Two" name="test" value="two"></neu-radio>
+        <neu-radio color="indigo" label="Three" name="test" value="three"></neu-radio>
+      </div>
+      <aside>
+        <h3>Attributes</h3>
+        <ul>
+          <li><code>color</code>: themes the selected indicator</li>
+          <li><code>disabled</code>: disables the input</li>
+          <li><code>label</code>: labels the control</li>
         </ul>
       </aside>
     </section>
@@ -376,21 +404,26 @@
       <h2><a href="#neu-select">&lt;neu-select&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-select.js"></copy-link>
       <div>
-        <neu-select
-          leading="Color"
-          options="Red, Orange, Yellow, Green, Teal, Blue, Purple, Magenta"
-          placeholder="Select a color"
-          style="max-width: 15rem"
-        ></neu-select>
+        <neu-select leading="Color">
+          <option value="">Select a color</option>
+          <option value="red">Red</option>
+          <option value="orange">Orange</option>
+          <option value="yellow">Yellow</option>
+          <option value="green">Green</option>
+          <option value="teal">Teal</option>
+          <option value="blue">Blue</option>
+          <option value="indigo">Indigo</option>
+          <option value="purple">Purple</option>
+          <option value="magenta">Magenta</option>
+        </neu-select>
       </div>
+      <p>A <code>neu-select</code> is set up and used very much like a normal <code>select</code>: you include <code>option</code> elements inside.</p>
       <aside>
         <h3>Attributes</h3>
         <ul>
           <li><code>disabled</code>: disables the input</li>
-          <li><code>leading</code>: labels the control in the lead position (default left)</li>
-          <li><code>options</code>: a comma-separated list of values, used as labels</li>
-          <li><code>placeholder</code>: sets the empty placeholder text</li>
-          <li><code>trailing</code>: labels the control in the trail position (default right)</li>
+          <li><code>leading</code>: labels the control in the lead position</li>
+          <li><code>trailing</code>: labels the control in the trail position</li>
         </ul>
       </aside>
     </section>
@@ -409,13 +442,12 @@
       <aside>
         <h3>Attributes</h3>
         <ul>
-          <li><code>color</code>: determines the color theme</li>
           <li><code>disabled</code>: disables the input</li>
-          <li><code>leading</code>: labels the control in the lead position (default left)</li>
+          <li><code>leading</code>: labels the control in the lead position</li>
           <li><code>max</code>: maximum value</li>
           <li><code>min</code>: minimum value</li>
           <li><code>step</code>: incremental value</li>
-          <li><code>trailing</code>: labels the control in the trail position (default right)</li>
+          <li><code>trailing</code>: labels the control in the trail position</li>
         </ul>
       </aside>
     </section>
@@ -432,9 +464,9 @@
         <h3>Attributes</h3>
         <ul>
           <li><code>disabled</code>: disables the input</li>
-          <li><code>leading</code>: labels the control in the lead position (default left)</li>
+          <li><code>leading</code>: labels the control in the lead position</li>
           <li><code>placeholder</code>: sets the underlying field's empty placeholder text</li>
-          <li><code>trailing</code>: labels the control in the trail position (default right)</li>
+          <li><code>trailing</code>: labels the control in the trail position</li>
         </ul>
       </aside>
     </section>
@@ -442,370 +474,23 @@
       <h2><a href="#neu-toggle">&lt;neu-toggle&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-toggle.js"></copy-link>
       <div class="vertical">
-        <neu-toggle label="Default toggle"></neu-toggle>
+        <neu-toggle color="yellow" label="Yellow toggle"></neu-toggle>
       </div>
       <aside>
         <h3>Attributes</h3>
         <ul>
-          <li><code>color</code>: determines the color theme</li>
+          <li><code>color</code>: themes the enabled state</li>
           <li><code>disabled</code>: disables the toggle</li>
           <li><code>label</code>: labels the control</li>
           <li><code>toggled</code>: sets the toggled state</li>
         </ul>
       </aside>
     </section>
-    <section id="color-tiles">
-      <h2><a href="#color-tiles">Color Tiles</a></h2>
-      <div id="colors">
-        <section style="background-color: var(--red-dark)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--red-medium)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--red-light)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--orange-dark)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--orange-medium)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--orange-light)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--yellow-dark)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--yellow-medium)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--yellow-light)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--green-dark)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--green-medium)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--green-light)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--teal-dark)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--teal-medium)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--teal-light)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--blue-dark)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--blue-medium)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--blue-light)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--indigo-dark)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--indigo-medium)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--indigo-light)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--purple-dark)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--purple-medium)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--purple-light)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--magenta-dark)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--magenta-medium)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-        <section style="background-color: var(--magenta-light)">
-          <div class="tile -blackwhite"><span>black</span><span>white</span></div>
-          <div class="tile -red"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -orange"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -yellow"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -green"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -teal"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -blue"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -indigo"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -purple"><span>dark</span><span>medium</span><span>light</span></div>
-          <div class="tile -magenta"><span>dark</span><span>medium</span><span>light</span></div>
-        </section>
-      </div>
-    </section>
     <script>
       const slider = document.querySelector('neu-slider')
       slider.addEventListener('input', (event) => {
         slider.setAttribute('trailing', event.target.value)
       })
-
-      /*
-      const blockSection = document.getElementById('neu-block')
-      const aside = document.createElement('aside')
-      const block = document.createElement('neu-block')
-      block.setAttribute('heading', 'Test Block')
-      const testP = document.createElement('p')
-      testP.textContent = 'Initial text.'
-      block.appendChild(testP)
-      aside.appendChild(block)
-      blockSection.appendChild(aside)
-
-      setTimeout(() => {
-        const newText = document.createElement('p')
-        newText.textContent = 'New text!'
-        block.appendChild(newText)
-      }, 3000)
-      */
     </script>
   </body>
 </html>

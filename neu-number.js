@@ -9,7 +9,7 @@ const styles = `
 input {
   background-color: var(--unfocused-color);
   border: var(--border);
-  border-radius: var(--medium);
+  border-radius: var(--small);
   box-sizing: border-box;
   cursor: text;
   font: inherit;

@@ -8,23 +8,27 @@ input {
   appearance: none;
   background-color: var(--tint);
   border: var(--border);
-  border-radius: var(--small);
-  color: var(--indicator-color);
+  border-radius: 50%;
+  color: var(--black);
   cursor: pointer;
   display: flex;
   font: inherit;
-  height: var(--control-small);
+  height: 1.5rem;
   justify-content: center;
   margin: 0;
   transition: background-color var(--fast);
-  width: var(--control-small);
+  width: 1.5rem;
 
   &::after {
-    content: "✓";
-    font-size: 1.5rem;
+    background-color: var(--indicator-color);
+    border-radius: 50%;
+    border: 1px solid var(--shade);
+    content: "";
+    height: 1rem;
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--fast);
+    width: 1rem;
   }
 
   &:checked {
@@ -57,8 +61,18 @@ label {
 }
 `
 
-class NeuCheckbox extends HTMLElement {
-  static observedAttributes = ['checked', 'color', 'disabled', 'label', 'name']
+class NeuRadio extends HTMLElement {
+  static observedAttributes = ['color', 'disabled', 'label', 'name']
+
+  static selections = {}
+
+  static toggle(radio) {
+    const name = radio.getAttribute('name')
+    if (name) {
+      if (this.selections[name]) this.selections[name].checked = false
+      this.selections[name] = radio
+    }
+  }
 
   constructor() {
     super()
@@ -67,8 +81,9 @@ class NeuCheckbox extends HTMLElement {
     this._internals = this.attachInternals()
 
     this.input = document.createElement('input')
-    this.input.setAttribute('type', 'checkbox')
+    this.input.setAttribute('type', 'radio')
     this.input.addEventListener('change', (event) => {
+      NeuRadio.toggle(this.input)
       this.dispatchEvent(new Event('change'))
     })
 
@@ -87,7 +102,7 @@ class NeuCheckbox extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.setProperty('--indicator-color', `var(--${newValue}-dark)`)
+        this.style.setProperty('--indicator-color', `var(--${newValue}-medium)`)
         break
       case 'disabled':
         if (newValue !== null) {
@@ -101,7 +116,6 @@ class NeuCheckbox extends HTMLElement {
       case 'label':
         this.labelText.textContent = newValue
         break
-      case 'checked':
       case 'name':
         this.input.setAttribute(name, newValue)
         break
@@ -117,4 +131,4 @@ class NeuCheckbox extends HTMLElement {
   }
 }
 
-customElements.define('neu-checkbox', NeuCheckbox)
+customElements.define('neu-radio', NeuRadio)
