@@ -1,55 +1,35 @@
 :root {
   /* Color Hues */
-  --hue-blue: 215deg;
+  --hue-blue: 210deg;
   --hue-green: 100deg;
   --hue-indigo: 240deg;
   --hue-magenta: 315deg;
   --hue-orange: 35deg;
   --hue-purple: 270deg;
   --hue-red: 0deg;
-  --hue-teal: 190deg;
+  --hue-teal: 185deg;
   --hue-yellow: 55deg;
 
-  /* Color Parameters */
-  --level-light: 50% 88%;
-  --level-medium: 70% 72%;
-  --level-dark: 76% 30%;
+  /* Base Colors */
+  --black: #000;
+  --shade: #0003;
+  --tint: #fffc;
+  --white: #fff;
 
-  /* Colors */
-  --black: #000000;
-  --blue-dark: hsl(var(--hue-blue) var(--level-dark));
-  --blue-light: hsl(var(--hue-blue) var(--level-light));
-  --blue-medium: hsl(var(--hue-blue) var(--level-medium));
-  --gray-dark: #888888;
-  --gray-light: #eeeeee;
-  --gray-medium: #dddddd;
-  --green-dark: hsl(var(--hue-green) var(--level-dark));
-  --green-light: hsl(var(--hue-green) var(--level-light));
-  --green-medium: hsl(var(--hue-green) var(--level-medium));
-  --indigo-dark: hsl(var(--hue-indigo) var(--level-dark));
-  --indigo-light: hsl(var(--hue-indigo) var(--level-light));
-  --indigo-medium: hsl(var(--hue-indigo) var(--level-medium));
-  --magenta-dark: hsl(var(--hue-magenta) var(--level-dark));
-  --magenta-light: hsl(var(--hue-magenta) var(--level-light));
-  --magenta-medium: hsl(var(--hue-magenta) var(--level-medium));
-  --orange-dark: hsl(var(--hue-orange) var(--level-dark));
-  --orange-light: hsl(var(--hue-orange) var(--level-light));
-  --orange-medium: hsl(var(--hue-orange) var(--level-medium));
-  --purple-dark: hsl(var(--hue-purple) var(--level-dark));
-  --purple-light: hsl(var(--hue-purple) var(--level-light));
-  --purple-medium: hsl(var(--hue-purple) var(--level-medium));
-  --red-dark: hsl(var(--hue-red) var(--level-dark));
-  --red-light: hsl(var(--hue-red) var(--level-light));
-  --red-medium: hsl(var(--hue-red) var(--level-medium));
-  --shade: #00000066;
-  --teal-dark: hsl(var(--hue-teal) var(--level-dark));
-  --teal-light: hsl(var(--hue-teal) var(--level-light));
-  --teal-medium: hsl(var(--hue-teal) var(--level-medium));
-  --tint: #ffffffaa;
-  --white: #ffffff;
-  --yellow-dark: hsl(var(--hue-yellow) var(--level-dark));
-  --yellow-light: hsl(var(--hue-yellow) var(--level-light));
-  --yellow-medium: hsl(var(--hue-yellow) var(--level-medium));
+  /* Light Colors */
+  --blue: hsl(var(--hue-blue) 90% 76%);
+  --foreground: var(--black);
+  --fade: var(--tint);
+  --gray: #eeeeee;
+  --green: hsl(var(--hue-green) 90% 76%);
+  --indigo: hsl(var(--hue-indigo) 90% 82%);
+  --magenta: hsl(var(--hue-magenta) 90% 79%);
+  --orange: hsl(var(--hue-orange) 90% 65%);
+  --purple: hsl(var(--hue-purple) 90% 80%);
+  --red: hsl(var(--hue-red) 90% 74%);
+  --teal: hsl(var(--hue-teal) 90% 78%);
+  --unfade: var(--shade);
+  --yellow: hsl(var(--hue-yellow) 90% 73%);
 
   /* Fonts */
   --humanist-fonts: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
@@ -78,6 +58,11 @@
   --shadow: var(--tiny) var(--tiny) 0 var(--black);
 }
 
+body {
+  color: var(--black);
+  font-family: var(--humanist-fonts);
+}
+
 neu-avatar:not(:defined),
 neu-block:not(:defined),
 neu-button:not(:defined),
@@ -91,4 +76,26 @@ neu-slider:not(:defined),
 neu-textarea:not(:defined),
 neu-toggle:not(:defined) {
   display: none;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --blue: hsl(var(--hue-blue) 100% 28%);
+    --fade: var(--shade);
+    --foreground: var(--white);
+    --gray: #50555a;
+    --green: hsl(var(--hue-green) 100% 25%);
+    --indigo: hsl(var(--hue-indigo) 65% 35%);
+    --magenta: hsl(var(--hue-magenta) 90% 30%);
+    --orange: hsl(var(--hue-orange) 100% 30%);
+    --purple: hsl(var(--hue-purple) 70% 30%);
+    --red: hsl(var(--hue-red) 100% 27%);
+    --teal: hsl(var(--hue-teal) 100% 30%);
+    --unfade: var(--tint);
+    --yellow: hsl(var(--hue-yellow) 100% 30%);
+  }
+
+  body {
+    color: #fffe;
+  }
 }

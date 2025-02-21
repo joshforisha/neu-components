@@ -51,10 +51,14 @@
       }
 
       body {
-        background-color: var(--red-light);
-        color: var(--black);
-        font-family: var(--humanist-fonts);
+        background-color: var(--red);
         margin: 0;
+
+        & > aside {
+          margin: 0 auto;
+          max-width: calc(var(--content-width) + var(--large));
+          padding: var(--medium);
+        }
 
         & > section {
           border-top: var(--border);
@@ -71,15 +75,15 @@
             border-bottom: var(--border);
           }
 
-          &:nth-of-type(8n + 1) { background-color: var(--orange-light) }
-          &:nth-of-type(8n + 2) { background-color: var(--yellow-light) }
-          &:nth-of-type(8n + 3) { background-color: var(--green-light) }
-          &:nth-of-type(8n + 4) { background-color: var(--teal-light) }
-          &:nth-of-type(8n + 5) { background-color: var(--blue-light) }
-          &:nth-of-type(8n + 6) { background-color: var(--indigo-light) }
-          &:nth-of-type(8n + 7) { background-color: var(--purple-light) }
-          &:nth-of-type(8n + 8) { background-color: var(--magenta-light) }
-          &:nth-of-type(8n + 9) { background-color: var(--red-light) }
+          &:nth-of-type(8n + 1) { background-color: var(--orange) }
+          &:nth-of-type(8n + 2) { background-color: var(--yellow) }
+          &:nth-of-type(8n + 3) { background-color: var(--green) }
+          &:nth-of-type(8n + 4) { background-color: var(--teal) }
+          &:nth-of-type(8n + 5) { background-color: var(--blue) }
+          &:nth-of-type(8n + 6) { background-color: var(--indigo) }
+          &:nth-of-type(8n + 7) { background-color: var(--purple) }
+          &:nth-of-type(8n + 8) { background-color: var(--magenta) }
+          &:nth-of-type(8n + 9) { background-color: var(--red) }
 
           aside {
             margin-top: 0;
@@ -106,7 +110,7 @@
       }
 
       code {
-        background-color: #0001;
+        background-color: #0003;
         border-radius: var(--thin);
         padding: 0 var(--tiny);
       }
@@ -118,8 +122,9 @@
       }
 
       h1 {
-        margin: var(--large) auto;
+        margin: 0 auto;
         max-width: var(--content-width);
+        padding: var(--large) var(--medium);
         width: 100%;
       }
 
@@ -150,44 +155,63 @@
         margin-top: var(--medium);
 
         span {
+          border-bottom: var(--border);
           border-left: var(--border);
           border-top: var(--border);
           display: block;
-          height: 1.5rem;
+          height: var(--huge);
 
           &:nth-child(9n) {
             border-right: var(--border);
           }
-
-          &:nth-child(n+19) {
-            border-bottom: var(--border);
-          }
         }
       }
 
-      #color-tiles {
+      #demo {
         background-color: var(--white);
-        display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
-        gap: var(--medium) 0;
-        padding: var(--large) 0;
-        width: 100%;
-
-        h2 {
-          flex: 0 0 100%;
-        }
+        gap: 0;
+        padding: 0;
 
         & > div {
-          flex: 50%;
-          min-height: 10rem;
+          flex: 0 0 50%;
+          padding: var(--medium);
 
           &.dark {
-            background-color: var(--gray-dark);
+            background-color: #50555a;
+            color: var(--white);
+
+            --red: hsl(var(--hue-red) 40% 50%);
+            --orange: hsl(var(--hue-orange) 50% 45%);
+            --yellow: hsl(var(--hue-yellow) 50% 40%);
+            --green: hsl(var(--hue-green) 40% 45%);
+            --teal: hsl(var(--hue-teal) 45% 45%);
+            --blue: hsl(var(--hue-blue) 40% 50%);
+            --indigo: hsl(var(--hue-indigo) 40% 45%);
+            --purple: hsl(var(--hue-purple) 40% 45%);
+            --magenta: hsl(var(--hue-magenta) 45% 45%);
           }
 
           &.light {
-            background-color: var(--gray-light);
+            background-color: #eee;
+            color: var(--black);
+
+            --red: hsl(var(--hue-red) 100% 78%);
+            --orange: hsl(var(--hue-orange) 100% 72%);
+            --yellow: hsl(var(--hue-yellow) 100% 77%);
+            --green: hsl(var(--hue-green) 100% 78%);
+            --teal: hsl(var(--hue-teal) 100% 80%);
+            --blue: hsl(var(--hue-blue) 100% 78%);
+            --indigo: hsl(var(--hue-indigo) 100% 80%);
+            --purple: hsl(var(--hue-purple) 100% 80%);
+            --magenta: hsl(var(--hue-magenta) 100% 80%);
+          }
+
+          div {
+            background-color: var(--color);
+            border: var(--border);
+            border-radius: var(--tiny);
+            padding: var(--medium);
           }
         }
       }
@@ -215,38 +239,17 @@
       <h2>Colors</h2>
       <p>Any component with a <code>color</code> attribute accepts any of the following values: <code>white</code> (usually default), <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>teal</code>, <code>blue</code>, <code>indigo</code>, <code>purple</code>, or <code>magenta</code>.</p>
       <div class="color-grid">
-        <!-- Light colors -->
-        <span class="tile" style="background-color: var(--red-light)"></span>
-        <span class="tile" style="background-color: var(--orange-light)"></span>
-        <span class="tile" style="background-color: var(--yellow-light)"></span>
-        <span class="tile" style="background-color: var(--green-light)"></span>
-        <span class="tile" style="background-color: var(--teal-light)"></span>
-        <span class="tile" style="background-color: var(--blue-light)"></span>
-        <span class="tile" style="background-color: var(--indigo-light)"></span>
-        <span class="tile" style="background-color: var(--purple-light)"></span>
-        <span class="tile" style="background-color: var(--magenta-light)"></span>
-        <!-- Medium colors -->
-        <span class="tile" style="background-color: var(--red-medium)"></span>
-        <span class="tile" style="background-color: var(--orange-medium)"></span>
-        <span class="tile" style="background-color: var(--yellow-medium)"></span>
-        <span class="tile" style="background-color: var(--green-medium)"></span>
-        <span class="tile" style="background-color: var(--teal-medium)"></span>
-        <span class="tile" style="background-color: var(--blue-medium)"></span>
-        <span class="tile" style="background-color: var(--indigo-medium)"></span>
-        <span class="tile" style="background-color: var(--purple-medium)"></span>
-        <span class="tile" style="background-color: var(--magenta-medium)"></span>
-        <!-- Dark colors -->
-        <span class="tile" style="background-color: var(--red-dark)"></span>
-        <span class="tile" style="background-color: var(--orange-dark)"></span>
-        <span class="tile" style="background-color: var(--yellow-dark)"></span>
-        <span class="tile" style="background-color: var(--green-dark)"></span>
-        <span class="tile" style="background-color: var(--teal-dark)"></span>
-        <span class="tile" style="background-color: var(--blue-dark)"></span>
-        <span class="tile" style="background-color: var(--indigo-dark)"></span>
-        <span class="tile" style="background-color: var(--purple-dark)"></span>
-        <span class="tile" style="background-color: var(--magenta-dark)"></span>
+        <span class="tile" style="background-color: var(--red)"></span>
+        <span class="tile" style="background-color: var(--orange)"></span>
+        <span class="tile" style="background-color: var(--yellow)"></span>
+        <span class="tile" style="background-color: var(--green)"></span>
+        <span class="tile" style="background-color: var(--teal)"></span>
+        <span class="tile" style="background-color: var(--blue)"></span>
+        <span class="tile" style="background-color: var(--indigo)"></span>
+        <span class="tile" style="background-color: var(--purple)"></span>
+        <span class="tile" style="background-color: var(--magenta)"></span>
       </div>
-      <p>For each color, there are three related CSS variables (light, medium, dark) of varying saturations and lightness values. Each component will use these slightly differently, but they're all customizable.</p>
+      <p>These colors automatically darken based on a user's color theme preference.</p>
     </aside>
     <section id="neu-avatar">
       <h2><a href="#neu-avatar">&lt;neu-avatar&gt;</a></h2>
@@ -486,6 +489,32 @@
         </ul>
       </aside>
     </section>
+    <!--
+    <section id="demo">
+      <div class="dark">
+        <div style="--color: var(--red)">This is a demo.</div>
+        <div style="--color: var(--orange)">This is a demo.</div>
+        <div style="--color: var(--yellow)">This is a demo.</div>
+        <div style="--color: var(--green)">This is a demo.</div>
+        <div style="--color: var(--teal)">This is a demo.</div>
+        <div style="--color: var(--blue)">This is a demo.</div>
+        <div style="--color: var(--indigo)">This is a demo.</div>
+        <div style="--color: var(--purple)">This is a demo.</div>
+        <div style="--color: var(--magenta)">This is a demo.</div>
+      </div>
+      <div class="light">
+        <div style="--color: var(--red)">This is a demo.</div>
+        <div style="--color: var(--orange)">This is a demo.</div>
+        <div style="--color: var(--yellow)">This is a demo.</div>
+        <div style="--color: var(--green)">This is a demo.</div>
+        <div style="--color: var(--teal)">This is a demo.</div>
+        <div style="--color: var(--blue)">This is a demo.</div>
+        <div style="--color: var(--indigo)">This is a demo.</div>
+        <div style="--color: var(--purple)">This is a demo.</div>
+        <div style="--color: var(--magenta)">This is a demo.</div>
+      </div>
+    </section>
+    -->
     <script>
       const slider = document.querySelector('neu-slider')
       slider.addEventListener('input', (event) => {

@@ -1,6 +1,5 @@
 const styles = `
 :host {
-  --accent-color: var(--gray-dark);
   --background-color: var(--white);
 
   display: block;
@@ -36,12 +35,12 @@ const styles = `
   cursor: pointer;
 
   .heading {
-    color: var(--accent-color);
+    color: var(--unfade);
   }
 }
 
 .block > a, b, em, h1, h2, h3, h4, h5 {
-  color: var(--accent-color);
+  color: var(--unfade);
   font-weight: 700;
 }
 
@@ -52,7 +51,7 @@ const styles = `
 }
 
 [slot="content"] {
-  * {
+  & > * {
     padding: var(--small);
   }
 
@@ -69,7 +68,7 @@ const styles = `
 @media screen and (hover: hover) {
   .block[href]::after {
     align-self: center;
-    border: var(--border);
+    border: 1px solid var(--unfade);
     border-radius: inherit;
     content: "";
     display: block;
@@ -137,13 +136,8 @@ class NeuBlock extends HTMLElement {
     switch (name) {
       case 'color':
         if (newValue !== null) {
-          this.style.setProperty('--accent-color', `var(--${newValue}-dark)`)
-          this.style.setProperty(
-            '--background-color',
-            `var(--${newValue}-light)`
-          )
+          this.style.setProperty('--background-color', `var(--${newValue})`)
         } else {
-          this.style.setProperty('--accent-color', 'var(--gray-dark)')
           this.style.setProperty('--background-color', 'var(--white)')
         }
         break

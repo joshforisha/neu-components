@@ -1,6 +1,5 @@
 const styles = `
 :host {
-  --accent-color: var(--gray-dark);
   --background-color: var(--white);
 
   background-color: var(--background-color);
@@ -17,12 +16,12 @@ const styles = `
 }
 
 a, b, em, h1, h2, h3, h4, h5 {
-  color: var(--accent-color);
+  color: var(--unfade);
   font-weight: 700;
 }
 
 .heading {
-  color: var(--accent-color);
+  color: var(--unfade);
   font-size: 1.25rem;
   font-weight: 700;
   padding: var(--small);
@@ -79,13 +78,8 @@ class NeuCard extends HTMLElement {
     switch (name) {
       case 'color':
         if (newValue !== null) {
-          this.style.setProperty('--accent-color', `var(--${newValue}-dark)`)
-          this.style.setProperty(
-            '--background-color',
-            `var(--${newValue}-light)`
-          )
+          this.style.setProperty('--background-color', `var(--${newValue})`)
         } else {
-          this.style.setProperty('--accent-color', 'var(--gray-dark)')
           this.style.setProperty('--background-color', 'var(--white)')
         }
         break

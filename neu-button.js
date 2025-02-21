@@ -1,6 +1,6 @@
 const styles = `
 :host {
-  --background-color: var(--gray-medium);
+  --background-color: var(--gray);
 
   align-items: center;
   background-color: var(--background-color);
@@ -99,10 +99,7 @@ class NeuButton extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.setProperty(
-          '--background-color',
-          `var(--${newValue}-medium)`
-        )
+        this.style.setProperty('--background-color', `var(--${newValue})`)
         break
       case 'disabled':
         if (newValue !== null) {

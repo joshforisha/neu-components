@@ -70,6 +70,9 @@ class NeuSelect extends HTMLElement {
 
     this.select = document.createElement('select')
     this.select.innerHTML = this.innerHTML
+    this.select.addEventListener('change', () => {
+      this.dispatchEvent(new Event('change'))
+    })
     root.appendChild(this.select)
 
     const indicator = document.createElement('span')
@@ -110,6 +113,10 @@ class NeuSelect extends HTMLElement {
           `Attribute ${name} has changed from "${oldValue}" to "${newValue}"`
         )
     }
+  }
+
+  get value() {
+    return this.select.options[this.select.selectedIndex].value
   }
 }
 

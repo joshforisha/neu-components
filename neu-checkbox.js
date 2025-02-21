@@ -6,7 +6,7 @@ const styles = `
 input {
   align-items: center;
   appearance: none;
-  background-color: var(--tint);
+  background-color: var(--fade);
   border: var(--border);
   border-radius: var(--small);
   color: var(--indicator-color);
@@ -87,7 +87,7 @@ class NeuCheckbox extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.setProperty('--indicator-color', `var(--${newValue}-dark)`)
+        this.style.setProperty('--indicator-color', `var(--${newValue})`)
         break
       case 'disabled':
         if (newValue !== null) {

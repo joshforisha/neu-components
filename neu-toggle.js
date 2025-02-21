@@ -26,6 +26,7 @@ const styles = `
   box-sizing: border-box;
   cursor: pointer;
   display: inline-flex;
+  flex-shrink: 0;
   height: var(--control-small);
   transition: background-color var(--slow);
   width: var(--control);
@@ -37,6 +38,7 @@ label {
   display: inline-flex;
   font-weight: 500;
   gap: var(--small);
+  white-space: nowrap;
 }
 
 :host(:state(disabled)) .indicator {

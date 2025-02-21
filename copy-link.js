@@ -1,7 +1,7 @@
 const styles = `
 :host {
   align-items: center;
-  background-color: var(--tint);
+  background-color: var(--fade);
   border: var(--border);
   border-radius: var(--tiny);
   display: flex;
@@ -9,11 +9,12 @@ const styles = `
 }
 
 button {
-  background-color: var(--gray-light);
+  background-color: var(--tint);
   border-bottom-right-radius: var(--tiny);
   border-left: var(--border);
   border-top-right-radius: var(--tiny);
   border-width: 0 0 0 1px;
+  color: inherit;
   cursor: pointer;
   font: inherit;
   font-weight: 500;
@@ -27,7 +28,7 @@ button {
   }
 
   &:not(.copied):hover {
-    background-color: var(--white);
+    background-color: #fff8;
   }
 }
 
