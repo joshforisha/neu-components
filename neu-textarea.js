@@ -4,10 +4,11 @@ const styles = `
 }
 
 textarea {
-  background-color: var(--tint);
+  background-color: var(--fade);
   border: var(--border);
   border-radius: var(--small);
   box-sizing: border-box;
+  color: inherit;
   font: inherit;
   font-weight: 400;
   min-height: var(--control);
@@ -17,12 +18,12 @@ textarea {
   width: 100%;
 
   &:focus {
-    background-color: var(--white);
+    background-color: var(--background);
   }
 
   &::placeholder {
     font-style: italic;
-    color: var(--shade);
+    color: var(--unfade);
   }
 }
 

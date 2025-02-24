@@ -16,14 +16,14 @@ const styles = `
 }
 
 a, b, em, h1, h2, h3, h4, h5 {
-  color: var(--unfade);
   font-weight: 700;
+  opacity: 0.6;
 }
 
 .heading {
-  color: var(--unfade);
   font-size: 1.25rem;
   font-weight: 700;
+  opacity: 0.6;
   padding: var(--small);
 }
 

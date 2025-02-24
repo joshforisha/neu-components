@@ -21,7 +21,7 @@ input {
 
   &::after {
     content: "✓";
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--fast);

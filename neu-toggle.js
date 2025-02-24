@@ -11,11 +11,11 @@ const styles = `
   background-color: var(--white);
   border: var(--border);
   border-radius: 50%;
-  height: calc(1.5 * var(--medium));
+  height: calc(1.25 * var(--medium));
   transform: translateX(1px);
   transition: all var(--slow);
   transition-property: background-color, transform;
-  width: calc(1.5 * var(--medium));
+  width: calc(1.25 * var(--medium));
 }
 
 .indicator {
@@ -55,7 +55,7 @@ label {
 }
 
 :host(:state(toggled)) .handle {
-  transform: translateX(calc(var(--medium) + 3px));
+  transform: translateX(calc(var(--medium) + 7px));
 }
 `
 
@@ -93,7 +93,7 @@ class NeuToggle extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.setProperty('--indicator-color', `var(--${newValue}-medium)`)
+        this.style.setProperty('--indicator-color', `var(--${newValue})`)
         break
       case 'disabled':
         if (newValue === null) this._internals.states.delete('disabled')

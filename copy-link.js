@@ -1,7 +1,7 @@
 const styles = `
 :host {
   align-items: center;
-  background-color: var(--fade);
+  background-color: var(--light);
   border: var(--border);
   border-radius: var(--tiny);
   display: flex;
@@ -9,7 +9,7 @@ const styles = `
 }
 
 button {
-  background-color: var(--tint);
+  background-color: var(--dark);
   border-bottom-right-radius: var(--tiny);
   border-left: var(--border);
   border-top-right-radius: var(--tiny);
@@ -23,12 +23,12 @@ button {
   transition: background-color var(--slow);
 
   &.copied {
-    background-color: var(--green-medium);
+    background-color: var(--green);
     transition: background-color var(--fast);
   }
 
   &:not(.copied):hover {
-    background-color: #fff8;
+    background-color: var(--darker);
   }
 }
 

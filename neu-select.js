@@ -25,7 +25,9 @@ label {
 
 select {
   appearance: none;
-  background-color: var(--tint);
+  background-color: var(--fade);
+  border: var(--border);
+  color: inherit;
   cursor: pointer;
   font: inherit;
   min-height: var(--control);
@@ -36,7 +38,7 @@ select {
   width: 100%;
 
   &:active {
-    background-color: var(--white);
+    background-color: var(--background);
   }
 }
 

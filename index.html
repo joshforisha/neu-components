@@ -110,9 +110,9 @@
       }
 
       code {
-        background-color: #0003;
+        background-color: var(--dark);
         border-radius: var(--thin);
-        padding: 0 var(--tiny);
+        padding: var(--thin) var(--tiny);
       }
 
       copy-link {
@@ -122,9 +122,9 @@
       }
 
       h1 {
-        margin: 0 auto;
-        max-width: var(--content-width);
-        padding: var(--large) var(--medium);
+        margin: var(--large) auto;
+        max-width: calc(var(--content-width) + var(--large));
+        padding: 0 var(--medium);
         width: 100%;
       }
 
@@ -154,14 +154,23 @@
         grid-template-columns: repeat(9, 1fr);
         margin-top: var(--medium);
 
+        &.utility {
+          background-color: var(--gray);
+          border: var(--border);
+          grid-template-columns: repeat(6, 1fr);
+          padding: var(--small);
+        }
+
         span {
+          align-items: center;
           border-bottom: var(--border);
           border-left: var(--border);
           border-top: var(--border);
-          display: block;
+          display: flex;
           height: var(--huge);
+          justify-content: center;
 
-          &:nth-child(9n) {
+          &:last-child {
             border-right: var(--border);
           }
         }
@@ -237,7 +246,7 @@
     </aside>
     <aside>
       <h2>Colors</h2>
-      <p>Any component with a <code>color</code> attribute accepts any of the following values: <code>white</code> (usually default), <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>teal</code>, <code>blue</code>, <code>indigo</code>, <code>purple</code>, or <code>magenta</code>.</p>
+      <p>Any component with a <code>color</code> attribute accepts any of the following values: <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>teal</code>, <code>blue</code>, <code>indigo</code>, <code>purple</code>, or <code>magenta</code>. Defaults are gray or neutral.</p>
       <div class="color-grid">
         <span class="tile" style="background-color: var(--red)"></span>
         <span class="tile" style="background-color: var(--orange)"></span>
@@ -249,7 +258,15 @@
         <span class="tile" style="background-color: var(--purple)"></span>
         <span class="tile" style="background-color: var(--magenta)"></span>
       </div>
-      <p>These colors automatically darken based on a user's color theme preference.</p>
+      <p>These colors automatically adapt to a user's <code>prefers-color-scheme</code>. Additionally, there are some utility colors: <code>dark</code>, <code>darker</code>, and <code>darkest</code>; and <code>light</code>, <code>lighter</code>, and <code>lightest</code>.</p>
+      <div class="utility color-grid">
+        <span class="tile" style="background-color: var(--darkest); color: var(--white)">darkest</span>
+        <span class="tile" style="background-color: var(--darker)">darker</span>
+        <span class="tile" style="background-color: var(--dark)">dark</span>
+        <span class="tile" style="background-color: var(--light)">light</span>
+        <span class="tile" style="background-color: var(--lighter)">lighter</span>
+        <span class="tile" style="background-color: var(--lightest); color: var(--black)">lightest</span>
+      </div>
     </aside>
     <section id="neu-avatar">
       <h2><a href="#neu-avatar">&lt;neu-avatar&gt;</a></h2>

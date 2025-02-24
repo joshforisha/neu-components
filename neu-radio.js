@@ -1,15 +1,15 @@
 const styles = `
 :host {
-  --indicator-color: var(--black);
+  --indicator-color: var(--foreground);
 }
 
 input {
   align-items: center;
   appearance: none;
-  background-color: var(--tint);
+  background-color: var(--fade);
   border: var(--border);
   border-radius: 50%;
-  color: var(--black);
+  color: var(--foreground);
   cursor: pointer;
   display: flex;
   font: inherit;
@@ -47,8 +47,8 @@ label {
 }
 
 :host(:state(disabled)) {
-  border-color: var(--gray-dark);
-  color: var(--gray-dark);
+  border-color: var(--gray);
+  color: var(--gray);
 }
 
 :host(:state(disabled)) input {
@@ -102,7 +102,7 @@ class NeuRadio extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.setProperty('--indicator-color', `var(--${newValue}-medium)`)
+        this.style.setProperty('--indicator-color', `var(--${newValue})`)
         break
       case 'disabled':
         if (newValue !== null) {

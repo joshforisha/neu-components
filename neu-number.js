@@ -1,16 +1,14 @@
 const styles = `
 :host {
-  --unfocused-color: var(--tint);
-  --focused-color: var(--white);
-
   width: 100%;
 }
 
 input {
-  background-color: var(--unfocused-color);
+  background-color: var(--fade);
   border: var(--border);
   border-radius: var(--small);
   box-sizing: border-box;
+  color: inherit;
   cursor: text;
   font: inherit;
   font-weight: 400;
@@ -21,7 +19,7 @@ input {
   width: 100%;
 
   &:focus {
-    background-color: var(--focused-color);
+    background-color: var(--background);
   }
 
   &::placeholder {

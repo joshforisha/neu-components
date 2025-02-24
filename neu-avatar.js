@@ -56,7 +56,7 @@ class NeuAvatar extends HTMLElement {
         if (newValue === null) {
           this._internals.states.delete('themed')
         } else {
-          this.style.backgroundColor = `var(--${newValue}-medium)`
+          this.style.backgroundColor = `var(--${newValue})`
           this._internals.states.add('themed')
         }
         break

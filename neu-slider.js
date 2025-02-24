@@ -15,7 +15,7 @@ input {
   }
 
   &::-webkit-slider-runnable-track {
-    background-color: var(--tint);
+    background-color: var(--fade);
     border: var(--border);
     border-radius: var(--small);
     height: var(--medium);

@@ -4,10 +4,11 @@ const styles = `
 }
 
 input {
-  background-color: var(--tint);
+  background-color: var(--fade);
   border: var(--border);
   border-radius: var(--small);
   box-sizing: border-box;
+  color: inherit;
   cursor: text;
   font: inherit;
   font-weight: 400;
@@ -18,12 +19,12 @@ input {
   width: 100%;
 
   &:focus {
-    background-color: var(--white);
+    background-color: var(--background);
   }
 
   &::placeholder {
     font-style: italic;
-    color: var(--shade);
+    color: var(--unfade);
   }
 }
 
