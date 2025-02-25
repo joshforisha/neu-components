@@ -22,7 +22,7 @@ const styles = `
 }
 
 :host(:state(disabled)) {
-  color: #0004;
+  color: var(--darker);
   cursor: not-allowed;
 }
 

@@ -51,7 +51,7 @@ label {
 }
 
 :host(:state(disabled)) label {
-  color: var(--shade);
+  color: var(--darker);
   cursor: not-allowed;
 }
 `

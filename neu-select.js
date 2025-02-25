@@ -44,7 +44,7 @@ select {
 
 .indicator {
   bottom: 0.8rem;
-  opacity: 0.75;
+  color: var(--darker);
   pointer-events: none;
   position: absolute;
   right: var(--medium);
