@@ -15,7 +15,7 @@ input {
   }
 
   &::-webkit-slider-runnable-track {
-    background-color: var(--fade);
+    background-color: var(--light);
     border: var(--border);
     border-radius: var(--small);
     height: var(--medium);
@@ -28,7 +28,7 @@ input {
     border-radius: 50%;
     cursor: pointer;
     height: var(--control-small);
-    margin-top: calc(0px - 0.5rem);
+    margin-top: calc(0px - 0.4rem);
     width: var(--control-small);
   }
 }
@@ -61,7 +61,7 @@ label {
 }
 
 :host(:state(disabled)) label {
-  color: var(--shade);
+  color: var(--darker);
   cursor: not-allowed;
 }
 

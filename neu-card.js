@@ -1,6 +1,6 @@
 const styles = `
 :host {
-  --background-color: var(--white);
+  --background-color: var(--gray);
 
   background-color: var(--background-color);
   border-radius: var(--thin);
@@ -16,14 +16,14 @@ const styles = `
 }
 
 a, b, em, h1, h2, h3, h4, h5 {
+  color: var(--darker);
   font-weight: 700;
-  opacity: 0.6;
 }
 
 .heading {
+  color: var(--darker);
   font-size: 1.25rem;
   font-weight: 700;
-  opacity: 0.6;
   padding: var(--small);
 }
 

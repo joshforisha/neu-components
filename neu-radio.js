@@ -1,15 +1,15 @@
 const styles = `
 :host {
-  --indicator-color: var(--foreground);
+  --indicated-color: var(--lighter);
 }
 
 input {
   align-items: center;
   appearance: none;
-  background-color: var(--fade);
+  background-color: var(--light);
   border: var(--border);
   border-radius: 50%;
-  color: var(--foreground);
+  color: var(--black);
   cursor: pointer;
   display: flex;
   font: inherit;
@@ -20,18 +20,19 @@ input {
   width: 1.5rem;
 
   &::after {
-    background-color: var(--indicator-color);
+    background-color: var(--black);
     border-radius: 50%;
-    border: 1px solid var(--shade);
     content: "";
-    height: 1rem;
+    height: 0.75rem;
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--fast);
-    width: 1rem;
+    width: 0.75rem;
   }
 
   &:checked {
+    background-color: var(--indicated-color);
+
     &::after {
       opacity: 1;
     }
@@ -102,7 +103,7 @@ class NeuRadio extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.setProperty('--indicator-color', `var(--${newValue})`)
+        this.style.setProperty('--indicated-color', `var(--${newValue})`)
         break
       case 'disabled':
         if (newValue !== null) {

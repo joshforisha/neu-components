@@ -1,42 +1,22 @@
 :root {
-  /* Color Hues */
-  --hue-blue: 210deg;
-  --hue-green: 100deg;
-  --hue-indigo: 240deg;
-  --hue-magenta: 315deg;
-  --hue-orange: 35deg;
-  --hue-purple: 270deg;
-  --hue-red: 0deg;
-  --hue-teal: 185deg;
-  --hue-yellow: 55deg;
-
-  /* Base Colors */
-  --black: #000;
-  --dark: #0002;
-  --darker: #0004;
-  --darkest: #000a;
-  --light: #fff2;
-  --lighter: #fff4;
-  --lightest: #fffa;
-  --white: #fff;
-
-  /* Light Colors */
-  --background: var(--white);
-  --blue: hsl(var(--hue-blue) 90% 76%);
-  --foreground: var(--black);
-  --gray: #eeeeee;
-  --green: hsl(var(--hue-green) 90% 76%);
-  --indigo: hsl(var(--hue-indigo) 90% 82%);
-  --magenta: hsl(var(--hue-magenta) 90% 79%);
-  --orange: hsl(var(--hue-orange) 90% 65%);
-  --purple: hsl(var(--hue-purple) 90% 80%);
-  --red: hsl(var(--hue-red) 90% 74%);
-  --teal: hsl(var(--hue-teal) 90% 78%);
-  --yellow: hsl(var(--hue-yellow) 90% 73%);
+  --black: rgb(20 20 20);
+  --blue: rgb(100 157 208);
+  --cyan: rgb(176 224 223);
+  --dark: rgb(20 20 20 / 0.125);
+  --darker: rgb(20 20 20 / 0.5);
+  --gray: #bababa;
+  --green: rgb(102 165 122);
+  --light: rgba(254 248 239 / 0.25);
+  --lighter: rgba(254 248 239 / 0.5);
+  --pink: rgb(243 185 195);
+  --purple: rgb(160 138 231);
+  --red: rgb(227 124 85);
+  --teal: rgb(106 161 163);
+  --white: rgb(254 248 239);
+  --yellow: rgb(243 186 84);
 
   /* Fonts */
   --humanist-fonts: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
-  --system-fonts: system-ui, sans-serif;
 
   /* Sizes */
   --control-small: 1.75rem;
@@ -59,8 +39,12 @@
   --shadow: var(--tiny) var(--tiny) 0 var(--black);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  color: var(--foreground);
+  color: var(--black);
   font-family: var(--humanist-fonts);
 }
 
@@ -77,21 +61,4 @@ neu-slider:not(:defined),
 neu-textarea:not(:defined),
 neu-toggle:not(:defined) {
   display: none;
-}
-
-@media screen and (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--black);
-    --blue: hsl(var(--hue-blue) 100% 28%);
-    --foreground: var(--white);
-    --gray: #50555a;
-    --green: hsl(var(--hue-green) 100% 25%);
-    --indigo: hsl(var(--hue-indigo) 65% 35%);
-    --magenta: hsl(var(--hue-magenta) 90% 30%);
-    --orange: hsl(var(--hue-orange) 100% 30%);
-    --purple: hsl(var(--hue-purple) 70% 30%);
-    --red: hsl(var(--hue-red) 100% 27%);
-    --teal: hsl(var(--hue-teal) 100% 30%);
-    --yellow: hsl(var(--hue-yellow) 100% 30%);
-  }
 }

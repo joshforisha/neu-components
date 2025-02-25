@@ -1,6 +1,6 @@
 const styles = `
 :host {
-  --background-color: var(--dark);
+  --background-color: var(--gray);
 
   display: block;
   width: 100%;
@@ -35,11 +35,12 @@ const styles = `
   cursor: pointer;
 
   .heading {
-    color: var(--darkest);
+    color: var(--darker);
   }
 }
 
 .block > a, b, em, h1, h2, h3, h4, h5 {
+  color: var(--darker);
   font-weight: 700;
 }
 
@@ -64,20 +65,13 @@ const styles = `
   }
 }
 
-@media screen and (prefers-color-scheme: dark) {
-  .block[href] .heading {
-    color: var(--lightest);
-  }
-}
-
 @media screen and (hover: hover) {
   .block[href]::after {
     align-self: center;
     border: var(--border);
     border-radius: inherit;
     content: "";
-    display: block;
-    height: 100%;
+    display: block; height: 100%;
     margin: auto;
     opacity: 0;
     pointer-events: none;

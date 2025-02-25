@@ -1,15 +1,15 @@
 const styles = `
 :host {
-  --indicator-color: var(--black);
+  --indicated-color: var(--lighter);
 }
 
 input {
   align-items: center;
   appearance: none;
-  background-color: var(--fade);
+  background-color: var(--light);
   border: var(--border);
   border-radius: var(--small);
-  color: var(--indicator-color);
+  color: var(--black);
   cursor: pointer;
   display: flex;
   font: inherit;
@@ -28,6 +28,8 @@ input {
   }
 
   &:checked {
+    background-color: var(--indicated-color);
+
     &::after {
       opacity: 1;
     }
@@ -43,8 +45,8 @@ label {
 }
 
 :host(:state(disabled)) {
-  border-color: var(--gray-dark);
-  color: var(--gray-dark);
+  border-color: var(--gray);
+  color: var(--gray);
 }
 
 :host(:state(disabled)) input {
@@ -87,7 +89,7 @@ class NeuCheckbox extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     switch (name) {
       case 'color':
-        this.style.setProperty('--indicator-color', `var(--${newValue})`)
+        this.style.setProperty('--indicated-color', `var(--${newValue})`)
         break
       case 'disabled':
         if (newValue !== null) {

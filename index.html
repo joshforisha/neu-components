@@ -31,10 +31,6 @@
         --content-width: 40rem;
       }
 
-      * {
-        box-sizing: border-box;
-      }
-
       a {
         color: inherit;
       }
@@ -75,15 +71,14 @@
             border-bottom: var(--border);
           }
 
-          &:nth-of-type(8n + 1) { background-color: var(--orange) }
-          &:nth-of-type(8n + 2) { background-color: var(--yellow) }
-          &:nth-of-type(8n + 3) { background-color: var(--green) }
-          &:nth-of-type(8n + 4) { background-color: var(--teal) }
+          &:nth-of-type(8n + 1) { background-color: var(--yellow) }
+          &:nth-of-type(8n + 2) { background-color: var(--green) }
+          &:nth-of-type(8n + 3) { background-color: var(--teal) }
+          &:nth-of-type(8n + 4) { background-color: var(--cyan) }
           &:nth-of-type(8n + 5) { background-color: var(--blue) }
-          &:nth-of-type(8n + 6) { background-color: var(--indigo) }
-          &:nth-of-type(8n + 7) { background-color: var(--purple) }
-          &:nth-of-type(8n + 8) { background-color: var(--magenta) }
-          &:nth-of-type(8n + 9) { background-color: var(--red) }
+          &:nth-of-type(8n + 6) { background-color: var(--purple) }
+          &:nth-of-type(8n + 7) { background-color: var(--pink) }
+          &:nth-of-type(8n + 8) { background-color: var(--red) }
 
           aside {
             margin-top: 0;
@@ -151,13 +146,13 @@
 
       .color-grid {
         display: grid;
-        grid-template-columns: repeat(9, 1fr);
+        grid-template-columns: repeat(8, 1fr);
         margin-top: var(--medium);
 
         &.utility {
-          background-color: var(--gray);
+          background: var(--teal);
           border: var(--border);
-          grid-template-columns: repeat(6, 1fr);
+          grid-template-columns: repeat(7, 1fr);
           padding: var(--small);
         }
 
@@ -172,55 +167,6 @@
 
           &:last-child {
             border-right: var(--border);
-          }
-        }
-      }
-
-      #demo {
-        background-color: var(--white);
-        flex-direction: row;
-        gap: 0;
-        padding: 0;
-
-        & > div {
-          flex: 0 0 50%;
-          padding: var(--medium);
-
-          &.dark {
-            background-color: #50555a;
-            color: var(--white);
-
-            --red: hsl(var(--hue-red) 40% 50%);
-            --orange: hsl(var(--hue-orange) 50% 45%);
-            --yellow: hsl(var(--hue-yellow) 50% 40%);
-            --green: hsl(var(--hue-green) 40% 45%);
-            --teal: hsl(var(--hue-teal) 45% 45%);
-            --blue: hsl(var(--hue-blue) 40% 50%);
-            --indigo: hsl(var(--hue-indigo) 40% 45%);
-            --purple: hsl(var(--hue-purple) 40% 45%);
-            --magenta: hsl(var(--hue-magenta) 45% 45%);
-          }
-
-          &.light {
-            background-color: #eee;
-            color: var(--black);
-
-            --red: hsl(var(--hue-red) 100% 78%);
-            --orange: hsl(var(--hue-orange) 100% 72%);
-            --yellow: hsl(var(--hue-yellow) 100% 77%);
-            --green: hsl(var(--hue-green) 100% 78%);
-            --teal: hsl(var(--hue-teal) 100% 80%);
-            --blue: hsl(var(--hue-blue) 100% 78%);
-            --indigo: hsl(var(--hue-indigo) 100% 80%);
-            --purple: hsl(var(--hue-purple) 100% 80%);
-            --magenta: hsl(var(--hue-magenta) 100% 80%);
-          }
-
-          div {
-            background-color: var(--color);
-            border: var(--border);
-            border-radius: var(--tiny);
-            padding: var(--medium);
           }
         }
       }
@@ -246,26 +192,26 @@
     </aside>
     <aside>
       <h2>Colors</h2>
-      <p>Any component with a <code>color</code> attribute accepts any of the following values: <code>red</code>, <code>orange</code>, <code>yellow</code>, <code>green</code>, <code>teal</code>, <code>blue</code>, <code>indigo</code>, <code>purple</code>, or <code>magenta</code>. Defaults are gray or neutral.</p>
+      <p>Any component with a <code>color</code> attribute accepts any of the following eight values. Defaults are gray or neutral, and you can override any color as a custom variable in <code>:root</code>.</p>
       <div class="color-grid">
-        <span class="tile" style="background-color: var(--red)"></span>
-        <span class="tile" style="background-color: var(--orange)"></span>
-        <span class="tile" style="background-color: var(--yellow)"></span>
-        <span class="tile" style="background-color: var(--green)"></span>
-        <span class="tile" style="background-color: var(--teal)"></span>
-        <span class="tile" style="background-color: var(--blue)"></span>
-        <span class="tile" style="background-color: var(--indigo)"></span>
-        <span class="tile" style="background-color: var(--purple)"></span>
-        <span class="tile" style="background-color: var(--magenta)"></span>
+        <span class="tile" style="background-color: var(--red)">--red</span>
+        <span class="tile" style="background-color: var(--yellow)">--yellow</span>
+        <span class="tile" style="background-color: var(--green)">--green</span>
+        <span class="tile" style="background-color: var(--teal)">--teal</span>
+        <span class="tile" style="background-color: var(--cyan)">--cyan</span>
+        <span class="tile" style="background-color: var(--blue)">--blue</span>
+        <span class="tile" style="background-color: var(--purple)">--purple</span>
+        <span class="tile" style="background-color: var(--pink)">--pink</span>
       </div>
-      <p>These colors automatically adapt to a user's <code>prefers-color-scheme</code>. Additionally, there are some utility colors: <code>dark</code>, <code>darker</code>, and <code>darkest</code>; and <code>light</code>, <code>lighter</code>, and <code>lightest</code>.</p>
+      <p>There are also two neutrals  and four tint/shade utility values:</p>
       <div class="utility color-grid">
-        <span class="tile" style="background-color: var(--darkest); color: var(--white)">darkest</span>
-        <span class="tile" style="background-color: var(--darker)">darker</span>
-        <span class="tile" style="background-color: var(--dark)">dark</span>
-        <span class="tile" style="background-color: var(--light)">light</span>
-        <span class="tile" style="background-color: var(--lighter)">lighter</span>
-        <span class="tile" style="background-color: var(--lightest); color: var(--black)">lightest</span>
+        <span class="tile" style="background-color: var(--black); color: var(--white)">--black</span>
+        <span class="tile" style="background-color: var(--gray)">--gray</span>
+        <span class="tile" style="background-color: var(--white)">--white</span>
+        <span class="tile" style="background-color: var(--darker); color: var(--white)">--darker</span>
+        <span class="tile" style="background-color: var(--dark)">--dark</span>
+        <span class="tile" style="background-color: var(--light)">--light</span>
+        <span class="tile" style="background-color: var(--lighter)">--lighter</span>
       </div>
     </aside>
     <section id="neu-avatar">
@@ -274,7 +220,7 @@
       <div>
         <neu-avatar
           alt="Placeholder"
-          color="magenta"
+          color="pink"
           size="64"
           src="https://placehold.co/64"
         ></neu-avatar>
@@ -294,7 +240,7 @@
       <h2><a href="#neu-block">&lt;neu-block&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-block.js"></copy-link>
       <div>
-        <neu-block color="red" heading="Red Block" href="/">
+        <neu-block color="yellow" heading="Yellow Block" href="/">
           <p>A block has a "floating" style and can act as a link when given an <code>href</code> value.</p>
         </neu-block>
       </div>
@@ -313,7 +259,7 @@
       <h2><a href="#neu-button">&lt;neu-button&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-button.js"></copy-link>
       <div>
-        <neu-button color="orange">Orange button</neu-button>
+        <neu-button color="green">Green button</neu-button>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -330,7 +276,7 @@
       <h2><a href="#neu-card">&lt;neu-card&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-card.js"></copy-link>
       <div>
-        <neu-card color="yellow" heading="Yellow Card">
+        <neu-card color="teal" heading="Teal Card">
           <p>A card is flat, and typically used for grouping information.</p>
         </neu-card>
       </div>
@@ -407,9 +353,9 @@
       <h2><a href="#neu-radio">&lt;neu-radio&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-radio.js"></copy-link>
       <div class="vertical">
-        <neu-radio color="indigo" label="One" name="test" value="one"></neu-radio>
-        <neu-radio color="indigo" label="Two" name="test" value="two"></neu-radio>
-        <neu-radio color="indigo" label="Three" name="test" value="three"></neu-radio>
+        <neu-radio color="pink" label="One" name="test" value="one"></neu-radio>
+        <neu-radio color="pink" label="Two" name="test" value="two"></neu-radio>
+        <neu-radio color="pink" label="Three" name="test" value="three"></neu-radio>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -437,7 +383,7 @@
           <option value="magenta">Magenta</option>
         </neu-select>
       </div>
-      <p>A <code>neu-select</code> is set up and used very much like a normal <code>select</code>: you include <code>option</code> elements inside.</p>
+      <p>A <code>&lt;neu-select&gt;</code> is set up and used very much like a normal <code>&lt;select&gt;</code>: you include <code>&lt;option&gt;</code> elements inside.</p>
       <aside>
         <h3>Attributes</h3>
         <ul>
@@ -494,7 +440,7 @@
       <h2><a href="#neu-toggle">&lt;neu-toggle&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-toggle.js"></copy-link>
       <div class="vertical">
-        <neu-toggle color="yellow" label="Yellow toggle"></neu-toggle>
+        <neu-toggle color="green" label="Green toggle"></neu-toggle>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -506,32 +452,6 @@
         </ul>
       </aside>
     </section>
-    <!--
-    <section id="demo">
-      <div class="dark">
-        <div style="--color: var(--red)">This is a demo.</div>
-        <div style="--color: var(--orange)">This is a demo.</div>
-        <div style="--color: var(--yellow)">This is a demo.</div>
-        <div style="--color: var(--green)">This is a demo.</div>
-        <div style="--color: var(--teal)">This is a demo.</div>
-        <div style="--color: var(--blue)">This is a demo.</div>
-        <div style="--color: var(--indigo)">This is a demo.</div>
-        <div style="--color: var(--purple)">This is a demo.</div>
-        <div style="--color: var(--magenta)">This is a demo.</div>
-      </div>
-      <div class="light">
-        <div style="--color: var(--red)">This is a demo.</div>
-        <div style="--color: var(--orange)">This is a demo.</div>
-        <div style="--color: var(--yellow)">This is a demo.</div>
-        <div style="--color: var(--green)">This is a demo.</div>
-        <div style="--color: var(--teal)">This is a demo.</div>
-        <div style="--color: var(--blue)">This is a demo.</div>
-        <div style="--color: var(--indigo)">This is a demo.</div>
-        <div style="--color: var(--purple)">This is a demo.</div>
-        <div style="--color: var(--magenta)">This is a demo.</div>
-      </div>
-    </section>
-    -->
     <script>
       const slider = document.querySelector('neu-slider')
       slider.addEventListener('input', (event) => {

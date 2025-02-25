@@ -4,7 +4,7 @@ const styles = `
 }
 
 input {
-  background-color: var(--fade);
+  background-color: var(--light);
   border: var(--border);
   border-radius: var(--small);
   box-sizing: border-box;
@@ -19,12 +19,12 @@ input {
   width: 100%;
 
   &:focus {
-    background-color: var(--background);
+    background-color: var(--lighter);
   }
 
   &::placeholder {
     font-style: italic;
-    color: var(--shade);
+    color: var(--darker);
   }
 }
 

@@ -25,7 +25,7 @@ label {
 
 select {
   appearance: none;
-  background-color: var(--fade);
+  background-color: var(--light);
   border: var(--border);
   color: inherit;
   cursor: pointer;
@@ -38,7 +38,7 @@ select {
   width: 100%;
 
   &:active {
-    background-color: var(--background);
+    background-color: var(--lighter);
   }
 }
 

@@ -9,7 +9,7 @@ const styles = `
 }
 
 button {
-  background-color: var(--dark);
+  background-color: var(--lighter);
   border-bottom-right-radius: var(--tiny);
   border-left: var(--border);
   border-top-right-radius: var(--tiny);
@@ -28,7 +28,7 @@ button {
   }
 
   &:not(.copied):hover {
-    background-color: var(--darker);
+    background-color: var(--white);
   }
 }
 
