@@ -63,7 +63,7 @@ label {
 `
 
 class NeuRadio extends HTMLElement {
-  static observedAttributes = ['color', 'disabled', 'label', 'name']
+  static observedAttributes = ['color', 'disabled', 'label', 'name', 'value']
 
   static selections = {}
 
@@ -118,6 +118,7 @@ class NeuRadio extends HTMLElement {
         this.labelText.textContent = newValue
         break
       case 'name':
+      case 'value':
         this.input.setAttribute(name, newValue)
         break
       default:
@@ -129,6 +130,10 @@ class NeuRadio extends HTMLElement {
 
   get checked() {
     return this.input.checked
+  }
+
+  get value() {
+    return this.input.value
   }
 }
 
