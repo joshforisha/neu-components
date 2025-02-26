@@ -8,14 +8,11 @@ label {
   cursor: pointer;
   display: flex;
   flex-wrap: wrap;
+  font-weight: 500;
 
   & > span {
     display: flex;
     flex-basis: 50%;
-
-    &.leading {
-      font-weight: 500;
-    }
 
     &.trailing {
       justify-content: flex-end;

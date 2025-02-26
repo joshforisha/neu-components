@@ -30,14 +30,11 @@ textarea {
 label {
   display: flex;
   flex-wrap: wrap;
+  font-weight: 500;
 
   & > span {
     display: flex;
     flex-basis: 50%;
-
-    &:first-of-type {
-      font-weight: 500;
-    }
 
     &:last-of-type {
       justify-content: flex-end;
