@@ -54,6 +54,11 @@ label {
   color: var(--darker);
   cursor: not-allowed;
 }
+
+:host(:state(small)) input {
+  height: var(--control-small);
+  min-height: unset;
+}
 `
 
 class NeuNumber extends HTMLElement {
@@ -64,6 +69,7 @@ class NeuNumber extends HTMLElement {
     'max',
     'min',
     'placeholder',
+    'small',
     'step',
     'trailing',
     'value'
@@ -122,6 +128,10 @@ class NeuNumber extends HTMLElement {
       case 'placeholder':
       case 'step':
         this.input.setAttribute(name, newValue)
+        break
+      case 'small':
+        if (newValue !== null) this._internals.states.add('small')
+        else this._internals.states.delete('small')
         break
       case 'trailing':
         this.trailingText.textContent = newValue
