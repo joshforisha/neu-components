@@ -12,6 +12,7 @@ input {
   color: var(--black);
   cursor: pointer;
   display: flex;
+  flex-shrink: 0;
   font: inherit;
   height: var(--control-small);
   justify-content: center;
@@ -42,6 +43,7 @@ label {
   display: inline-flex;
   font-weight: 500;
   gap: var(--small);
+  white-space: nowrap;
 }
 
 :host(:state(disabled)) {
