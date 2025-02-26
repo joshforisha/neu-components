@@ -26,6 +26,7 @@ label {
 select {
   appearance: none;
   background-color: var(--light);
+  border-radius: var(--small);
   border: var(--border);
   color: inherit;
   cursor: pointer;
