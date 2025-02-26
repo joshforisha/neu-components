@@ -100,12 +100,12 @@ class NeuCheckbox extends HTMLElement {
           this._internals.states.delete('disabled')
         }
         break
-      case 'label':
-        this.labelText.textContent = newValue
-        break
       case 'checked':
       case 'name':
         this.input.setAttribute(name, newValue)
+        break
+      case 'label':
+        this.labelText.textContent = newValue
         break
       default:
         console.warn(
@@ -116,6 +116,11 @@ class NeuCheckbox extends HTMLElement {
 
   get checked() {
     return this.input.checked
+  }
+
+  get value() {
+    if (this.hasAttribute('value')) return this.getAttribute('value')
+    if (this.hasAttribute('label')) return this.getAttribute('label')
   }
 }
 
