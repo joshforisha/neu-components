@@ -1,20 +1,27 @@
 :root {
+  /* Neutrals */
   --black: rgb(20 20 20);
-  --blue: rgb(100 157 208);
-  --cyan: rgb(176 224 223);
+  --gray: #bababa;
+  --white: rgb(254 248 239);
+
+  /* Utilities */
   --dark: rgb(20 20 20 / 0.125);
   --darker: rgb(20 20 20 / 0.67);
   --gray: #bababa;
-  --green: rgb(102 165 122);
   --light: rgba(254 248 239 / 0.25);
   --lighter: rgba(254 248 239 / 0.5);
   --lightest: rgba(254 248 239 / 0.75);
+
+  /* Colors */
+  --blue: rgb(124 168 207);
+  --cyan: rgb(176 224 223);
+  --green: rgb(123 181 141);
+  --orange: rgb(243 186 84);
   --pink: rgb(243 185 195);
-  --purple: rgb(160 138 231);
-  --red: rgb(227 124 85);
-  --teal: rgb(106 161 163);
-  --white: rgb(254 248 239);
-  --yellow: rgb(243 186 84);
+  --purple: rgb(180 157 242);
+  --red: rgb(240 132 93);
+  --orange: rgb(243 186 84);
+  --yellow: rgb(231 216 125);
 
   /* Fonts */
   --humanist-fonts: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;

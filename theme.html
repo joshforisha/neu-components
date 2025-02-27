@@ -19,16 +19,17 @@
     <style>
       :root {
         --black: rgb(20 20 20);
-        --blue: rgb(100 157 208);
+        --blue: rgb(124 168 207);
         --cyan: rgb(176 224 223);
         --gray: #bababa;
-        --green: rgb(102 165 122);
+        --green: rgb(123 181 141);
+        --orange: rgb(243 186 84);
         --pink: rgb(243 185 195);
-        --purple: rgb(160 138 231);
-        --red: rgb(227 124 85);
-        --teal: rgb(106 161 163);
+        --purple: rgb(180 157 242);
+        --red: rgb(240 132 93);
         --white: rgb(254 248 239);
-        --yellow: rgb(243 186 84);
+        --orange: rgb(243 186 84);
+        --yellow: rgb(231 216 125);
 
         --border: 1px solid black;
       }
@@ -56,25 +57,35 @@
       }
     </style>
     <div class="tile" style="--color: var(--red)"></div>
+    <div class="tile" style="--color: var(--orange)"></div>
     <div class="tile" style="--color: var(--yellow)"></div>
     <div class="tile" style="--color: var(--green)"></div>
-    <div class="tile" style="--color: var(--teal)"></div>
     <div class="tile" style="--color: var(--cyan)"></div>
     <div class="tile" style="--color: var(--blue)"></div>
     <div class="tile" style="--color: var(--purple)"></div>
     <div class="tile" style="--color: var(--pink)"></div>
     <script>
+      function brightness(x) {
+        const i = x / 255
+        if (i <= 0.03928) return i / 12.92
+        return ((i + 0.055) / 1.055) ** 2.4
+      }
+
+      function luminosity(r, g, b) {
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b
+      }
+
+      const blackLum = luminosity(brightness(20), brightness(20), brightness(20))
+
       Array.from(document.querySelectorAll('.tile')).forEach((tile) => {
-        const backgroundColor = getComputedStyle(tile).getPropertyValue('background-color')
-        const [r, g, b] = backgroundColor.substring(4, backgroundColor.length - 1).split(', ')
-          .map((x) => {
-          const i = x / 255
-          if (i <= 0.03928) return i / 12.92
-          return ((i + 0.055) / 1.055) ** 2.4
-        })
-        console.log(r, g, b)
-        const luminosity = 0.2126 * r + 0.7152 * g + 0.0722 * b
-        const ratio = (Math.floor(10 * (luminosity + 0.05) / 0.05) / 10).toFixed(1)
+        const backgroundColor = getComputedStyle(tile)
+          .getPropertyValue('background-color')
+        const [r, g, b] = backgroundColor
+          .substring(4, backgroundColor.length - 1)
+          .split(', ')
+          .map(brightness)
+        const lum = luminosity(r, g, b)
+        const ratio = Math.floor(10 * (lum + 0.05) / (blackLum + 0.05) / 10).toFixed(1)
         tile.textContent = ratio
       })
     </script>

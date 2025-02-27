@@ -71,9 +71,9 @@
             border-bottom: var(--border);
           }
 
-          &:nth-of-type(8n + 1) { background-color: var(--yellow) }
-          &:nth-of-type(8n + 2) { background-color: var(--green) }
-          &:nth-of-type(8n + 3) { background-color: var(--teal) }
+          &:nth-of-type(8n + 1) { background-color: var(--orange) }
+          &:nth-of-type(8n + 2) { background-color: var(--yellow) }
+          &:nth-of-type(8n + 3) { background-color: var(--green) }
           &:nth-of-type(8n + 4) { background-color: var(--cyan) }
           &:nth-of-type(8n + 5) { background-color: var(--blue) }
           &:nth-of-type(8n + 6) { background-color: var(--purple) }
@@ -144,16 +144,26 @@
         margin: var(--medium) 0 0;
       }
 
+      @keyframes colorChange {
+        0% { background-color: var(--red) }
+        12.5% { background-color: var(--orange) }
+        25% { background-color: var(--yellow) }
+        37.5% { background-color: var(--green) }
+        50% { background-color: var(--cyan) }
+        62.5% { background-color: var(--blue) }
+        75% { background-color: var(--purple) }
+        87.5% { background-color: var(--pink) }
+        100% { background-color: var(--red) }
+      }
+
       .color-grid {
+        animation: colorChange 30s linear infinite;
+        background-color: var(--red);
+        border: var(--border);
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         margin-top: var(--medium);
-
-        &.utility {
-          background: var(--teal);
-          border: var(--border);
-          padding: var(--small);
-        }
+        padding: var(--small);
 
         span {
           align-items: center;
@@ -215,9 +225,9 @@
       <p>Any component with a <code>color</code> attribute accepts any of the following eight values. Defaults are gray or neutral, and you can override any color as a custom variable in <code>:root</code>.</p>
       <div class="color-grid">
         <span class="tile" style="background-color: var(--red)">--red</span>
+        <span class="tile" style="background-color: var(--orange)">--orange</span>
         <span class="tile" style="background-color: var(--yellow)">--yellow</span>
         <span class="tile" style="background-color: var(--green)">--green</span>
-        <span class="tile" style="background-color: var(--teal)">--teal</span>
         <span class="tile" style="background-color: var(--cyan)">--cyan</span>
         <span class="tile" style="background-color: var(--blue)">--blue</span>
         <span class="tile" style="background-color: var(--purple)">--purple</span>
@@ -241,7 +251,7 @@
       <div>
         <neu-avatar
           alt="Placeholder"
-          color="pink"
+          color="red"
           size="64"
           src="https://placehold.co/64"
         ></neu-avatar>
@@ -261,7 +271,7 @@
       <h2><a href="#neu-block">&lt;neu-block&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-block.js"></copy-link>
       <div>
-        <neu-block color="yellow" heading="Yellow Block" href="/">
+        <neu-block color="white" heading="White Block" href="/">
           <p>A block has a "floating" style and can act as a link when given an <code>href</code> value.</p>
         </neu-block>
       </div>
@@ -269,7 +279,7 @@
         <h3>Attributes</h3>
         <p>The content of the block component is rendered below the <code>heading</code> element.</p>
         <ul>
-          <li><code>color</code>: determines the color theme (default: gray/white)</li>
+          <li><code>color</code>: determines the color theme (default: gray)</li>
           <li><code>external</code>: (with a <code>href</code>) opens a new tab/window when clicked</li>
           <li><code>heading</code>: text title for the heading</li>
           <li><code>href</code>: URL that opens when clicked</li>
@@ -280,7 +290,7 @@
       <h2><a href="#neu-button">&lt;neu-button&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-button.js"></copy-link>
       <div>
-        <neu-button color="green">Green button</neu-button>
+        <neu-button color="yellow">Yellow button</neu-button>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -297,7 +307,7 @@
       <h2><a href="#neu-card">&lt;neu-card&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-card.js"></copy-link>
       <div>
-        <neu-card color="teal" heading="Teal Card">
+        <neu-card color="green" heading="Green Card">
           <p>A card is flat, and typically used for grouping information.</p>
         </neu-card>
       </div>
@@ -313,7 +323,7 @@
       <h2><a href="#neu-checkbox">&lt;neu-checkbox&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-checkbox.js"></copy-link>
       <div class="vertical">
-        <neu-checkbox color="green" label="Green checkbox"></neu-checkbox>
+        <neu-checkbox color="cyan" label="Cyan checkbox"></neu-checkbox>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -377,9 +387,9 @@
       <h2><a href="#neu-radio">&lt;neu-radio&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-radio.js"></copy-link>
       <div class="vertical">
-        <neu-radio color="pink" label="One" name="test" value="one"></neu-radio>
-        <neu-radio color="pink" label="Two" name="test" value="two"></neu-radio>
-        <neu-radio color="pink" label="Three" name="test" value="three"></neu-radio>
+        <neu-radio color="yellow" label="One" name="test" value="one"></neu-radio>
+        <neu-radio color="yellow" label="Two" name="test" value="two"></neu-radio>
+        <neu-radio color="yellow" label="Three" name="test" value="three"></neu-radio>
       </div>
       <aside>
         <h3>Attributes</h3>
