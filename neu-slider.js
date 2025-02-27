@@ -7,6 +7,8 @@ input {
   appearance: none;
   background-color: inherit;
   cursor: pointer;
+  grid-column: 1 / span 2;
+  grid-row-start: 2;
   margin: var(--tiny) 0 0;
   width: 100%;
 
@@ -34,14 +36,15 @@ input {
 }
 
 label {
-  cursor: pointer;
-  display: flex;
-  flex-wrap: wrap;
-  font-weight: 500;
+  cursor: default;
+  display: inline-grid;
+  grid-template-columns: repeat(2, auto);
+  width: 100%;
 
   & > span {
     display: flex;
     flex-basis: 50%;
+    font-weight: 500;
 
     &:last-of-type {
       justify-content: flex-end;
@@ -86,23 +89,22 @@ class NeuSlider extends HTMLElement {
     const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
-    const style = document.createElement('style')
-    style.textContent = styles
+    const label = document.createElement('label')
+
+    this.leadingSpan = document.createElement('span')
+    label.appendChild(this.leadingSpan)
 
     this.input = document.createElement('input')
     this.input.setAttribute('type', 'range')
+    label.appendChild(this.input)
 
-    this.label = document.createElement('label')
+    this.trailingSpan = document.createElement('span')
+    label.appendChild(this.trailingSpan)
+    root.appendChild(label)
 
-    this.leadingText = document.createElement('span')
-    this.label.appendChild(this.leadingText)
-
-    this.trailingText = document.createElement('span')
-    this.label.appendChild(this.trailingText)
-    this.label.appendChild(this.input)
-
+    const style = document.createElement('style')
+    style.textContent = styles
     root.appendChild(style)
-    root.appendChild(this.label)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -117,7 +119,7 @@ class NeuSlider extends HTMLElement {
         }
         break
       case 'leading':
-        this.leadingText.textContent = newValue
+        this.leadingSpan.textContent = newValue
         break
       case 'max':
       case 'min':
@@ -125,7 +127,7 @@ class NeuSlider extends HTMLElement {
         this.input.setAttribute(name, newValue)
         break
       case 'trailing':
-        this.trailingText.textContent = newValue
+        this.trailingSpan.textContent = newValue
         break
       case 'value':
         this.value = newValue
