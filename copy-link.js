@@ -1,6 +1,5 @@
 const styles = `
 :host {
-  align-items: center;
   background-color: var(--light);
   border: var(--border);
   border-radius: var(--tiny);
@@ -33,7 +32,7 @@ button {
 }
 
 code {
-  padding: 0 var(--tiny);
+  padding: var(--tiny);
 }
 `
 

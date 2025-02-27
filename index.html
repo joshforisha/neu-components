@@ -159,6 +159,7 @@
       .color-grid {
         animation: colorChange 30s linear infinite;
         background-color: var(--red);
+        border-radius: var(--small);
         border: var(--border);
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -172,6 +173,22 @@
           display: flex;
           height: var(--huge);
           justify-content: center;
+
+          &:first-of-type {
+            border-top-left-radius: var(--small);
+          }
+
+          &:nth-child(4) {
+            border-top-right-radius: var(--small);
+          }
+
+          &:nth-child(5) {
+            border-bottom-left-radius: var(--small);
+          }
+
+          &:last-of-type {
+            border-bottom-right-radius: var(--small);
+          }
 
           &:nth-child(n+5) {
             border-bottom: var(--border);
@@ -201,11 +218,21 @@
           span {
             border-bottom: var(--border);
 
+            &:first-of-type {
+              border-bottom-left-radius: var(--small);
+            }
+
+            &:nth-child(4),
+            &:nth-child(5) {
+              border-radius: 0;
+            }
+
             &:nth-child(4n) {
               border-right: none;
             }
 
             &:last-child {
+              border-top-right-radius: var(--small);
               border-right: var(--border);
             }
           }
@@ -343,7 +370,6 @@
         <neu-input
           leading="Text input"
           placeholder="Enter text value"
-          trailing="Trailing"
         ></neu-input>
       </div>
       <aside>
@@ -366,7 +392,6 @@
           leading="Number input"
           max="10"
           min="0"
-          trailing="Trailing"
           value="5"
         ></neu-number>
       </div>
