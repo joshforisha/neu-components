@@ -1,7 +1,5 @@
 const styles = `
 :host {
-  display: inline-grid;
-  grid-template-columns: repeat(2, auto);
   width: 100%;
 }
 
@@ -33,6 +31,12 @@ input {
 }
 
 label {
+  display: inline-grid;
+  grid-template-columns: repeat(2, auto);
+  width: 100%;
+}
+
+label span {
   font-weight: 500;
   white-space: nowrap;
 }
@@ -41,7 +45,7 @@ label {
   justify-self: flex-end;
 }
 
-:host(:state(inline)) {
+:host(:state(inline)) label {
   align-items: center;
   column-gap: var(--small);
   grid-template-columns: min-content max-content min-content;
@@ -56,7 +60,7 @@ label {
   cursor: not-allowed;
 }
 
-:host(:state(disabled)) label {
+:host(:state(disabled)) label span {
   color: var(--darker);
   cursor: not-allowed;
 }
@@ -88,20 +92,23 @@ class NeuNumber extends HTMLElement {
     const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
-    this.leadingLabel = document.createElement('label')
-    this.leadingLabel.classList.add('leading')
-    root.appendChild(this.leadingLabel)
+    const label = document.createElement('label')
+
+    this.leadingSpan = document.createElement('span')
+    this.leadingSpan.classList.add('leading')
+    label.appendChild(this.leadingSpan)
 
     this.input = document.createElement('input')
     this.input.setAttribute('type', 'number')
     this.input.addEventListener('input', (event) => {
       this.dispatchEvent(new Event('change'))
     })
-    root.appendChild(this.input)
+    label.appendChild(this.input)
 
-    this.trailingLabel = document.createElement('label')
-    this.trailingLabel.classList.add('trailing')
-    root.appendChild(this.trailingLabel)
+    this.trailingSpan = document.createElement('span')
+    this.trailingSpan.classList.add('trailing')
+    label.appendChild(this.trailingSpan)
+    root.appendChild(label)
 
     const style = document.createElement('style')
     style.textContent = styles
@@ -131,7 +138,7 @@ class NeuNumber extends HTMLElement {
         else this._internals.states.delete('inline')
         break
       case 'leading':
-        this.leadingLabel.textContent = newValue
+        this.leadingSpan.textContent = newValue
         break
       case 'max':
       case 'min':
@@ -144,7 +151,7 @@ class NeuNumber extends HTMLElement {
         else this._internals.states.delete('small')
         break
       case 'trailing':
-        this.trailingLabel.textContent = newValue
+        this.trailingSpan.textContent = newValue
         break
       case 'value':
         this.input.setAttribute('value', newValue)

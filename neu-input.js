@@ -12,6 +12,8 @@ input {
   cursor: text;
   font: inherit;
   font-weight: 400;
+  grid-column: 1 / span 2;
+  grid-row-start: 2;
   min-height: var(--control);
   outline: none;
   padding: 0 var(--small);
@@ -29,27 +31,43 @@ input {
 }
 
 label {
-  display: flex;
-  flex-wrap: wrap;
+  display: inline-grid;
+  grid-template-columns: repeat(2, auto);
+  width: 100%;
+}
+
+label span {
   font-weight: 500;
+  white-space: nowrap;
+}
 
-  & > span {
-    display: flex;
-    flex-basis: 50%;
+.trailing {
+  justify-self: flex-end;
+}
 
-    &:last-of-type {
-      justify-content: flex-end;
-    }
-  }
+:host(:state(inline)) label {
+  align-items: center;
+  column-gap: var(--small);
+  grid-template-columns: min-content max-content min-content;
+}
+
+:host(:state(inline)) input {
+  grid-column: unset;
+  grid-row-start: unset;
 }
 
 :host(:state(disabled)) input {
   cursor: not-allowed;
 }
 
-:host(:state(disabled)) label {
+:host(:state(disabled)) label span {
   color: var(--darker);
   cursor: not-allowed;
+}
+
+:host(:state(small)) input {
+  height: var(--control-small);
+  min-height: unset;
 }
 `
 
@@ -57,6 +75,7 @@ class NeuInput extends HTMLElement {
   static observedAttributes = [
     'autofocus',
     'disabled',
+    'inline',
     'leading',
     'placeholder',
     'trailing',
@@ -69,25 +88,26 @@ class NeuInput extends HTMLElement {
     const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
+    const label = document.createElement('label')
+    this.leadingSpan = document.createElement('span')
+    this.leadingSpan.classList.add('leading')
+    label.appendChild(this.leadingSpan)
+
     this.input = document.createElement('input')
+    this.input.setAttribute('type', 'text')
     this.input.addEventListener('input', (event) => {
       this.dispatchEvent(new Event('change'))
     })
+    label.appendChild(this.input)
 
-    this.label = document.createElement('label')
-    this.leadingText = document.createElement('span')
-    this.trailingText = document.createElement('span')
+    this.trailingSpan = document.createElement('span')
+    this.trailingSpan.classList.add('trailing')
+    label.appendChild(this.trailingSpan)
+    root.appendChild(label)
 
     const style = document.createElement('style')
     style.textContent = styles
     root.appendChild(style)
-
-    this.input.setAttribute('type', 'text')
-
-    this.label.appendChild(this.leadingText)
-    this.label.appendChild(this.trailingText)
-    this.label.appendChild(this.input)
-    root.appendChild(this.label)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -108,14 +128,18 @@ class NeuInput extends HTMLElement {
           this._internals.states.delete('disabled')
         }
         break
+      case 'inline':
+        if (newValue !== null) this._internals.states.add('inline')
+        else this._internals.states.delete('inline')
+        break
       case 'leading':
-        this.leadingText.textContent = newValue
+        this.leadingSpan.textContent = newValue
         break
       case 'placeholder':
         this.input.setAttribute(name, newValue)
         break
       case 'trailing':
-        this.trailingText.textContent = newValue
+        this.trailingSpan.textContent = newValue
         break
       case 'value':
         this.input.setAttribute('value', newValue)
