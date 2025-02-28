@@ -32,6 +32,8 @@ button {
 }
 
 code {
+  align-items: center;
+  display: flex;
   padding: var(--tiny);
 }
 `
