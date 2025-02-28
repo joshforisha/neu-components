@@ -72,21 +72,23 @@ class NeuSelect extends HTMLElement {
     const root = this.attachShadow({ mode: 'open' })
     this._internals = this.attachInternals()
 
-    this.label = document.createElement('label')
-    this.leadingText = document.createElement('span')
-    this.leadingText.classList.add('leading')
-    this.trailingText = document.createElement('span')
-    this.trailingText.classList.add('trailing')
-    this.label.appendChild(this.leadingText)
-    this.label.appendChild(this.trailingText)
-    root.appendChild(this.label)
+    const label = document.createElement('label')
+
+    this.leadingSpan = document.createElement('span')
+    this.leadingSpan.classList.add('leading')
+    label.appendChild(this.leadingSpan)
+
+    this.trailingSpan = document.createElement('span')
+    this.trailingSpan.classList.add('trailing')
+    label.appendChild(this.trailingSpan)
 
     this.select = document.createElement('select')
     this.select.innerHTML = this.innerHTML
     this.select.addEventListener('change', () => {
       this.dispatchEvent(new Event('change'))
     })
-    root.appendChild(this.select)
+    label.appendChild(this.select)
+    root.appendChild(label)
 
     const indicator = document.createElement('span')
     indicator.classList.add('indicator')
@@ -118,10 +120,10 @@ class NeuSelect extends HTMLElement {
         }
         break
       case 'leading':
-        this.leadingText.textContent = newValue
+        this.leadingSpan.textContent = newValue
         break
       case 'trailing':
-        this.trailingText.textContent = newValue
+        this.trailingSpan.textContent = newValue
         break
       default:
         console.warn(
