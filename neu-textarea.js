@@ -48,6 +48,7 @@ label {
 }
 
 :host(:state(disabled)) textarea {
+  color: var(--darkest);
   cursor: not-allowed;
 }
 `

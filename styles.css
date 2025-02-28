@@ -1,13 +1,12 @@
 :root {
   /* Neutrals */
   --black: rgb(20 20 20);
-  --gray: #bababa;
   --white: rgb(254 248 239);
 
   /* Utilities */
   --dark: rgb(20 20 20 / 0.125);
-  --darker: rgb(20 20 20 / 0.67);
-  --gray: #bababa;
+  --darker: rgb(20 20 20 / 0.3);
+  --darkest: rgb(20 20 20 / 0.6);
   --light: rgba(254 248 239 / 0.25);
   --lighter: rgba(254 248 239 / 0.5);
   --lightest: rgba(254 248 239 / 0.75);

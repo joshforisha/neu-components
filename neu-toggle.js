@@ -41,6 +41,10 @@ label {
   white-space: nowrap;
 }
 
+:host(:state(disabled)) .handle {
+  background-color: var(--light);
+}
+
 :host(:state(disabled)) .indicator {
   cursor: not-allowed;
 }

@@ -1,6 +1,6 @@
 const styles = `
 :host {
-  --background-color: var(--gray);
+  --background-color: var(--light);
 
   display: block;
   width: 100%;
@@ -35,12 +35,12 @@ const styles = `
   cursor: pointer;
 
   .heading {
-    color: var(--darker);
+    color: var(--darkest);
   }
 }
 
 .block > a, b, em, h1, h2, h3, h4, h5 {
-  color: var(--darker);
+  color: var(--darkest);
   font-weight: 700;
 }
 

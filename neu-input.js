@@ -57,6 +57,7 @@ label span {
 }
 
 :host(:state(disabled)) input {
+  color: var(--darkest);
   cursor: not-allowed;
 }
 

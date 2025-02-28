@@ -46,11 +46,6 @@ label {
   white-space: nowrap;
 }
 
-:host(:state(disabled)) {
-  border-color: var(--gray);
-  color: var(--gray);
-}
-
 :host(:state(disabled)) input {
   cursor: not-allowed;
 }

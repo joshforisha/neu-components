@@ -260,16 +260,16 @@
         <span class="tile" style="background-color: var(--purple)">--purple</span>
         <span class="tile" style="background-color: var(--pink)">--pink</span>
       </div>
-      <p>There are also three neutrals and five tint/shade utility values:</p>
+      <p>There are also two neutrals and six tint/shade utility values between them:</p>
       <div class="utility color-grid">
         <span class="tile" style="background-color: var(--black); color: var(--white)">--black</span>
-        <span class="tile" style="background-color: var(--gray)">--gray</span>
-        <span class="tile" style="background-color: var(--white)">--white</span>
+        <span class="tile" style="background-color: var(--darkest); color: var(--white)">--darkest</span>
         <span class="tile" style="background-color: var(--darker); color: var(--white)">--darker</span>
         <span class="tile" style="background-color: var(--dark)">--dark</span>
         <span class="tile" style="background-color: var(--light)">--light</span>
         <span class="tile" style="background-color: var(--lighter)">--lighter</span>
         <span class="tile" style="background-color: var(--lightest)">--lightest</span>
+        <span class="tile" style="background-color: var(--white)">--white</span>
       </div>
     </aside>
     <section id="neu-avatar">
@@ -287,7 +287,7 @@
         <h3>Attributes</h3>
         <ul>
           <li><code>alt</code>: supplies the underlying image's <code>alt</code> value</li>
-          <li><code>color</code>: determines the color theme (thin color border)—none by default</li>
+          <li><code>color</code>: determines the color theme (thin color border, default: none)</li>
           <li><code>round</code>: rounds the container and image to circles</li>
           <li><code>size</code>: defines the height and width of the container</li>
           <li><code>src</code>: the URL for the contained image</li>
@@ -298,7 +298,7 @@
       <h2><a href="#neu-block">&lt;neu-block&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-block.js"></copy-link>
       <div>
-        <neu-block color="white" heading="White Block" href="/">
+        <neu-block heading="White Block" href="/">
           <p>A block has a "floating" style and can act as a link when given an <code>href</code> value.</p>
         </neu-block>
       </div>
@@ -415,9 +415,9 @@
       <h2><a href="#neu-radio">&lt;neu-radio&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-radio.js"></copy-link>
       <div class="vertical">
-        <neu-radio color="yellow" label="One" name="test" value="one"></neu-radio>
-        <neu-radio color="yellow" label="Two" name="test" value="two"></neu-radio>
-        <neu-radio color="yellow" label="Three" name="test" value="three"></neu-radio>
+        <neu-radio color="yellow" disabled label="One (disabled)" name="test" value="one"></neu-radio>
+        <neu-radio color="yellow" label="Two (yellow)" name="test" value="two"></neu-radio>
+        <neu-radio color="green" label="Three (green)" name="test" value="three"></neu-radio>
       </div>
       <aside>
         <h3>Attributes</h3>
@@ -502,7 +502,7 @@
       <h2><a href="#neu-toggle">&lt;neu-toggle&gt;</a></h2>
       <copy-link url="https://joshforisha.github.io/neu-components/neu-toggle.js"></copy-link>
       <div class="vertical">
-        <neu-toggle color="green" label="Green toggle"></neu-toggle>
+        <neu-toggle color="green" label="Green toggle" toggled></neu-toggle>
       </div>
       <aside>
         <h3>Attributes</h3>

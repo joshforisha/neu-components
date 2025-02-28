@@ -16,12 +16,12 @@ const styles = `
 }
 
 a, b, em, h1, h2, h3, h4, h5 {
-  color: var(--darker);
+  color: var(--darkest);
   font-weight: 700;
 }
 
 .heading {
-  color: var(--darker);
+  color: var(--darkest);
   font-size: 1.25rem;
   font-weight: 700;
   padding: var(--small);

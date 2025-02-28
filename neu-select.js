@@ -34,10 +34,6 @@ select {
   position: relative;
   transition: background-color var(--slow);
   width: 100%;
-
-  &:active {
-    background-color: var(--lighter);
-  }
 }
 
 .indicator {
@@ -47,6 +43,23 @@ select {
   position: absolute;
   right: var(--medium);
   transform: rotate(90deg);
+}
+
+:host(:not(:state(disabled))) select:active {
+  background-color: var(--lighter);
+}
+
+:host(:state(disabled)) label {
+  cursor: not-allowed;
+}
+
+:host(:state(disabled)) label span {
+  color: var(--darker);
+}
+
+:host(:state(disabled)) select {
+  color: var(--darkest);
+  cursor: not-allowed;
 }
 `
 
@@ -97,8 +110,10 @@ class NeuSelect extends HTMLElement {
     switch (name) {
       case 'disabled':
         if (newValue !== null) {
+          this._internals.states.add('disabled')
           this.select.setAttribute('disabled', '')
         } else {
+          this._internals.states.delete('disabled')
           this.select.removeAttribute('disabled')
         }
         break
