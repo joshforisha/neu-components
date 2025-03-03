@@ -47,7 +47,7 @@ const styles = `
 .heading {
   font-size: 1.25rem;
   font-weight: 700;
-  padding: var(--small);
+  padding: var(--small) var(--small) 0;
 }
 
 [slot="content"] {
