@@ -28,11 +28,11 @@ a, b, em, h1, h2, h3, h4, h5 {
 }
 
 [slot="content"] {
-  * {
+  & > * {
     padding: var(--small);
   }
 
-  p {
+  & > p {
     margin: var(--small);
     padding: 0;
 
