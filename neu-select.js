@@ -1,5 +1,6 @@
 const styles = `
 :host {
+  display: block;
   position: relative;
   width: 100%;
 }
@@ -28,6 +29,7 @@ select {
   color: inherit;
   cursor: pointer;
   font: inherit;
+  font-weight: 400;
   min-height: var(--control);
   outline: none;
   padding: 0 var(--small);
