@@ -79,6 +79,7 @@ class NeuInput extends HTMLElement {
     'inline',
     'leading',
     'placeholder',
+    'small',
     'trailing',
     'value'
   ]
@@ -138,6 +139,13 @@ class NeuInput extends HTMLElement {
         break
       case 'placeholder':
         this.input.setAttribute(name, newValue)
+        break
+      case 'small':
+        if (newValue !== null) {
+          this._internals.states.add('small')
+        } else {
+          this._internals.states.add('small')
+        }
         break
       case 'trailing':
         this.trailingSpan.textContent = newValue

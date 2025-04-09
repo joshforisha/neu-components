@@ -26,6 +26,12 @@ const styles = `
   cursor: not-allowed;
 }
 
+:host(:state(small)) {
+  height: var(--control-small);
+  min-height: unset;
+  padding: 0 var(--small);
+}
+
 @media screen and (hover: hover) {
   :host::after {
     border: var(--border);
@@ -57,7 +63,7 @@ const styles = `
 `
 
 class NeuButton extends HTMLElement {
-  static observedAttributes = ['color', 'disabled', 'round']
+  static observedAttributes = ['color', 'disabled', 'round', 'small']
 
   constructor() {
     super()
@@ -111,6 +117,13 @@ class NeuButton extends HTMLElement {
       case 'round':
         this.style.borderRadius =
           newValue !== null ? 'var(--large)' : 'var(--tiny)'
+        break
+      case 'small':
+        if (newValue !== null) {
+          this._internals.states.add('small')
+        } else {
+          this._internals.states.delete('small')
+        }
         break
       default:
         console.warn(
