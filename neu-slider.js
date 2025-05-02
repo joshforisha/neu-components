@@ -16,6 +16,7 @@ input {
     height: var(--large);
   }
 
+  &::-moz-range-track,
   &::-webkit-slider-runnable-track {
     background-color: var(--light);
     border: var(--border);
@@ -23,6 +24,7 @@ input {
     height: var(--medium);
   }
 
+  &::-moz-range-thumb,
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     background-color: var(--white);
